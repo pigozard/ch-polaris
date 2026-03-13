@@ -1,38 +1,47 @@
-<nav class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <div class="container-fluid">
-    <%= link_to "#", class: "navbar-brand" do %>
-      <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
+<!-- Bandeau fictif -->
+<div class="alert alert-warning text-center py-2 mb-0 rounded-0" style="font-size: 0.85rem;">
+  ⚠️ Ce site est un <strong>projet fictif</strong> réalisé à des fins de démonstration — Pierre Gozard · Portfolio e-santé
+</div>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+  <div class="container">
+    <%= link_to root_path, class: "navbar-brand d-flex align-items-center gap-2" do %>
+      <div style="width: 36px; height: 36px; background: #1a6b5c; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+        <span style="color: white; font-size: 1rem;">✦</span>
+      </div>
+      <div>
+        <div style="font-weight: 700; font-size: 1rem; color: #1a3a2a; line-height: 1;">POLARIS</div>
+        <div style="font-size: 0.65rem; color: #6b7280; letter-spacing: 0.1em; text-transform: uppercase;">Centre Hospitalier</div>
+      </div>
     <% end %>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarPolaris">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto">
-        <% if user_signed_in? %>
-          <li class="nav-item active">
-            <%= link_to "Home", "#", class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Messages", "#", class: "nav-link" %>
-          </li>
-          <li class="nav-item dropdown">
-          <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar", alt: "dropdown menu" %>
-          </a>
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Action", "#", class: "dropdown-item" %>
-              <%= link_to "Another action", "#", class: "dropdown-item" %>
-              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
-            </div>
-          </li>
-        <% else %>
-          <li class="nav-item">
-            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-          </li>
-        <% end %>
+    <div class="collapse navbar-collapse" id="navbarPolaris">
+      <ul class="navbar-nav mx-auto gap-1">
+        <li class="nav-item">
+          <%= link_to "OFFRE DE SOINS", "#", class: "nav-link", style: "font-size: 0.8rem; letter-spacing: 0.05em; color: #374151;" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "PÔLES", "#", class: "nav-link", style: "font-size: 0.8rem; letter-spacing: 0.05em; color: #374151;" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "PATIENTS", patients_path, class: "nav-link", style: "font-size: 0.8rem; letter-spacing: 0.05em; color: #374151;" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "PROFESSIONNELS", professionnels_path, class: "nav-link", style: "font-size: 0.8rem; letter-spacing: 0.05em; color: #374151;" %>
+        </li>
       </ul>
+
+      <div class="d-flex align-items-center gap-3">
+        <% if user_signed_in? %>
+          <%= link_to "Déconnexion", destroy_user_session_path, data: { turbo_method: :delete }, class: "btn btn-outline-secondary btn-sm" %>
+        <% end %>
+        <a href="#" class="btn btn-sm text-white" style="background-color: #1a6b5c;">PRENDRE RDV</a>
+      </div>
     </div>
   </div>
 </nav>
