@@ -1,95 +1,231 @@
+<% content_for :head do %>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #1a1f2e; --mist: #f4f5f7; --teal: #2e7f7d;
+      --teal-light: #e6f2f2; --warm: #f9f9f7;
+      --border: #e2e4e8; --text-muted: #6b7280;
+    }
+    body { font-family: 'DM Sans', sans-serif; background: var(--warm); color: var(--ink); font-size: 15px; line-height: 1.6; }
+
+    /* HERO */
+    .hero { min-height: 80vh; display: flex; flex-direction: column; justify-content: flex-start; padding: 60px 40px; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; top: -20%; right: -10%; width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, rgba(46,127,125,0.07) 0%, transparent 70%); pointer-events: none; }
+    .hero-eyebrow { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; animation: fadeUp 0.7s ease both; }
+    .hero-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--teal); }
+    .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem, 5vw, 5rem); font-weight: 300; line-height: 1.08; max-width: 640px; animation: fadeUp 0.7s 0.1s ease both; }
+    .hero h1 em { font-style: italic; color: var(--teal); }
+    .hero-sub { margin-top: 22px; font-size: 1rem; font-weight: 300; color: var(--text-muted); max-width: 440px; line-height: 1.75; animation: fadeUp 0.7s 0.2s ease both; }
+    .hero-actions { margin-top: 40px; display: flex; gap: 14px; flex-wrap: wrap; animation: fadeUp 0.7s 0.3s ease both; }
+    .btn-primary { background: var(--teal); color: white; padding: 13px 28px; border-radius: 4px; font-size: 0.88rem; font-weight: 500; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; display: inline-block; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(46,127,125,0.25); color: white; }
+    .btn-ghost { color: var(--ink); padding: 13px 28px; border-radius: 4px; border: 1px solid var(--border); font-size: 0.88rem; text-decoration: none; transition: border-color 0.2s, background 0.2s; display: inline-block; }
+    .btn-ghost:hover { border-color: var(--teal); background: var(--teal-light); color: var(--ink); }
+    .hero-stats { position: absolute; bottom: 48px; right: 40px; display: flex; gap: 40px; animation: fadeUp 0.7s 0.45s ease both; }
+    .stat-item { text-align: right; }
+    .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 300; line-height: 1; }
+    .stat-label { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-top: 3px; }
+
+    /* TABS */
+    .tabs-section { padding: 80px 40px; max-width: 1060px; margin: 0 auto; }
+    .section-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); margin-bottom: 14px; }
+    .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 300; line-height: 1.2; margin-bottom: 48px; max-width: 460px; }
+    .tabs-nav { display: flex; border-bottom: 1px solid var(--border); margin-bottom: 44px; overflow-x: auto; }
+    .tab-btn { background: none; border: none; padding: 14px 24px; font-family: 'DM Sans', sans-serif; font-size: 0.88rem; font-weight: 400; color: var(--text-muted); cursor: pointer; position: relative; white-space: nowrap; transition: color 0.2s; }
+    .tab-btn::after { content: ''; position: absolute; bottom: -1px; left: 0; right: 0; height: 2px; background: var(--teal); transform: scaleX(0); transition: transform 0.25s ease; }
+    .tab-btn:hover { color: var(--ink); }
+    .tab-btn.active { color: var(--teal); font-weight: 500; }
+    .tab-btn.active::after { transform: scaleX(1); }
+    .tab-panel { display: none; animation: fadeIn 0.35s ease; }
+    .tab-panel.active { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+    .tab-content h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; font-weight: 400; margin-bottom: 14px; }
+    .tab-content p { color: var(--text-muted); font-weight: 300; line-height: 1.8; margin-bottom: 18px; }
+    .tab-feature-list { list-style: none; padding: 0; }
+    .tab-feature-list li { padding: 11px 0; border-bottom: 1px solid var(--border); font-size: 0.88rem; display: flex; align-items: center; gap: 10px; }
+    .tab-feature-list li::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--teal); flex-shrink: 0; }
+    .tab-visual { background: var(--mist); border-radius: 8px; aspect-ratio: 4/3; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; position: relative; overflow: hidden; }
+    .tab-visual::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(46,127,125,0.06) 0%, transparent 60%); }
+    .tab-visual-icon { font-size: 3rem; }
+    .tab-visual-label { font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); }
+
+    /* PÔLES */
+    .poles-section { background: var(--ink); padding: 80px 40px; color: white; }
+    .poles-inner { max-width: 1060px; margin: 0 auto; }
+    .poles-section .section-label { color: rgba(255,255,255,0.4); }
+    .poles-section .section-title { color: white; }
+    .poles-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: rgba(255,255,255,0.08); border-radius: 8px; overflow: hidden; margin-top: 40px; }
+    .pole-card { background: var(--ink); padding: 28px 20px; transition: background 0.2s; cursor: pointer; }
+    .pole-card:hover { background: #242a3d; }
+    .pole-num { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 300; line-height: 1; margin-bottom: 16px; }
+    .pole-name { font-size: 0.88rem; font-weight: 500; margin-bottom: 7px; line-height: 1.35; }
+    .pole-desc { font-size: 0.76rem; color: rgba(255,255,255,0.42); line-height: 1.6; }
+    .pole-units-count { margin-top: 12px; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.4; }
+
+    /* NEWS */
+    .news-section { padding: 80px 40px; max-width: 1060px; margin: 0 auto; }
+    .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; }
+    .news-card { background: white; border-radius: 8px; padding: 28px; border: 1px solid var(--border); transition: box-shadow 0.2s; }
+    .news-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+    .news-category { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal); margin-bottom: 12px; }
+    .news-title { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 400; line-height: 1.4; margin-bottom: 10px; }
+    .news-summary { font-size: 0.83rem; color: var(--text-muted); line-height: 1.7; }
+    .news-meta { margin-top: 16px; font-size: 0.72rem; color: #9ca3af; display: flex; align-items: center; gap: 8px; }
+    .news-pole-dot { width: 6px; height: 6px; border-radius: 50%; display: inline-block; }
+
+    /* URGENCES BANNER */
+    .urgences-banner { background: var(--teal); padding: 0 40px; display: flex; align-items: center; justify-content: space-between; height: 76px; }
+    .urgences-banner p { color: white; font-size: 0.88rem; margin: 0; }
+    .urgences-banner strong { font-weight: 600; font-size: 1.05rem; }
+    .urgences-link { color: white; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; border: 1px solid rgba(255,255,255,0.5); padding: 9px 20px; border-radius: 4px; transition: background 0.2s; white-space: nowrap; }
+    .urgences-link:hover { background: rgba(255,255,255,0.15); color: white; }
+
+    /* FOOTER */
+    .site-footer { padding: 48px 40px; background: var(--ink); color: rgba(255,255,255,0.5); }
+    .footer-inner { max-width: 1060px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; }
+    .footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 300; color: white; margin-bottom: 12px; }
+    .footer-address { font-size: 0.82rem; line-height: 1.8; }
+    .footer-col h6 { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 16px; }
+    .footer-col ul { list-style: none; padding: 0; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul li a { font-size: 0.83rem; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+    .footer-col ul li a:hover { color: white; }
+    .footer-bottom { max-width: 1060px; margin: 32px auto 0; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; font-size: 0.75rem; }
+    .footer-fictif { color: rgba(255,200,0,0.6); }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  </style>
+<% end %>
+
 <!-- HERO -->
-<section style="background: linear-gradient(135deg, #f0f7f4 0%, #e8f4f0 50%, #f0f0f7 100%); min-height: 85vh;" class="d-flex align-items-center">
-  <div class="container py-5">
-    <div class="row align-items-center">
-      <div class="col-lg-7">
-        <p class="text-uppercase mb-3" style="font-size: 0.75rem; letter-spacing: 0.15em; color: #1a6b5c; font-weight: 600;">
-          — Centre Hospitalier Psychiatrique
-        </p>
-        <h1 style="font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 300; line-height: 1.1; color: #1a3a2a;">
-          Prendre soin de la <em style="color: #1a6b5c; font-style: italic;">santé</em><br>
-          <em style="color: #1a6b5c; font-style: italic;">mentale</em> avec bienveillance
-        </h1>
-        <p class="mt-4 mb-5" style="color: #6b7280; font-size: 1.1rem; max-width: 500px;">
-          Un établissement de référence dédié à la psychiatrie adulte et pédopsychiatrie, au service du territoire de Novapolis.
-        </p>
-        <div class="d-flex gap-3 flex-wrap">
-          <%= link_to patients_path, class: "btn btn-lg text-white px-4", style: "background-color: #1a6b5c;" do %>
-            Vous êtes patient
-          <% end %>
-          <%= link_to professionnels_path, class: "btn btn-lg btn-outline-secondary px-4" do %>
-            Vous êtes professionnel
-          <% end %>
-        </div>
-      </div>
+<section class="hero">
+  <div class="hero-eyebrow">Centre Hospitalier Psychiatrique</div>
+  <h1>Prendre soin de la <em>santé<br>mentale</em> avec bienveillance</h1>
+  <p class="hero-sub">Un établissement de référence dédié à la psychiatrie adulte et pédopsychiatrie, au service du territoire de Novapolis.</p>
+  <div class="hero-actions">
+    <%= link_to patients_path, class: "btn-primary" do %>
+      Vous êtes patient
+    <% end %>
+    <%= link_to professionnels_path, class: "btn-ghost" do %>
+      Vous êtes professionnel
+    <% end %>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num"><%= Pole.count %></div>
+      <div class="stat-label">Pôles</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num"><%= Unit.where(unit_type: %w[ward_open ward_closed long_stay]).sum(:capacity) %></div>
+      <div class="stat-label">Lits</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num"><%= Unit.count %>+</div>
+      <div class="stat-label">Unités</div>
     </div>
   </div>
 </section>
 
-<!-- CHIFFRES CLÉS -->
-<section class="py-5 bg-white">
-  <div class="container">
-    <div class="row text-center g-4">
-      <div class="col-6 col-md-3">
-        <div class="p-4">
-          <div style="font-size: 2.5rem; font-weight: 700; color: #1a6b5c;"><%= Pole.count %></div>
-          <div style="color: #6b7280; font-size: 0.9rem;">Pôles de soins</div>
-        </div>
-      </div>
-      <div class="col-6 col-md-3">
-        <div class="p-4">
-          <div style="font-size: 2.5rem; font-weight: 700; color: #1a6b5c;"><%= Unit.count %></div>
-          <div style="color: #6b7280; font-size: 0.9rem;">Unités</div>
-        </div>
-      </div>
-      <div class="col-6 col-md-3">
-        <div class="p-4">
-          <div style="font-size: 2.5rem; font-weight: 700; color: #1a6b5c;"><%= Unit.where(unit_type: %w[ward_open ward_closed long_stay]).sum(:capacity) %></div>
-          <div style="color: #6b7280; font-size: 0.9rem;">Lits d'hospitalisation</div>
-        </div>
-      </div>
-      <div class="col-6 col-md-3">
-        <div class="p-4">
-          <div style="font-size: 2.5rem; font-weight: 700; color: #1a6b5c;"><%= Unit.where(unit_type: %w[hdj cattp sessad]).sum(:capacity) %></div>
-          <div style="color: #6b7280; font-size: 0.9rem;">Places ambulatoires</div>
-        </div>
-      </div>
+<!-- OFFRE DE SOINS -->
+<section class="tabs-section" id="offre">
+  <div class="section-label">Nos services</div>
+  <h2 class="section-title">Une prise en charge complète et coordonnée</h2>
+  <div class="tabs-nav">
+    <button class="tab-btn active" data-tab="soins">Soins & Hospitalisation</button>
+    <button class="tab-btn" data-tab="etp">Éducation Thérapeutique</button>
+    <button class="tab-btn" data-tab="numerique">Numérique & Innovation</button>
+    <button class="tab-btn" data-tab="urgences">Urgences Psychiatriques</button>
+    <button class="tab-btn" data-tab="patients">Espace Patients</button>
+  </div>
+
+  <div class="tab-panel active" id="tab-soins">
+    <div class="tab-content">
+      <h3>Hospitalisations et soins ambulatoires</h3>
+      <p>Du suivi ambulatoire à l'hospitalisation complète, un continuum de soins adapté à chaque situation clinique.</p>
+      <ul class="tab-feature-list">
+        <li>Hospitalisation complète ouverte et fermée</li>
+        <li>Soins de suite psychiatriques</li>
+        <li>Centres médico-psychologiques (CMP)</li>
+        <li>Hôpital de jour adulte et pédopsychiatrique</li>
+        <li>Consultations spécialisées</li>
+      </ul>
     </div>
+    <div class="tab-visual"><div class="tab-visual-icon">🏥</div><div class="tab-visual-label">Soins & Parcours</div></div>
+  </div>
+
+  <div class="tab-panel" id="tab-etp">
+    <div class="tab-content">
+      <h3>Unité Transversale d'Éducation du Patient</h3>
+      <p>L'UTEP accompagne patients et proches dans la compréhension et la gestion de leur maladie pour gagner en autonomie.</p>
+      <ul class="tab-feature-list">
+        <li>Programmes ETP validés ARS</li>
+        <li>Ateliers collectifs et séances individuelles</li>
+        <li>Coordination interprofessionnelle</li>
+        <li>Évaluation et réajustement continu</li>
+        <li>Intégration des proches aidants</li>
+      </ul>
+    </div>
+    <div class="tab-visual"><div class="tab-visual-icon">📚</div><div class="tab-visual-label">Éducation Thérapeutique</div></div>
+  </div>
+
+  <div class="tab-panel" id="tab-numerique">
+    <div class="tab-content">
+      <h3>Innovation numérique en santé mentale</h3>
+      <p>Polaris intègre les outils numériques pour améliorer la qualité des soins, la coordination et l'expérience patient.</p>
+      <ul class="tab-feature-list">
+        <li>Dossier Patient Informatisé (DPI) unifié</li>
+        <li>Téléconsultation psychiatrique</li>
+        <li>Outils d'évaluation et de suivi numériques</li>
+        <li>Plateforme e-santé pour les professionnels</li>
+        <li>Coordination ville-hôpital digitalisée</li>
+      </ul>
+    </div>
+    <div class="tab-visual"><div class="tab-visual-icon">💻</div><div class="tab-visual-label">e-Santé & Digital</div></div>
+  </div>
+
+  <div class="tab-panel" id="tab-urgences">
+    <div class="tab-content">
+      <h3>Urgences et interventions de crise</h3>
+      <p>Une équipe dédiée aux situations de crise psychiatrique, 24h/24 en lien avec le SAMU et les partenaires du territoire.</p>
+      <ul class="tab-feature-list">
+        <li>Unité d'accueil des urgences psychiatriques</li>
+        <li>Équipe mobile de psychiatrie (EMPP)</li>
+        <li>Cellule d'urgence médico-psychologique (CUMP)</li>
+        <li>Liaison hospitalière</li>
+        <li>Dispositif de postvention et suivi de crise</li>
+      </ul>
+    </div>
+    <div class="tab-visual"><div class="tab-visual-icon">🚨</div><div class="tab-visual-label">Crise & Urgences</div></div>
+  </div>
+
+  <div class="tab-panel" id="tab-patients">
+    <div class="tab-content">
+      <h3>Espace patients & familles</h3>
+      <p>Des ressources et services pour accompagner patients et proches tout au long du parcours de soins.</p>
+      <ul class="tab-feature-list">
+        <li>Sectorisation et orientation vers le bon CMP</li>
+        <li>Droits des patients en psychiatrie</li>
+        <li>Préparer son séjour</li>
+        <li>FAQ et guides pratiques</li>
+        <li>Associations de patients partenaires</li>
+      </ul>
+    </div>
+    <div class="tab-visual"><div class="tab-visual-icon">👥</div><div class="tab-visual-label">Patients & Familles</div></div>
   </div>
 </section>
 
-<!-- NOS PÔLES -->
-<section class="py-5" style="background-color: #f9fafb;">
-  <div class="container">
-    <div class="row mb-5">
-      <div class="col">
-        <p class="text-uppercase mb-2" style="font-size: 0.75rem; letter-spacing: 0.15em; color: #1a6b5c; font-weight: 600;">Notre organisation</p>
-        <h2 style="font-weight: 300; color: #1a3a2a; font-size: 2rem;">Nos pôles de soins</h2>
-      </div>
-    </div>
-    <div class="row g-4">
-      <% @poles.each do |pole| %>
-        <div class="col-md-6 col-lg-4">
-          <div class="card h-100 border-0 shadow-sm" style="border-radius: 12px; overflow: hidden;">
-            <div style="height: 6px; background-color: <%= pole.color %>;"></div>
-            <div class="card-body p-4">
-              <div class="d-flex align-items-center gap-2 mb-3">
-                <div style="width: 10px; height: 10px; border-radius: 50%; background-color: <%= pole.color %>;"></div>
-                <span style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: #6b7280;">
-                  <%= pole.transversal? ? "Transversal" : "Sectoriel" %>
-                </span>
-              </div>
-              <h5 style="font-weight: 600; color: #1a3a2a;"><%= pole.name %></h5>
-              <p style="color: #6b7280; font-size: 0.9rem; line-height: 1.6;">
-                <%= truncate(pole.description, length: 120) %>
-              </p>
-              <div class="mt-3">
-                <span class="badge" style="background-color: <%= pole.color %>20; color: <%= pole.color %>; font-size: 0.75rem;">
-                  <%= pole.units.count %> unités
-                </span>
-              </div>
-            </div>
-          </div>
+<!-- PÔLES -->
+<section class="poles-section" id="poles">
+  <div class="poles-inner">
+    <div class="section-label">Organisation clinique</div>
+    <h2 class="section-title">Cinq pôles d'expertise</h2>
+    <div class="poles-grid">
+      <% @poles.each_with_index do |pole, index| %>
+        <div class="pole-card">
+          <div class="pole-num" style="color: <%= pole.color %>66;">0<%= index + 1 %></div>
+          <div class="pole-name"><%= pole.name %></div>
+          <div class="pole-desc"><%= truncate(pole.description, length: 80) %></div>
+          <div class="pole-units-count"><%= pole.units.count %> unités</div>
         </div>
       <% end %>
     </div>
@@ -98,80 +234,77 @@
 
 <!-- ACTUALITÉS -->
 <% if @news.any? %>
-<section class="py-5 bg-white">
-  <div class="container">
-    <div class="row mb-5">
-      <div class="col">
-        <p class="text-uppercase mb-2" style="font-size: 0.75rem; letter-spacing: 0.15em; color: #1a6b5c; font-weight: 600;">Vie de l'établissement</p>
-        <h2 style="font-weight: 300; color: #1a3a2a; font-size: 2rem;">Actualités</h2>
-      </div>
-    </div>
-    <div class="row g-4">
-      <% @news.each do |article| %>
-        <div class="col-md-4">
-          <div class="card h-100 border-0 shadow-sm" style="border-radius: 12px;">
-            <div class="card-body p-4">
-              <div class="mb-3">
-                <span class="badge" style="background-color: #f0f7f4; color: #1a6b5c; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em;">
-                  <%= article.category %>
-                </span>
-              </div>
-              <h6 style="font-weight: 600; color: #1a3a2a; line-height: 1.4;"><%= article.title %></h6>
-              <p style="color: #6b7280; font-size: 0.85rem; line-height: 1.6;"><%= article.summary %></p>
-              <div class="mt-3" style="font-size: 0.75rem; color: #9ca3af;">
-                <%= article.published_at&.strftime("%d %B %Y") %>
-                <% if article.pole %>
-                  · <span style="color: <%= article.pole.color %>;"><%= article.pole.name %></span>
-                <% end %>
-              </div>
-            </div>
-          </div>
+<section class="news-section">
+  <div class="section-label">Vie de l'établissement</div>
+  <h2 class="section-title">Actualités</h2>
+  <div class="news-grid">
+    <% @news.each do |article| %>
+      <div class="news-card">
+        <div class="news-category"><%= article.category %></div>
+        <div class="news-title"><%= article.title %></div>
+        <p class="news-summary"><%= article.summary %></p>
+        <div class="news-meta">
+          <%= article.published_at&.strftime("%d %B %Y") %>
+          <% if article.pole %>
+            <span class="news-pole-dot" style="background-color: <%= article.pole.color %>;"></span>
+            <span><%= article.pole.name %></span>
+          <% end %>
         </div>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   </div>
 </section>
 <% end %>
 
+<!-- BANNIÈRE URGENCES -->
+<div class="urgences-banner">
+  <p>En cas de crise psychiatrique — <strong>15 (SAMU) · 3114 (Numéro national prévention suicide)</strong></p>
+  <a href="#" class="urgences-link">Accès urgences</a>
+</div>
+
 <!-- FOOTER -->
-<footer style="background-color: #1a3a2a; color: #d1fae5;" class="py-5">
-  <div class="container">
-    <div class="row g-4">
-      <div class="col-md-4">
-        <div class="d-flex align-items-center gap-2 mb-3">
-          <div style="width: 32px; height: 32px; background: #1a6b5c; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-            <span style="color: white; font-size: 0.9rem;">✦</span>
-          </div>
-          <div>
-            <div style="font-weight: 700; color: white;">POLARIS</div>
-            <div style="font-size: 0.65rem; color: #6ee7b7; letter-spacing: 0.1em;">Centre Hospitalier</div>
-          </div>
-        </div>
-        <p style="font-size: 0.85rem; color: #9ca3af; line-height: 1.6;">
-          12 rue des Astres<br>
-          33999 Novapolis<br>
-          Standard : 05 99 00 00 00
-        </p>
-      </div>
-      <div class="col-md-4">
-        <h6 style="color: white; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em;">Accès rapide</h6>
-        <ul class="list-unstyled mt-3" style="font-size: 0.85rem;">
-          <li class="mb-2"><%= link_to "Patients & Familles", patients_path, style: "color: #9ca3af; text-decoration: none;" %></li>
-          <li class="mb-2"><%= link_to "Professionnels de santé", professionnels_path, style: "color: #9ca3af; text-decoration: none;" %></li>
-          <li class="mb-2"><a href="#" style="color: #9ca3af; text-decoration: none;">Urgences psychiatriques</a></li>
-        </ul>
-      </div>
-      <div class="col-md-4">
-        <h6 style="color: white; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em;">Informations légales</h6>
-        <ul class="list-unstyled mt-3" style="font-size: 0.85rem;">
-          <li class="mb-2"><a href="#" style="color: #9ca3af; text-decoration: none;">Mentions légales</a></li>
-          <li class="mb-2"><a href="#" style="color: #9ca3af; text-decoration: none;">Accessibilité</a></li>
-          <li class="mb-2"><a href="#" style="color: #9ca3af; text-decoration: none;">Plan du site</a></li>
-        </ul>
-        <p style="font-size: 0.75rem; color: #6b7280; margin-top: 1rem;">
-          ⚠️ Projet fictif — Pierre Gozard
-        </p>
-      </div>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Centre Hospitalier Polaris</div>
+      <p class="footer-address">
+        12 rue des Astres<br>
+        33999 Novapolis<br>
+        Standard : 05 99 00 00 00<br>
+        contact@ch-polaris.fr
+      </p>
+    </div>
+    <div class="footer-col">
+      <h6>Accès rapide</h6>
+      <ul>
+        <li><%= link_to "Patients & Familles", patients_path %></li>
+        <li><%= link_to "Professionnels", professionnels_path %></li>
+        <li><a href="#">Urgences psychiatriques</a></li>
+        <li><a href="#">Nous contacter</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h6>Informations légales</h6>
+      <ul>
+        <li><a href="#">Mentions légales</a></li>
+        <li><a href="#">Accessibilité</a></li>
+        <li><a href="#">Plan du site</a></li>
+      </ul>
     </div>
   </div>
+  <div class="footer-bottom">
+    <span>© <%= Date.today.year %> Centre Hospitalier Polaris — Novapolis</span>
+    <span class="footer-fictif">⚠️ Projet fictif de démonstration — Pierre Gozard</span>
+  </div>
 </footer>
+
+<script>
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+    });
+  });
+</script>
