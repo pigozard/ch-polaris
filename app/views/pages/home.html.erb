@@ -1,2 +1,177 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<!-- HERO -->
+<section style="background: linear-gradient(135deg, #f0f7f4 0%, #e8f4f0 50%, #f0f0f7 100%); min-height: 85vh;" class="d-flex align-items-center">
+  <div class="container py-5">
+    <div class="row align-items-center">
+      <div class="col-lg-7">
+        <p class="text-uppercase mb-3" style="font-size: 0.75rem; letter-spacing: 0.15em; color: #1a6b5c; font-weight: 600;">
+          — Centre Hospitalier Psychiatrique
+        </p>
+        <h1 style="font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 300; line-height: 1.1; color: #1a3a2a;">
+          Prendre soin de la <em style="color: #1a6b5c; font-style: italic;">santé</em><br>
+          <em style="color: #1a6b5c; font-style: italic;">mentale</em> avec bienveillance
+        </h1>
+        <p class="mt-4 mb-5" style="color: #6b7280; font-size: 1.1rem; max-width: 500px;">
+          Un établissement de référence dédié à la psychiatrie adulte et pédopsychiatrie, au service du territoire de Novapolis.
+        </p>
+        <div class="d-flex gap-3 flex-wrap">
+          <%= link_to patients_path, class: "btn btn-lg text-white px-4", style: "background-color: #1a6b5c;" do %>
+            Vous êtes patient
+          <% end %>
+          <%= link_to professionnels_path, class: "btn btn-lg btn-outline-secondary px-4" do %>
+            Vous êtes professionnel
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHIFFRES CLÉS -->
+<section class="py-5 bg-white">
+  <div class="container">
+    <div class="row text-center g-4">
+      <div class="col-6 col-md-3">
+        <div class="p-4">
+          <div style="font-size: 2.5rem; font-weight: 700; color: #1a6b5c;"><%= Pole.count %></div>
+          <div style="color: #6b7280; font-size: 0.9rem;">Pôles de soins</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="p-4">
+          <div style="font-size: 2.5rem; font-weight: 700; color: #1a6b5c;"><%= Unit.count %></div>
+          <div style="color: #6b7280; font-size: 0.9rem;">Unités</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="p-4">
+          <div style="font-size: 2.5rem; font-weight: 700; color: #1a6b5c;"><%= Unit.where(unit_type: %w[ward_open ward_closed long_stay]).sum(:capacity) %></div>
+          <div style="color: #6b7280; font-size: 0.9rem;">Lits d'hospitalisation</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="p-4">
+          <div style="font-size: 2.5rem; font-weight: 700; color: #1a6b5c;"><%= Unit.where(unit_type: %w[hdj cattp sessad]).sum(:capacity) %></div>
+          <div style="color: #6b7280; font-size: 0.9rem;">Places ambulatoires</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NOS PÔLES -->
+<section class="py-5" style="background-color: #f9fafb;">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col">
+        <p class="text-uppercase mb-2" style="font-size: 0.75rem; letter-spacing: 0.15em; color: #1a6b5c; font-weight: 600;">Notre organisation</p>
+        <h2 style="font-weight: 300; color: #1a3a2a; font-size: 2rem;">Nos pôles de soins</h2>
+      </div>
+    </div>
+    <div class="row g-4">
+      <% @poles.each do |pole| %>
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 border-0 shadow-sm" style="border-radius: 12px; overflow: hidden;">
+            <div style="height: 6px; background-color: <%= pole.color %>;"></div>
+            <div class="card-body p-4">
+              <div class="d-flex align-items-center gap-2 mb-3">
+                <div style="width: 10px; height: 10px; border-radius: 50%; background-color: <%= pole.color %>;"></div>
+                <span style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: #6b7280;">
+                  <%= pole.transversal? ? "Transversal" : "Sectoriel" %>
+                </span>
+              </div>
+              <h5 style="font-weight: 600; color: #1a3a2a;"><%= pole.name %></h5>
+              <p style="color: #6b7280; font-size: 0.9rem; line-height: 1.6;">
+                <%= truncate(pole.description, length: 120) %>
+              </p>
+              <div class="mt-3">
+                <span class="badge" style="background-color: <%= pole.color %>20; color: <%= pole.color %>; font-size: 0.75rem;">
+                  <%= pole.units.count %> unités
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<!-- ACTUALITÉS -->
+<% if @news.any? %>
+<section class="py-5 bg-white">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col">
+        <p class="text-uppercase mb-2" style="font-size: 0.75rem; letter-spacing: 0.15em; color: #1a6b5c; font-weight: 600;">Vie de l'établissement</p>
+        <h2 style="font-weight: 300; color: #1a3a2a; font-size: 2rem;">Actualités</h2>
+      </div>
+    </div>
+    <div class="row g-4">
+      <% @news.each do |article| %>
+        <div class="col-md-4">
+          <div class="card h-100 border-0 shadow-sm" style="border-radius: 12px;">
+            <div class="card-body p-4">
+              <div class="mb-3">
+                <span class="badge" style="background-color: #f0f7f4; color: #1a6b5c; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em;">
+                  <%= article.category %>
+                </span>
+              </div>
+              <h6 style="font-weight: 600; color: #1a3a2a; line-height: 1.4;"><%= article.title %></h6>
+              <p style="color: #6b7280; font-size: 0.85rem; line-height: 1.6;"><%= article.summary %></p>
+              <div class="mt-3" style="font-size: 0.75rem; color: #9ca3af;">
+                <%= article.published_at&.strftime("%d %B %Y") %>
+                <% if article.pole %>
+                  · <span style="color: <%= article.pole.color %>;"><%= article.pole.name %></span>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+<% end %>
+
+<!-- FOOTER -->
+<footer style="background-color: #1a3a2a; color: #d1fae5;" class="py-5">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="d-flex align-items-center gap-2 mb-3">
+          <div style="width: 32px; height: 32px; background: #1a6b5c; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+            <span style="color: white; font-size: 0.9rem;">✦</span>
+          </div>
+          <div>
+            <div style="font-weight: 700; color: white;">POLARIS</div>
+            <div style="font-size: 0.65rem; color: #6ee7b7; letter-spacing: 0.1em;">Centre Hospitalier</div>
+          </div>
+        </div>
+        <p style="font-size: 0.85rem; color: #9ca3af; line-height: 1.6;">
+          12 rue des Astres<br>
+          33999 Novapolis<br>
+          Standard : 05 99 00 00 00
+        </p>
+      </div>
+      <div class="col-md-4">
+        <h6 style="color: white; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em;">Accès rapide</h6>
+        <ul class="list-unstyled mt-3" style="font-size: 0.85rem;">
+          <li class="mb-2"><%= link_to "Patients & Familles", patients_path, style: "color: #9ca3af; text-decoration: none;" %></li>
+          <li class="mb-2"><%= link_to "Professionnels de santé", professionnels_path, style: "color: #9ca3af; text-decoration: none;" %></li>
+          <li class="mb-2"><a href="#" style="color: #9ca3af; text-decoration: none;">Urgences psychiatriques</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h6 style="color: white; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em;">Informations légales</h6>
+        <ul class="list-unstyled mt-3" style="font-size: 0.85rem;">
+          <li class="mb-2"><a href="#" style="color: #9ca3af; text-decoration: none;">Mentions légales</a></li>
+          <li class="mb-2"><a href="#" style="color: #9ca3af; text-decoration: none;">Accessibilité</a></li>
+          <li class="mb-2"><a href="#" style="color: #9ca3af; text-decoration: none;">Plan du site</a></li>
+        </ul>
+        <p style="font-size: 0.75rem; color: #6b7280; margin-top: 1rem;">
+          ⚠️ Projet fictif — Pierre Gozard
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
