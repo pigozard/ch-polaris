@@ -98,30 +98,33 @@
 <% end %>
 
 <!-- HERO -->
-<section class="hero">
-  <div class="hero-eyebrow">Centre Hospitalier Psychiatrique</div>
-  <h1>Prendre soin de la <em>santé<br>mentale</em> avec bienveillance</h1>
-  <p class="hero-sub">Un établissement de référence dédié à la psychiatrie adulte et pédopsychiatrie, au service du territoire de Novapolis.</p>
-  <div class="hero-actions">
-    <%= link_to patients_path, class: "btn-primary" do %>
-      Vous êtes patient
-    <% end %>
-    <%= link_to professionnels_path, class: "btn-ghost" do %>
-      Vous êtes professionnel
-    <% end %>
-  </div>
-  <div class="hero-stats">
-    <div class="stat-item">
-      <div class="stat-num"><%= Pole.count %></div>
-      <div class="stat-label">Pôles</div>
+<section class="hero" style="background-image: url('<%= asset_path('hero-hospital.jpg') %>'); background-size: cover; background-position: center; position: relative;">
+  <div style="position: absolute; inset: 0; background: linear-gradient(135deg, rgba(249,247,244,0.95) 0%, rgba(230,242,242,0.88) 40%, rgba(249,247,244,0.65) 100%);"></div>
+  <div style="position: relative; z-index: 1;">
+    <div class="hero-eyebrow">Centre Hospitalier Psychiatrique</div>
+    <h1>Prendre soin de la <em>santé<br>mentale</em> avec bienveillance</h1>
+    <p class="hero-sub">Un établissement de référence dédié à la psychiatrie adulte et pédopsychiatrie, au service du territoire de Novapolis.</p>
+    <div class="hero-actions">
+      <%= link_to patients_path, class: "btn-primary" do %>
+        Vous êtes patient
+      <% end %>
+      <%= link_to professionnels_path, class: "btn-ghost" do %>
+        Vous êtes professionnel
+      <% end %>
     </div>
-    <div class="stat-item">
-      <div class="stat-num"><%= Unit.where(unit_type: %w[ward_open ward_closed long_stay]).sum(:capacity) %></div>
-      <div class="stat-label">Lits</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num"><%= Unit.count %>+</div>
-      <div class="stat-label">Unités</div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num"><%= Pole.count %></div>
+        <div class="stat-label">Pôles</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num"><%= Unit.where(unit_type: %w[ward_open ward_closed long_stay]).sum(:capacity) %></div>
+        <div class="stat-label">Lits</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num"><%= Unit.count %>+</div>
+        <div class="stat-label">Unités</div>
+      </div>
     </div>
   </div>
 </section>
