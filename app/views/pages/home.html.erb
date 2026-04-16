@@ -1,272 +1,788 @@
 <% content_for :head do %>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --ink: #1a1f2e; --mist: #f4f5f7; --teal: #2e7f7d;
-      --teal-light: #e6f2f2; --warm: #f9f9f7;
-      --border: #e2e4e8; --text-muted: #6b7280;
+      --teal: #2e7f7d;
+      --teal-dark: #1f5e5c;
+      --teal-light: #f0f7f7;
+      --ink: #111827;
+      --body: #374151;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --bg: #ffffff;
+      --bg-alt: #f5f7f6;
     }
-    body { font-family: 'DM Sans', sans-serif; background: var(--warm); color: var(--ink); font-size: 15px; line-height: 1.6; }
 
-    /* HERO */
-    .hero { min-height: 80vh; display: flex; flex-direction: column; justify-content: flex-start; padding: 60px 40px; position: relative; overflow: hidden; }
-    .hero::before { content: ''; position: absolute; top: -20%; right: -10%; width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, rgba(46,127,125,0.07) 0%, transparent 70%); pointer-events: none; }
-    .hero-eyebrow { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; animation: fadeUp 0.7s ease both; }
-    .hero-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--teal); }
-    .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem, 5vw, 5rem); font-weight: 300; line-height: 1.08; max-width: 640px; animation: fadeUp 0.7s 0.1s ease both; }
-    .hero h1 em { font-style: italic; color: var(--teal); }
-    .hero-sub { margin-top: 22px; font-size: 1rem; font-weight: 300; color: var(--text-muted); max-width: 440px; line-height: 1.75; animation: fadeUp 0.7s 0.2s ease both; }
-    .hero-actions { margin-top: 40px; display: flex; gap: 14px; flex-wrap: wrap; animation: fadeUp 0.7s 0.3s ease both; }
-    .btn-primary { background: var(--teal); color: white; padding: 13px 28px; border-radius: 4px; font-size: 0.88rem; font-weight: 500; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; display: inline-block; }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(46,127,125,0.25); color: white; }
-    .btn-ghost { color: var(--ink); padding: 13px 28px; border-radius: 4px; border: 1px solid var(--border); font-size: 0.88rem; text-decoration: none; transition: border-color 0.2s, background 0.2s; display: inline-block; }
-    .btn-ghost:hover { border-color: var(--teal); background: var(--teal-light); color: var(--ink); }
-    .hero-stats { position: absolute; bottom: 48px; right: 40px; display: flex; gap: 40px; animation: fadeUp 0.7s 0.45s ease both; }
-    .stat-item { text-align: right; }
-    .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 300; line-height: 1; }
-    .stat-label { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-top: 3px; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--body);
+      font-size: 15px;
+      line-height: 1.6;
+      margin: 0;
+    }
 
-    /* TABS */
-    .tabs-section { padding: 80px 40px; max-width: 1060px; margin: 0 auto; }
-    .section-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); margin-bottom: 14px; }
-    .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 300; line-height: 1.2; margin-bottom: 48px; max-width: 460px; }
-    .tabs-nav { display: flex; border-bottom: 1px solid var(--border); margin-bottom: 44px; overflow-x: auto; }
-    .tab-btn { background: none; border: none; padding: 14px 24px; font-family: 'DM Sans', sans-serif; font-size: 0.88rem; font-weight: 400; color: var(--text-muted); cursor: pointer; position: relative; white-space: nowrap; transition: color 0.2s; }
-    .tab-btn::after { content: ''; position: absolute; bottom: -1px; left: 0; right: 0; height: 2px; background: var(--teal); transform: scaleX(0); transition: transform 0.25s ease; }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+
+    /* ── LABEL ── */
+    .label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    /* ── SECTION TITLE ── */
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 2.8vw, 2.6rem);
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--ink);
+      margin: 0 0 8px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 580px;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 64px 80px 0;
+      border-right: 1px solid var(--border);
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--teal-light);
+      color: var(--teal);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 6px 12px;
+      border-radius: 3px;
+      margin-bottom: 28px;
+      width: fit-content;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 4vw, 3.8rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--ink);
+      margin: 0 0 20px;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--teal);
+    }
+
+    .hero-sub {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 420px;
+      margin: 0 0 40px;
+      font-weight: 300;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 32px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+
+    .hero-stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1;
+    }
+
+    .hero-stat-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    /* ── BLOCS ORIENTATION ── */
+    .hero-right {
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+    }
+
+    .orient-block {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 48px;
+      text-decoration: none;
+      transition: background 0.2s;
+      position: relative;
+    }
+
+    .orient-block--patient {
+      background: var(--teal);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .orient-block--patient:hover {
+      background: var(--teal-dark);
+    }
+
+    .orient-block--pro {
+      background: var(--ink);
+    }
+
+    .orient-block--pro:hover {
+      background: #1a2035;
+    }
+
+    .orient-you {
+      font-size: 0.65rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 8px;
+    }
+
+    .orient-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.9rem;
+      font-weight: 300;
+      color: white;
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+
+    .orient-desc {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .orient-cta {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.8);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .orient-cta::after {
+      content: '→';
+    }
+
+    /* ── SECTIONS ── */
+    .section {
+      padding: 88px 0;
+    }
+
+    .section--alt {
+      background: var(--bg-alt);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 48px;
+    }
+
+    .section-meta {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    /* ── TABS ── */
+    .tabs-nav {
+      display: flex;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 48px;
+      overflow-x: auto;
+      gap: 0;
+    }
+
+    .tab-btn {
+      background: none;
+      border: none;
+      padding: 14px 22px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      color: var(--muted);
+      cursor: pointer;
+      position: relative;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+
+    .tab-btn::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--teal);
+      transform: scaleX(0);
+      transition: transform 0.25s;
+    }
+
     .tab-btn:hover { color: var(--ink); }
     .tab-btn.active { color: var(--teal); font-weight: 500; }
     .tab-btn.active::after { transform: scaleX(1); }
-    .tab-panel { display: none; animation: fadeIn 0.35s ease; }
-    .tab-panel.active { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
-    .tab-content h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; font-weight: 400; margin-bottom: 14px; }
-    .tab-content p { color: var(--text-muted); font-weight: 300; line-height: 1.8; margin-bottom: 18px; }
-    .tab-feature-list { list-style: none; padding: 0; }
-    .tab-feature-list li { padding: 11px 0; border-bottom: 1px solid var(--border); font-size: 0.88rem; display: flex; align-items: center; gap: 10px; }
-    .tab-feature-list li::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--teal); flex-shrink: 0; }
-    .tab-visual { background: var(--mist); border-radius: 8px; aspect-ratio: 4/3; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; position: relative; overflow: hidden; }
-    .tab-visual::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(46,127,125,0.06) 0%, transparent 60%); }
+
+    .tab-panel { display: none; }
+    .tab-panel.active {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .tab-content h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem;
+      font-weight: 400;
+      color: var(--ink);
+      margin: 0 0 10px;
+    }
+
+    .tab-content p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.85;
+      font-weight: 300;
+      margin: 0 0 24px;
+    }
+
+    .tab-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .tab-list li {
+      padding: 11px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--body);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .tab-list li::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--teal);
+      flex-shrink: 0;
+    }
+
+    .tab-visual {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      aspect-ratio: 4/3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+    }
+
     .tab-visual-icon { font-size: 3rem; }
-    .tab-visual-label { font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); }
 
-    /* PÔLES */
-    .poles-section { background: var(--ink); padding: 80px 40px; color: white; }
-    .poles-inner { max-width: 1060px; margin: 0 auto; }
-    .poles-section .section-label { color: rgba(255,255,255,0.4); }
-    .poles-section .section-title { color: white; }
-    .poles-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: rgba(255,255,255,0.08); border-radius: 8px; overflow: hidden; margin-top: 40px; }
-    .pole-card { background: var(--ink); padding: 28px 20px; transition: background 0.2s; cursor: pointer; }
-    .pole-card:hover { background: #242a3d; }
-    .pole-num { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 300; line-height: 1; margin-bottom: 16px; }
-    .pole-name { font-size: 0.88rem; font-weight: 500; margin-bottom: 7px; line-height: 1.35; }
-    .pole-desc { font-size: 0.76rem; color: rgba(255,255,255,0.42); line-height: 1.6; }
-    .pole-units-count { margin-top: 12px; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.4; }
+    .tab-visual-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
 
-    /* NEWS */
-    .news-section { padding: 80px 40px; max-width: 1060px; margin: 0 auto; }
-    .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; }
-    .news-card { background: white; border-radius: 8px; padding: 28px; border: 1px solid var(--border); transition: box-shadow 0.2s; }
-    .news-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
-    .news-category { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal); margin-bottom: 12px; }
-    .news-title { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 400; line-height: 1.4; margin-bottom: 10px; }
-    .news-summary { font-size: 0.83rem; color: var(--text-muted); line-height: 1.7; }
-    .news-meta { margin-top: 16px; font-size: 0.72rem; color: #9ca3af; display: flex; align-items: center; gap: 8px; }
-    .news-pole-dot { width: 6px; height: 6px; border-radius: 50%; display: inline-block; }
+    /* ── PÔLES ── */
+    .poles-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+    }
 
-    /* URGENCES BANNER */
-    .urgences-banner { background: var(--teal); padding: 0 40px; display: flex; align-items: center; justify-content: space-between; height: 76px; }
-    .urgences-banner p { color: white; font-size: 0.88rem; margin: 0; }
-    .urgences-banner strong { font-weight: 600; font-size: 1.05rem; }
-    .urgences-link { color: white; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; border: 1px solid rgba(255,255,255,0.5); padding: 9px 20px; border-radius: 4px; transition: background 0.2s; white-space: nowrap; }
-    .urgences-link:hover { background: rgba(255,255,255,0.15); color: white; }
+    .pole-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 28px 22px;
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
 
-    /* FOOTER */
-    .site-footer { padding: 48px 40px; background: var(--ink); color: rgba(255,255,255,0.5); }
-    .footer-inner { max-width: 1060px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; }
-    .footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 300; color: white; margin-bottom: 12px; }
-    .footer-address { font-size: 0.82rem; line-height: 1.8; }
-    .footer-col h6 { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 16px; }
-    .footer-col ul { list-style: none; padding: 0; }
+    .pole-card:hover {
+      box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+      border-color: #d1d5db;
+    }
+
+    .pole-accent {
+      height: 3px;
+      border-radius: 2px;
+      margin-bottom: 20px;
+    }
+
+    .pole-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 300;
+      color: #d1d5db;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .pole-name {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 8px;
+      line-height: 1.35;
+    }
+
+    .pole-desc {
+      font-size: 0.75rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .pole-count {
+      margin-top: 14px;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #9ca3af;
+    }
+
+    /* ── NEWS ── */
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .news-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 28px;
+      transition: box-shadow 0.2s;
+    }
+
+    .news-card:hover {
+      box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+    }
+
+    .news-cat {
+      font-size: 0.63rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 12px;
+    }
+
+    .news-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 400;
+      line-height: 1.45;
+      color: var(--ink);
+      margin-bottom: 10px;
+    }
+
+    .news-summary {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .news-meta {
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+      font-size: 0.7rem;
+      color: #9ca3af;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .news-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── URGENCES ── */
+    .urgences {
+      background: var(--teal);
+      padding: 24px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .urgences p {
+      color: white;
+      font-size: 0.88rem;
+      margin: 0;
+    }
+
+    .urgences strong { font-weight: 600; }
+
+    .urgences-btn {
+      color: white;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.4);
+      padding: 9px 20px;
+      border-radius: 3px;
+      white-space: nowrap;
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+
+    .urgences-btn:hover {
+      background: rgba(255,255,255,0.12);
+      color: white;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: var(--ink);
+      padding: 64px 0 0;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 48px 56px;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 56px;
+    }
+
+    .footer-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 300;
+      color: white;
+      margin-bottom: 14px;
+    }
+
+    .footer-address {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.9;
+    }
+
+    .footer-col h6 {
+      font-size: 0.63rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+      margin: 0 0 16px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
     .footer-col ul li { margin-bottom: 10px; }
-    .footer-col ul li a { font-size: 0.83rem; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
-    .footer-col ul li a:hover { color: white; }
-    .footer-bottom { max-width: 1060px; margin: 32px auto 0; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; font-size: 0.75rem; }
-    .footer-fictif { color: rgba(255,200,0,0.6); }
 
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .footer-col ul li a {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-col ul li a:hover { color: white; }
+
+    .footer-bottom {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 18px 48px;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.25);
+    }
+
+    .footer-fictif { color: rgba(255,200,0,0.45); }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
   </style>
 <% end %>
 
 <!-- HERO -->
-<section class="hero" style="background-image: url('<%= asset_path('hero-hospital.jpg') %>'); background-size: cover; background-position: center; position: relative;">
-  <div style="position: absolute; inset: 0; background: linear-gradient(135deg, rgba(249,247,244,0.95) 0%, rgba(230,242,242,0.88) 40%, rgba(249,247,244,0.65) 100%);"></div>
-  <div style="position: relative; z-index: 1;">
-    <div class="hero-eyebrow">Centre Hospitalier Psychiatrique</div>
-    <h1>Prendre soin de la <em>santé mentale</em> au quotidien</h1>
-    <p class="hero-sub">Un établissement de référence dédié à la psychiatrie adulte et pédopsychiatrie, au service du territoire de Novapolis.</p>
-    <div class="hero-actions">
-      <%= link_to patients_path, class: "btn-primary" do %>
-        Vous êtes patient
-      <% end %>
-      <%= link_to professionnels_path, class: "btn-ghost" do %>
-        Vous êtes professionnel
-      <% end %>
+<section style="min-height: 82vh; display: flex; flex-direction: column; justify-content: flex-end; position: relative; overflow: hidden;">
+  <div style="position: absolute; inset: 0; background-image: url('<%= asset_path('hero-hospital.jpg') %>'); background-size: cover; background-position: center top;"></div>
+  <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(249,249,247,0.1) 0%, rgba(249,249,247,0.3) 30%, rgba(26,31,46,0.78) 65%, rgba(26,31,46,0.96) 100%);"></div>
+
+  <div style="position: relative; z-index: 1; padding: 0 72px 80px;">
+
+    <!-- Eyebrow avec date -->
+    <div style="font-size: 0.68rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.55); display: flex; align-items: center; gap: 12px; margin-bottom: 28px;">
+      <span style="display:block; width:28px; height:1px; background:rgba(255,255,255,0.35);"></span>
+      Centre Hospitalier Psychiatrique · Établissement Public de Santé · Fondé en 1968
     </div>
-    <div class="hero-stats">
-      <div class="stat-item">
-        <div class="stat-num"><%= Pole.count %></div>
-        <div class="stat-label">Pôles</div>
+
+    <h1 style="font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 5.5vw, 5.8rem); font-weight: 300; line-height: 1.04; color: white; max-width: 700px; margin: 0 0 52px;">
+      Prendre soin de la <em style="font-style: italic; color: #7ecfcd;">santé mentale</em>,<br>ensemble.
+    </h1>
+
+    <div style="display: flex; gap: 44px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.12);">
+      <div>
+        <div style="font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300; color: white; line-height: 1;"><%= Unit.where(unit_type: %w[ward_open ward_closed long_stay]).sum(:capacity) %></div>
+        <div style="font-size: 0.63rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-top: 5px;">Lits d'hospitalisation</div>
       </div>
-      <div class="stat-item">
-        <div class="stat-num"><%= Unit.where(unit_type: %w[ward_open ward_closed long_stay]).sum(:capacity) %></div>
-        <div class="stat-label">Lits</div>
+      <div style="width: 1px; background: rgba(255,255,255,0.15);"></div>
+      <div>
+        <div style="font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300; color: white; line-height: 1;">150</div>
+        <div style="font-size: 0.63rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-top: 5px;">Places ambulatoires</div>
       </div>
-      <div class="stat-item">
-        <div class="stat-num"><%= Unit.count %>+</div>
-        <div class="stat-label">Unités</div>
+      <div style="width: 1px; background: rgba(255,255,255,0.15);"></div>
+      <div>
+        <div style="font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300; color: white; line-height: 1;"><%= Pole.count %></div>
+        <div style="font-size: 0.63rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-top: 5px;">Pôles de soins</div>
+      </div>
+      <div style="width: 1px; background: rgba(255,255,255,0.15);"></div>
+      <div>
+        <div style="font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300; color: white; line-height: 1;">650</div>
+        <div style="font-size: 0.63rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-top: 5px;">Professionnels</div>
       </div>
     </div>
   </div>
 </section>
+<!-- ═══════════ OFFRE DE SOINS ═══════════ -->
+<div class="section--alt">
+  <div class="container">
+    <div class="section" style="border-top: none;">
+      <div class="section-header">
+        <div>
+          <span class="label">Nos services</span>
+          <h2 class="section-title">Une prise en charge complète et coordonnée</h2>
+        </div>
+      </div>
 
-<!-- OFFRE DE SOINS -->
-<section class="tabs-section" id="offre">
-  <div class="section-label">Nos services</div>
-  <h2 class="section-title">Une prise en charge complète et coordonnée</h2>
-  <div class="tabs-nav">
-    <button class="tab-btn active" data-tab="soins">Soins & Hospitalisation</button>
-    <button class="tab-btn" data-tab="etp">Éducation Thérapeutique</button>
-    <button class="tab-btn" data-tab="numerique">Numérique & Innovation</button>
-    <button class="tab-btn" data-tab="urgences">Urgences Psychiatriques</button>
-    <button class="tab-btn" data-tab="patients">Espace Patients</button>
-  </div>
+      <div class="tabs-nav">
+        <button class="tab-btn active" data-tab="soins">Soins & Hospitalisation</button>
+        <button class="tab-btn" data-tab="etp">Éducation Thérapeutique</button>
+        <button class="tab-btn" data-tab="numerique">Numérique & Innovation</button>
+        <button class="tab-btn" data-tab="urgences">Urgences Psychiatriques</button>
+        <button class="tab-btn" data-tab="patients">Espace Patients</button>
+      </div>
 
-  <div class="tab-panel active" id="tab-soins">
-    <div class="tab-content">
-      <h3>Hospitalisations et soins ambulatoires</h3>
-      <p>Du suivi ambulatoire à l'hospitalisation complète, un continuum de soins adapté à chaque situation clinique.</p>
-      <ul class="tab-feature-list">
-        <li>Hospitalisation complète ouverte et fermée</li>
-        <li>Soins de suite psychiatriques</li>
-        <li>Centres médico-psychologiques (CMP)</li>
-        <li>Hôpital de jour adulte et pédopsychiatrique</li>
-        <li>Consultations spécialisées</li>
-      </ul>
+      <div class="tab-panel active" id="tab-soins">
+        <div class="tab-content">
+          <h3>Hospitalisations et soins ambulatoires</h3>
+          <p>Du suivi ambulatoire à l'hospitalisation complète, un continuum de soins adapté à chaque situation clinique et à chaque parcours de vie.</p>
+          <ul class="tab-list">
+            <li>Hospitalisation complète ouverte et fermée</li>
+            <li>Centres médico-psychologiques (CMP) de secteur</li>
+            <li>Hôpital de jour adulte et pédopsychiatrique</li>
+            <li>Centres d'Accueil Thérapeutique à Temps Partiel</li>
+            <li>Consultations spécialisées et centres experts</li>
+          </ul>
+        </div>
+        <div class="tab-visual">
+          <div class="tab-visual-icon">🏥</div>
+          <div class="tab-visual-label">Soins & Parcours</div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="tab-etp">
+        <div class="tab-content">
+          <h3>Unité Transversale d'Éducation du Patient</h3>
+          <p>L'UTEP Étoile Polaire coordonne les programmes d'éducation thérapeutique pour l'ensemble de l'établissement, en lien avec les cinq pôles.</p>
+          <ul class="tab-list">
+            <li>5 programmes ETP validés ARS</li>
+            <li>Groupes thérapeutiques et séances individuelles</li>
+            <li>Coordination interprofessionnelle</li>
+            <li>Intégration des proches aidants</li>
+            <li>Évaluation continue des programmes</li>
+          </ul>
+        </div>
+        <div class="tab-visual">
+          <div class="tab-visual-icon">📚</div>
+          <div class="tab-visual-label">Éducation Thérapeutique</div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="tab-numerique">
+        <div class="tab-content">
+          <h3>Innovation numérique en santé mentale</h3>
+          <p>Le CH Polaris intègre les outils numériques pour améliorer la coordination des soins, l'expérience patient et la continuité ville-hôpital.</p>
+          <ul class="tab-list">
+            <li>Dossier Patient Informatisé (DPI) unifié</li>
+            <li>Téléconsultation psychiatrique</li>
+            <li>Outils d'évaluation et de suivi numériques</li>
+            <li>Coordination ville-hôpital digitalisée</li>
+            <li>Plateforme e-santé pour les professionnels</li>
+          </ul>
+        </div>
+        <div class="tab-visual">
+          <div class="tab-visual-icon">💻</div>
+          <div class="tab-visual-label">e-Santé & Digital</div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="tab-urgences">
+        <div class="tab-content">
+          <h3>Urgences et interventions de crise</h3>
+          <p>Une organisation dédiée aux situations de crise psychiatrique, 24h/24, en lien avec le SAMU et les partenaires du territoire.</p>
+          <ul class="tab-list">
+            <li>Équipes mobiles psychiatrie-précarité (EMPP)</li>
+            <li>Cellule d'urgence médico-psychologique (CUMP)</li>
+            <li>Unité de liaison psychiatrique (ULPSY)</li>
+            <li>Dispositif de postvention et suivi de crise</li>
+            <li>Coordination SAMU — 15 et 3114</li>
+          </ul>
+        </div>
+        <div class="tab-visual">
+          <div class="tab-visual-icon">🚨</div>
+          <div class="tab-visual-label">Crise & Urgences</div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="tab-patients">
+        <div class="tab-content">
+          <h3>Espace patients & familles</h3>
+          <p>Des ressources et des services pour accompagner patients et proches à chaque étape du parcours de soins.</p>
+          <ul class="tab-list">
+            <li>Sectorisation et orientation vers le bon CMP</li>
+            <li>Droits des patients en psychiatrie</li>
+            <li>Préparer son séjour — règlements par unité</li>
+            <li>FAQ et guides pratiques</li>
+            <li>Maison des Usagers — La Maison Boussole</li>
+          </ul>
+        </div>
+        <div class="tab-visual">
+          <div class="tab-visual-icon">👥</div>
+          <div class="tab-visual-label">Patients & Familles</div>
+        </div>
+      </div>
     </div>
-    <div class="tab-visual"><div class="tab-visual-icon">🏥</div><div class="tab-visual-label">Soins & Parcours</div></div>
   </div>
+</div>
 
-  <div class="tab-panel" id="tab-etp">
-    <div class="tab-content">
-      <h3>Unité Transversale d'Éducation du Patient</h3>
-      <p>L'UTEP accompagne patients et proches dans la compréhension et la gestion de leur maladie pour gagner en autonomie.</p>
-      <ul class="tab-feature-list">
-        <li>Programmes ETP validés ARS</li>
-        <li>Ateliers collectifs et séances individuelles</li>
-        <li>Coordination interprofessionnelle</li>
-        <li>Évaluation et réajustement continu</li>
-        <li>Intégration des proches aidants</li>
-      </ul>
+<!-- ═══════════ PÔLES ═══════════ -->
+<div class="container">
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <span class="label">Organisation clinique</span>
+        <h2 class="section-title">Cinq pôles d'expertise</h2>
+      </div>
+      <span class="section-meta"><%= Unit.count %> unités au total</span>
     </div>
-    <div class="tab-visual"><div class="tab-visual-icon">📚</div><div class="tab-visual-label">Éducation Thérapeutique</div></div>
-  </div>
-
-  <div class="tab-panel" id="tab-numerique">
-    <div class="tab-content">
-      <h3>Innovation numérique en santé mentale</h3>
-      <p>Polaris intègre les outils numériques pour améliorer la qualité des soins, la coordination et l'expérience patient.</p>
-      <ul class="tab-feature-list">
-        <li>Dossier Patient Informatisé (DPI) unifié</li>
-        <li>Téléconsultation psychiatrique</li>
-        <li>Outils d'évaluation et de suivi numériques</li>
-        <li>Plateforme e-santé pour les professionnels</li>
-        <li>Coordination ville-hôpital digitalisée</li>
-      </ul>
-    </div>
-    <div class="tab-visual"><div class="tab-visual-icon">💻</div><div class="tab-visual-label">e-Santé & Digital</div></div>
-  </div>
-
-  <div class="tab-panel" id="tab-urgences">
-    <div class="tab-content">
-      <h3>Urgences et interventions de crise</h3>
-      <p>Une équipe dédiée aux situations de crise psychiatrique, 24h/24 en lien avec le SAMU et les partenaires du territoire.</p>
-      <ul class="tab-feature-list">
-        <li>Unité d'accueil des urgences psychiatriques</li>
-        <li>Équipe mobile de psychiatrie (EMPP)</li>
-        <li>Cellule d'urgence médico-psychologique (CUMP)</li>
-        <li>Liaison hospitalière</li>
-        <li>Dispositif de postvention et suivi de crise</li>
-      </ul>
-    </div>
-    <div class="tab-visual"><div class="tab-visual-icon">🚨</div><div class="tab-visual-label">Crise & Urgences</div></div>
-  </div>
-
-  <div class="tab-panel" id="tab-patients">
-    <div class="tab-content">
-      <h3>Espace patients & familles</h3>
-      <p>Des ressources et services pour accompagner patients et proches tout au long du parcours de soins.</p>
-      <ul class="tab-feature-list">
-        <li>Sectorisation et orientation vers le bon CMP</li>
-        <li>Droits des patients en psychiatrie</li>
-        <li>Préparer son séjour</li>
-        <li>FAQ et guides pratiques</li>
-        <li>Associations de patients partenaires</li>
-      </ul>
-    </div>
-    <div class="tab-visual"><div class="tab-visual-icon">👥</div><div class="tab-visual-label">Patients & Familles</div></div>
-  </div>
-</section>
-
-<!-- PÔLES -->
-<section class="poles-section" id="poles">
-  <div class="poles-inner">
-    <div class="section-label">Organisation clinique</div>
-    <h2 class="section-title">Cinq pôles d'expertise</h2>
     <div class="poles-grid">
       <% @poles.each_with_index do |pole, index| %>
         <div class="pole-card">
-          <div class="pole-num" style="color: <%= pole.color %>66;">0<%= index + 1 %></div>
+          <div class="pole-accent" style="background-color: <%= pole.color %>;"></div>
+          <div class="pole-num">0<%= index + 1 %></div>
           <div class="pole-name"><%= pole.name %></div>
-          <div class="pole-desc"><%= truncate(pole.description, length: 80) %></div>
-          <div class="pole-units-count"><%= pole.units.count %> unités</div>
+          <div class="pole-desc"><%= truncate(pole.description, length: 90) %></div>
+          <div class="pole-count"><%= pole.units.count %> unités</div>
         </div>
       <% end %>
     </div>
   </div>
-</section>
-
-<!-- ACTUALITÉS -->
-<% if @news.any? %>
-<section class="news-section">
-  <div class="section-label">Vie de l'établissement</div>
-  <h2 class="section-title">Actualités</h2>
-  <div class="news-grid">
-    <% @news.each do |article| %>
-      <div class="news-card">
-        <div class="news-category"><%= article.category %></div>
-        <div class="news-title"><%= article.title %></div>
-        <p class="news-summary"><%= article.summary %></p>
-        <div class="news-meta">
-          <%= article.published_at&.strftime("%d %B %Y") %>
-          <% if article.pole %>
-            <span class="news-pole-dot" style="background-color: <%= article.pole.color %>;"></span>
-            <span><%= article.pole.name %></span>
-          <% end %>
-        </div>
-      </div>
-    <% end %>
-  </div>
-</section>
-<% end %>
-
-<!-- BANNIÈRE URGENCES -->
-<div class="urgences-banner">
-  <p>En cas de crise psychiatrique — <strong>15 (SAMU) · 3114 (Numéro national prévention suicide)</strong></p>
-  <a href="#" class="urgences-link">Accès urgences</a>
 </div>
 
-<!-- FOOTER -->
-<footer class="site-footer">
+<!-- ═══════════ ACTUALITÉS ═══════════ -->
+<% if @news.any? %>
+<div class="section--alt">
+  <div class="container">
+    <div class="section" style="border-top: none;">
+      <div class="section-header">
+        <div>
+          <span class="label">Vie de l'établissement</span>
+          <h2 class="section-title">Actualités</h2>
+        </div>
+      </div>
+      <div class="news-grid">
+        <% @news.each do |article| %>
+          <div class="news-card">
+            <div class="news-cat"><%= article.category %></div>
+            <div class="news-title"><%= article.title %></div>
+            <p class="news-summary"><%= article.summary %></p>
+            <div class="news-meta">
+              <%= article.published_at&.strftime("%d %B %Y") %>
+              <% if article.pole %>
+                <span class="news-dot" style="background-color: <%= article.pole.color %>;"></span>
+                <%= article.pole.name %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
+
+<!-- ═══════════ URGENCES ═══════════ -->
+<div class="urgences">
+  <p>En cas de crise psychiatrique — <strong>15 (SAMU) · 3114 (Numéro national prévention suicide)</strong></p>
+  <a href="#" class="urgences-btn">Accès urgences</a>
+</div>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer class="footer">
   <div class="footer-inner">
     <div>
       <div class="footer-brand">Centre Hospitalier Polaris</div>
@@ -296,7 +812,7 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© <%= Date.today.year %> Centre Hospitalier Polaris — Novapolis</span>
+    <span>© <%= Date.today.year %> Centre Hospitalier Polaris — Novapolis · EPS</span>
     <span class="footer-fictif">⚠️ Projet fictif de démonstration — Pierre Gozard</span>
   </div>
 </footer>
