@@ -570,21 +570,15 @@
 <!-- HERO -->
 <section style="min-height: 82vh; display: flex; flex-direction: column; justify-content: flex-end; position: relative; overflow: hidden;">
   <div style="position: absolute; inset: 0; background-image: url('<%= asset_path('hero-hospital.jpg') %>'); background-size: cover; background-position: center top;"></div>
-  <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(249,249,247,0.1) 0%, rgba(249,249,247,0.3) 30%, rgba(26,31,46,0.78) 65%, rgba(26,31,46,0.96) 100%);"></div>
+  <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(26,31,46,0.1) 0%, rgba(26,31,46,0.3) 35%, rgba(26,31,46,0.78) 65%, rgba(26,31,46,0.96) 100%);"></div>
 
-  <div style="position: relative; z-index: 1; padding: 0 72px 80px;">
+  <div style="position: relative; z-index: 1; padding: 0 72px 72px;">
 
-    <!-- Eyebrow avec date -->
-    <div style="font-size: 0.68rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.55); display: flex; align-items: center; gap: 12px; margin-bottom: 28px;">
-      <span style="display:block; width:28px; height:1px; background:rgba(255,255,255,0.35);"></span>
-      Centre Hospitalier Psychiatrique · Établissement Public de Santé · Fondé en 1968
-    </div>
-
-    <h1 style="font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 5.5vw, 5.8rem); font-weight: 300; line-height: 1.04; color: white; max-width: 700px; margin: 0 0 52px;">
+    <h1 style="font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 5.5vw, 5.8rem); font-weight: 300; line-height: 1.04; color: white; max-width: 700px; margin: 0 0 56px;">
       Prendre soin de la <em style="font-style: italic; color: #7ecfcd;">santé mentale</em>,<br>ensemble.
     </h1>
 
-    <div style="display: flex; gap: 44px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.12);">
+    <div style="display: flex; gap: 44px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.12); margin-bottom: 20px;">
       <div>
         <div style="font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300; color: white; line-height: 1;"><%= Unit.where(unit_type: %w[ward_open ward_closed long_stay]).sum(:capacity) %></div>
         <div style="font-size: 0.63rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-top: 5px;">Lits d'hospitalisation</div>
@@ -605,6 +599,12 @@
         <div style="font-size: 0.63rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-top: 5px;">Professionnels</div>
       </div>
     </div>
+
+    <div style="font-size: 0.68rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.9); display: flex; align-items: center; gap: 12px;">
+      <span style="display:block; width:28px; height:1px; background:rgba(255,255,255,0.5);"></span>
+      Centre Hospitalier Psychiatrique · Établissement Public de Santé · Fondé en 1968
+    </div>
+
   </div>
 </section>
 <!-- ═══════════ OFFRE DE SOINS ═══════════ -->
