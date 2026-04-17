@@ -57,184 +57,6 @@ polaris_pole = Pole.create!(
 
 puts "🏥 Creating units..."
 
-# ── NOUVELLES UNITÉS PÔLE POLARIS ───────────────────────
-Unit.create!(
-  pole: polaris_pole,
-  name: "EPIC Polaris",
-  slug: "epic-polaris",
-  unit_type: "crisis_unit",
-  capacity: nil,
-  phone: "05 99 05 10 11",
-  email: "epic@ch-polaris.fr",
-  description: "Équipe Psychiatrique d'Intervention et de Crise. Intervient 24h/24 pour toute situation de crise psychiatrique aiguë, en lien avec le SAMU, les urgences générales et les partenaires du territoire.",
-  address: "12 rue des Astres, 33999 Novapolis",
-  pmr_accessible: true,
-  parking_info: "Parking P1 — accès par l'entrée principale",
-  svg_zone_id: "zone-epic",
-  position: 11
-)
-
-Unit.create!(
-  pole: polaris_pole,
-  name: "SECOP Polaris",
-  slug: "secop-polaris",
-  unit_type: "crisis_unit",
-  capacity: nil,
-  phone: "05 99 05 10 12",
-  email: "secop@ch-polaris.fr",
-  description: "Service d'Évaluation de Crise et d'Orientation Psychiatrique. Assure l'évaluation clinique des patients en situation de crise et leur orientation vers la structure de soins la plus adaptée.",
-  address: "12 rue des Astres, 33999 Novapolis",
-  pmr_accessible: true,
-  parking_info: "Parking P1 — accès par l'entrée principale",
-  svg_zone_id: "zone-secop",
-  position: 12
-)
-
-Unit.create!(
-  pole: polaris_pole,
-  name: "Unité Éclipse",
-  slug: "unite-eclipse",
-  unit_type: "ward_open",
-  capacity: 12,
-  phone: "05 99 05 10 13",
-  email: "eclipse@ch-polaris.fr",
-  description: "Unité Post-Urgence. Accueille les patients en sortie de crise aiguë pour une stabilisation à court terme avant orientation vers le parcours de soins adapté.",
-  address: "12 rue des Astres, 33999 Novapolis",
-  pmr_accessible: true,
-  parking_info: "Parking P1 — accès par l'entrée principale",
-  svg_zone_id: "zone-eclipse",
-  position: 13
-)
-
-Unit.create!(
-  pole: polaris_pole,
-  name: "Unité Aube",
-  slug: "unite-aube",
-  unit_type: "perinatal",
-  capacity: nil,
-  phone: "05 99 05 10 14",
-  email: "aube@ch-polaris.fr",
-  description: "Unité de Psychiatrie Périnatale. Accompagnement des femmes enceintes et des mères présentant des troubles psychiques en période périnatale, en lien avec les maternités du territoire.",
-  address: "12 rue des Astres, 33999 Novapolis",
-  pmr_accessible: true,
-  parking_info: "Parking P1 — accès par l'entrée principale",
-  svg_zone_id: "zone-aube",
-  position: 14
-)
-
-Unit.create!(
-  pole: polaris_pole,
-  name: "CSAPA Polaris",
-  slug: "csapa-polaris",
-  unit_type: "csapa",
-  capacity: nil,
-  phone: "05 99 05 10 15",
-  email: "csapa@ch-polaris.fr",
-  description: "Centre de Soins, d'Accompagnement et de Prévention en Addictologie. Accueil ambulatoire, consultations médicales et sociales, accompagnement au sevrage et réduction des risques.",
-  address: "18 rue de la Comète, 33999 Novapolis",
-  pmr_accessible: true,
-  parking_info: "Stationnement en voirie",
-  svg_zone_id: "zone-csapa",
-  position: 15
-)
-
-Unit.create!(
-  pole: polaris_pole,
-  name: "Centre Ressources Autisme Novapolis",
-  slug: "cra-novapolis",
-  unit_type: "expert_center",
-  capacity: nil,
-  phone: "05 99 05 10 16",
-  email: "cra@ch-polaris.fr",
-  description: "Centre Ressources Autisme du territoire de Novapolis. Bilans diagnostiques, accompagnement des familles, formation des professionnels et coordination des parcours pour les personnes autistes.",
-  address: "12 rue des Astres, 33999 Novapolis",
-  pmr_accessible: true,
-  parking_info: "Parking P1 — accès par l'entrée principale",
-  svg_zone_id: "zone-cra",
-  position: 16
-)
-
-Unit.create!(
-  pole: polaris_pole,
-  name: "EMAP Polaris",
-  slug: "emap-polaris",
-  unit_type: "mobile_team",
-  capacity: nil,
-  phone: "05 99 05 10 17",
-  email: "emap@ch-polaris.fr",
-  description: "Équipe Mobile Addiction et Parentalité. Intervient auprès des parents présentant des troubles addictifs pour prévenir les risques de négligence et soutenir la parentalité.",
-  address: "12 rue des Astres, 33999 Novapolis",
-  pmr_accessible: false,
-  parking_info: "Parking P1 — accès par l'entrée principale",
-  svg_zone_id: "zone-emap",
-  position: 18
-)
-
-Unit.create!(
-  pole: polaris_pole,
-  name: "EMAA Arcturus",
-  slug: "emaa-arcturus",
-  unit_type: "mobile_team",
-  capacity: nil,
-  phone: "05 99 05 10 18",
-  email: "emaa@ch-polaris.fr",
-  description: "Équipe Mobile Autisme Adulte. Intervient à domicile et dans les établissements médico-sociaux pour les adultes autistes en situation de crise ou de rupture de parcours.",
-  address: "12 rue des Astres, 33999 Novapolis",
-  pmr_accessible: false,
-  parking_info: "Parking P1 — accès par l'entrée principale",
-  svg_zone_id: "zone-emaa",
-  position: 19
-)
-
-Unit.create!(
-  pole: polaris_pole,
-  name: "MAS Les Étoiles",
-  slug: "mas-les-etoiles",
-  unit_type: "mas",
-  capacity: 30,
-  phone: "05 99 05 10 19",
-  email: "mas@ch-polaris.fr",
-  description: "Maison d'Accueil Spécialisée. Accueille des adultes en situation de handicap psychique sévère nécessitant un accompagnement permanent et une surveillance médicale continue.",
-  address: "7 chemin des Nébuleuses, 33997 Novapolis-Nord",
-  pmr_accessible: true,
-  parking_info: "Parking dédié sur site",
-  svg_zone_id: "zone-mas",
-  position: 20
-)
-
-# ── NOUVELLES UNITÉS PÔLE PLÉIADES ──────────────────────
-Unit.create!(
-  pole: pleiades,
-  name: "CAMSP Étoile",
-  slug: "camsp-etoile",
-  unit_type: "camsp",
-  capacity: nil,
-  phone: "05 99 04 10 09",
-  email: "camsp@ch-polaris.fr",
-  description: "Centre d'Action Médico-Sociale Précoce. Dépistage, diagnostic et accompagnement précoce des enfants de 0 à 6 ans présentant des troubles du développement ou des risques de handicap.",
-  address: "5 allée des Comètes, 33999 Novapolis",
-  pmr_accessible: true,
-  parking_info: "Parking gratuit attenant",
-  svg_zone_id: "zone-camsp",
-  position: 9
-)
-
-Unit.create!(
-  pole: pleiades,
-  name: "Unité Calypso",
-  slug: "unite-calypso",
-  unit_type: "expert_center",
-  capacity: nil,
-  phone: "05 99 04 10 10",
-  email: "calypso@ch-polaris.fr",
-  description: "Unité spécialisée dans la prise en charge des enfants et adolescents présentant des Troubles du Spectre Autistique (TSA). Bilans diagnostiques, guidance parentale et programmes d'intervention comportementale.",
-  address: "5 allée des Comètes, 33999 Novapolis",
-  pmr_accessible: true,
-  parking_info: "Parking gratuit attenant",
-  svg_zone_id: "zone-calypso",
-  position: 10
-)
-
 # ── PÔLE CASSIOPÉE ──────────────────────────────────────
 andromede = Unit.create!(
   pole: cassiopee,
@@ -286,17 +108,17 @@ shedar = Unit.create!(
 
 cmp_cassiopee = Unit.create!(
   pole: cassiopee,
-  name: "CMP Cassiopée",
-  slug: "cmp-cassiopee",
+  name: "CMP Val-Nord",
+  slug: "cmp-val-nord",
   unit_type: "cmp",
   capacity: nil,
   phone: "05 99 01 10 04",
-  email: "cmp.cassiopee@ch-polaris.fr",
+  email: "cmp.valnord@ch-polaris.fr",
   description: "Centre Médico-Psychologique du secteur nord. Lieu pivot du soin ambulatoire, il assure les consultations psychiatriques, le suivi infirmier et l'orientation vers les structures adaptées pour les habitants du secteur nord de Novapolis.",
   address: "45 avenue de la Nébuleuse, 33999 Novapolis",
   pmr_accessible: true,
   parking_info: "Stationnement en voirie — zone bleue",
-  svg_zone_id: "zone-cmp-cassiopee",
+  svg_zone_id: "zone-cmp-valnord",
   position: 4
 )
 
@@ -383,17 +205,17 @@ saiph = Unit.create!(
 
 cmp_orion = Unit.create!(
   pole: orion,
-  name: "CMP Orion",
-  slug: "cmp-orion",
+  name: "CMP Belvédère",
+  slug: "cmp-belvedere",
   unit_type: "cmp",
   capacity: nil,
   phone: "05 99 02 10 04",
-  email: "cmp.orion@ch-polaris.fr",
+  email: "cmp.belvedere@ch-polaris.fr",
   description: "Centre Médico-Psychologique du secteur sud. Consultations psychiatriques, suivi infirmier et coordination du parcours de soins ambulatoire pour les adultes résidant dans le secteur sud de Novapolis.",
   address: "3 boulevard des Étoiles, 33998 Novapolis-Sud",
   pmr_accessible: true,
   parking_info: "Parking gratuit attenant",
-  svg_zone_id: "zone-cmp-orion",
+  svg_zone_id: "zone-cmp-belvedere",
   position: 4
 )
 
@@ -462,19 +284,19 @@ altair = Unit.create!(
   position: 2
 )
 
-cmp_lyra = Unit.create!(
+Unit.create!(
   pole: lyra,
-  name: "CMP Lyra",
-  slug: "cmp-lyra",
-  unit_type: "cmp",
+  name: "CSAPA Lyra",
+  slug: "csapa-lyra",
+  unit_type: "csapa",
   capacity: nil,
   phone: "05 99 03 10 03",
-  email: "cmp.lyra@ch-polaris.fr",
-  description: "CMP spécialisé en addictologie. Consultations de suivi post-sevrage, accompagnement thérapeutique au long cours et orientation vers les dispositifs de réduction des risques du territoire.",
-  address: "22 rue de la Lyre, 33999 Novapolis",
+  email: "csapa.lyra@ch-polaris.fr",
+  description: "Centre de Soins, d'Accompagnement et de Prévention en Addictologie. Accueil ambulatoire, consultations médicales et sociales, accompagnement au sevrage et réduction des risques.",
+  address: "18 rue de la Comète, 33999 Novapolis",
   pmr_accessible: true,
-  parking_info: "Parking municipal à 100m",
-  svg_zone_id: "zone-cmp-lyra",
+  parking_info: "Stationnement en voirie",
+  svg_zone_id: "zone-csapa-lyra",
   position: 3
 )
 
@@ -492,22 +314,6 @@ Unit.create!(
   parking_info: "Parking P1 — accès par l'entrée principale",
   svg_zone_id: "zone-hdj-deneb",
   position: 4
-)
-
-Unit.create!(
-  pole: lyra,
-  name: "CATTP Alcor",
-  slug: "cattp-alcor",
-  unit_type: "cattp",
-  capacity: 10,
-  phone: "05 99 03 10 05",
-  email: "cattp.alcor@ch-polaris.fr",
-  description: "CATTP spécialisé en addictologie. Groupes de parole thérapeutiques, prévention de la rechute et soutien à l'abstinence en lien avec le CMP Lyra.",
-  address: "22 rue de la Lyre, 33999 Novapolis",
-  pmr_accessible: false,
-  parking_info: "Stationnement en voirie",
-  svg_zone_id: "zone-cattp-alcor",
-  position: 5
 )
 
 # ── PÔLE PLÉIADES ────────────────────────────────────────
@@ -545,17 +351,17 @@ alcyone = Unit.create!(
 
 cmp_pleiades = Unit.create!(
   pole: pleiades,
-  name: "CMP Pléiades",
-  slug: "cmp-pleiades",
+  name: "CMP Les Comètes",
+  slug: "cmp-les-cometes",
   unit_type: "cmp",
   capacity: nil,
   phone: "05 99 04 10 03",
-  email: "cmp.pleiades@ch-polaris.fr",
+  email: "cmp.cometes@ch-polaris.fr",
   description: "CMP de pédopsychiatrie pour enfants de 0 à 11 ans. Consultations diagnostiques, bilans développementaux, suivis thérapeutiques et guidance parentale sur l'ensemble du territoire.",
   address: "5 allée des Comètes, 33999 Novapolis",
   pmr_accessible: true,
   parking_info: "Parking gratuit attenant",
-  svg_zone_id: "zone-cmp-pleiades",
+  svg_zone_id: "zone-cmp-cometes",
   position: 3
 )
 
@@ -637,6 +443,38 @@ Unit.create!(
   parking_info: "Parking gratuit attenant",
   svg_zone_id: "zone-sessad-celene",
   position: 8
+)
+
+Unit.create!(
+  pole: pleiades,
+  name: "CAMSP Étoile",
+  slug: "camsp-etoile",
+  unit_type: "camsp",
+  capacity: nil,
+  phone: "05 99 04 10 09",
+  email: "camsp@ch-polaris.fr",
+  description: "Centre d'Action Médico-Sociale Précoce. Dépistage, diagnostic et accompagnement précoce des enfants de 0 à 6 ans présentant des troubles du développement ou des risques de handicap.",
+  address: "5 allée des Comètes, 33999 Novapolis",
+  pmr_accessible: true,
+  parking_info: "Parking gratuit attenant",
+  svg_zone_id: "zone-camsp",
+  position: 9
+)
+
+Unit.create!(
+  pole: pleiades,
+  name: "Unité Calypso",
+  slug: "unite-calypso",
+  unit_type: "expert_center",
+  capacity: nil,
+  phone: "05 99 04 10 10",
+  email: "calypso@ch-polaris.fr",
+  description: "Unité spécialisée dans la prise en charge des enfants et adolescents présentant des Troubles du Spectre Autistique (TSA). Bilans diagnostiques, guidance parentale et programmes d'intervention comportementale.",
+  address: "5 allée des Comètes, 33999 Novapolis",
+  pmr_accessible: true,
+  parking_info: "Parking gratuit attenant",
+  svg_zone_id: "zone-calypso",
+  position: 10
 )
 
 # ── PÔLE POLARIS (TRANSVERSAL) ───────────────────────────
@@ -800,9 +638,136 @@ Unit.create!(
   position: 10
 )
 
+Unit.create!(
+  pole: polaris_pole,
+  name: "EPIC Aurèle",
+  slug: "epic-aurele",
+  unit_type: "crisis_unit",
+  capacity: nil,
+  phone: "05 99 05 10 11",
+  email: "epic@ch-polaris.fr",
+  description: "Équipe Psychiatrique d'Intervention et de Crise. Intervient 24h/24 pour toute situation de crise psychiatrique aiguë, en lien avec le SAMU, les urgences générales et les partenaires du territoire.",
+  address: "12 rue des Astres, 33999 Novapolis",
+  pmr_accessible: true,
+  parking_info: "Parking P1 — accès par l'entrée principale",
+  svg_zone_id: "zone-epic",
+  position: 11
+)
+
+Unit.create!(
+  pole: polaris_pole,
+  name: "SECOP Polaris",
+  slug: "secop-polaris",
+  unit_type: "crisis_unit",
+  capacity: nil,
+  phone: "05 99 05 10 12",
+  email: "secop@ch-polaris.fr",
+  description: "Service d'Évaluation de Crise et d'Orientation Psychiatrique. Assure l'évaluation clinique des patients en situation de crise et leur orientation vers la structure de soins la plus adaptée.",
+  address: "12 rue des Astres, 33999 Novapolis",
+  pmr_accessible: true,
+  parking_info: "Parking P1 — accès par l'entrée principale",
+  svg_zone_id: "zone-secop",
+  position: 12
+)
+
+Unit.create!(
+  pole: polaris_pole,
+  name: "Unité Éclipse",
+  slug: "unite-eclipse",
+  unit_type: "ward_open",
+  capacity: 12,
+  phone: "05 99 05 10 13",
+  email: "eclipse@ch-polaris.fr",
+  description: "Unité Post-Urgence. Accueille les patients en sortie de crise aiguë pour une stabilisation à court terme avant orientation vers le parcours de soins adapté.",
+  address: "12 rue des Astres, 33999 Novapolis",
+  pmr_accessible: true,
+  parking_info: "Parking P1 — accès par l'entrée principale",
+  svg_zone_id: "zone-eclipse",
+  position: 13
+)
+
+Unit.create!(
+  pole: polaris_pole,
+  name: "Unité Aube",
+  slug: "unite-aube",
+  unit_type: "perinatal",
+  capacity: nil,
+  phone: "05 99 05 10 14",
+  email: "aube@ch-polaris.fr",
+  description: "Unité de Psychiatrie Périnatale. Accompagnement des femmes enceintes et des mères présentant des troubles psychiques en période périnatale, en lien avec les maternités du territoire.",
+  address: "12 rue des Astres, 33999 Novapolis",
+  pmr_accessible: true,
+  parking_info: "Parking P1 — accès par l'entrée principale",
+  svg_zone_id: "zone-aube",
+  position: 14
+)
+
+Unit.create!(
+  pole: polaris_pole,
+  name: "Centre Ressources Autisme Novapolis",
+  slug: "cra-novapolis",
+  unit_type: "expert_center",
+  capacity: nil,
+  phone: "05 99 05 10 15",
+  email: "cra@ch-polaris.fr",
+  description: "Centre Ressources Autisme du territoire de Novapolis. Bilans diagnostiques, accompagnement des familles, formation des professionnels et coordination des parcours pour les personnes autistes.",
+  address: "12 rue des Astres, 33999 Novapolis",
+  pmr_accessible: true,
+  parking_info: "Parking P1 — accès par l'entrée principale",
+  svg_zone_id: "zone-cra",
+  position: 16
+)
+
+Unit.create!(
+  pole: polaris_pole,
+  name: "EMAP Polaris",
+  slug: "emap-polaris",
+  unit_type: "mobile_team",
+  capacity: nil,
+  phone: "05 99 05 10 16",
+  email: "emap@ch-polaris.fr",
+  description: "Équipe Mobile Addiction et Parentalité. Intervient auprès des parents présentant des troubles addictifs pour prévenir les risques de négligence et soutenir la parentalité.",
+  address: "12 rue des Astres, 33999 Novapolis",
+  pmr_accessible: false,
+  parking_info: "Parking P1 — accès par l'entrée principale",
+  svg_zone_id: "zone-emap",
+  position: 17
+)
+
+Unit.create!(
+  pole: polaris_pole,
+  name: "EMAA Arcturus",
+  slug: "emaa-arcturus",
+  unit_type: "mobile_team",
+  capacity: nil,
+  phone: "05 99 05 10 17",
+  email: "emaa@ch-polaris.fr",
+  description: "Équipe Mobile Autisme Adulte. Intervient à domicile et dans les établissements médico-sociaux pour les adultes autistes en situation de crise ou de rupture de parcours.",
+  address: "12 rue des Astres, 33999 Novapolis",
+  pmr_accessible: false,
+  parking_info: "Parking P1 — accès par l'entrée principale",
+  svg_zone_id: "zone-emaa",
+  position: 18
+)
+
+Unit.create!(
+  pole: polaris_pole,
+  name: "MAS Les Étoiles",
+  slug: "mas-les-etoiles",
+  unit_type: "mas",
+  capacity: 30,
+  phone: "05 99 05 10 18",
+  email: "mas@ch-polaris.fr",
+  description: "Maison d'Accueil Spécialisée. Accueille des adultes en situation de handicap psychique sévère nécessitant un accompagnement permanent et une surveillance médicale continue.",
+  address: "7 chemin des Nébuleuses, 33997 Novapolis-Nord",
+  pmr_accessible: true,
+  parking_info: "Parking dédié sur site",
+  svg_zone_id: "zone-mas",
+  position: 19
+)
+
 puts "🕐 Creating schedules..."
 
-# Unités ouvertes — visites
 [andromede, shedar, betelgeuse, saiph, vega, maia].each do |unit|
   Schedule.create!(
     unit: unit,
@@ -813,7 +778,6 @@ puts "🕐 Creating schedules..."
   )
 end
 
-# Unités fermées — visites sur autorisation
 [persee, rigel, altair, alcyone].each do |unit|
   Schedule.create!(
     unit: unit,
@@ -824,8 +788,7 @@ end
   )
 end
 
-# CMP — consultations et téléphone
-[cmp_cassiopee, cmp_orion, cmp_lyra, cmp_pleiades, cmp_electre].each do |unit|
+[cmp_cassiopee, cmp_orion, cmp_pleiades, cmp_electre].each do |unit|
   Schedule.create!(
     unit: unit,
     schedule_type: "consultation",
@@ -842,7 +805,6 @@ end
   )
 end
 
-# HDJ — accueil
 Unit.where(unit_type: "hdj").each do |unit|
   Schedule.create!(
     unit: unit,
@@ -853,7 +815,6 @@ Unit.where(unit_type: "hdj").each do |unit|
   )
 end
 
-# CATTP — accueil
 Unit.where(unit_type: "cattp").each do |unit|
   Schedule.create!(
     unit: unit,
@@ -864,8 +825,7 @@ Unit.where(unit_type: "cattp").each do |unit|
   )
 end
 
-# Structures transversales — accueil
-Unit.where(unit_type: %w[utep users_house empp ulpsy cump expert_center]).each do |unit|
+Unit.where(unit_type: %w[utep users_house empp ulpsy cump expert_center csapa]).each do |unit|
   Schedule.create!(
     unit: unit,
     schedule_type: "consultation",
@@ -877,7 +837,6 @@ end
 
 puts "📍 Creating sectors..."
 
-# CMP Cassiopée — secteur nord
 [
   { postal_code: "33999", city: "Novapolis" },
   { postal_code: "33997", city: "Novapolis-Nord" },
@@ -886,7 +845,6 @@ puts "📍 Creating sectors..."
   { postal_code: "33993", city: "Hauterive" }
 ].each { |s| Sector.create!(unit: cmp_cassiopee, **s) }
 
-# CMP Orion — secteur sud
 [
   { postal_code: "33998", city: "Novapolis-Sud" },
   { postal_code: "33995", city: "Belvédère" },
@@ -896,11 +854,9 @@ puts "📍 Creating sectors..."
 
 puts "📋 Creating unit regulations..."
 
-# Règlement commun hospitalisation
 forbidden = ["téléphone portable", "ordinateur", "alcool", "médicaments personnels non validés par l'équipe", "objets tranchants", "cordons et lacets", "briquet"].to_json
 allowed = ["livres et magazines", "vêtements personnels sans cordon", "photos de proches", "jeux de société", "produits d'hygiène non alcoolisés"].to_json
 
-# Unités ouvertes
 [andromede, shedar, betelgeuse, saiph, vega, maia].each do |unit|
   UnitRegulation.create!(
     unit: unit,
@@ -912,7 +868,6 @@ allowed = ["livres et magazines", "vêtements personnels sans cordon", "photos d
   )
 end
 
-# Unités fermées
 [persee, rigel, altair, alcyone].each do |unit|
   UnitRegulation.create!(
     unit: unit,
@@ -952,9 +907,9 @@ prog_addiction = EtpProgram.create!(
   unit: utep,
   name: "Mon parcours de soins en addictologie",
   description: "Programme transversal pour les patients engagés dans un parcours de soins en addictologie. Aborde la compréhension des mécanismes de dépendance, la prévention de la rechute et la construction du projet de vie.",
-  target_audience: "Patients adultes en suivi addictologique au CMP Lyra ou en HDJ Deneb",
+  target_audience: "Patients adultes en suivi addictologique au CSAPA Lyra ou en HDJ Deneb",
   pathology: "addiction",
-  prerequisites: "Être suivi au CMP Lyra ou en HDJ Deneb. Sevrage stabilisé. Motivation exprimée lors d'un entretien infirmier préalable.",
+  prerequisites: "Être suivi au CSAPA Lyra ou en HDJ Deneb. Sevrage stabilisé. Motivation exprimée lors d'un entretien infirmier préalable.",
   duration: "5 séances de 2h30",
   modality: "mixed"
 )
@@ -1035,9 +990,9 @@ EtpSession.create!(
   recurrence: "Tous les mercredis de 9h à 11h30",
   max_participants: 6,
   current_participants: 4,
-  location: "Salle Lyra — CMP Lyra",
+  location: "Salle Lyra — CSAPA Lyra",
   status: "open",
-  registration_info: "Sur orientation du CMP Lyra ou HDJ Deneb uniquement."
+  registration_info: "Sur orientation du CSAPA Lyra ou HDJ Deneb uniquement."
 )
 
 EtpSession.create!(
