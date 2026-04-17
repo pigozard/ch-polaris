@@ -5,11 +5,27 @@ class Unit < ApplicationRecord
   has_one :unit_regulation, dependent: :destroy
   has_many :etp_programs, dependent: :destroy
 
-  UNIT_TYPES = %w[
-    ward_open ward_closed cmp hdj cattp
-    sessad empp ulpsy cump expert_center
-    utep users_house long_stay
-  ].freeze
+UNIT_TYPES = %w[
+  ward_open
+  ward_closed
+  cmp
+  hdj
+  cattp
+  sessad
+  empp
+  mobile_team
+  ulpsy
+  cump
+  expert_center
+  utep
+  users_house
+  long_stay
+  csapa
+  mas
+  camsp
+  crisis_unit
+  perinatal
+].freeze
 
   validates :name, presence: true
   validates :slug, presence: true, uniqueness: true

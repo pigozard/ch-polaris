@@ -57,6 +57,184 @@ polaris_pole = Pole.create!(
 
 puts "🏥 Creating units..."
 
+# ── NOUVELLES UNITÉS PÔLE POLARIS ───────────────────────
+Unit.create!(
+  pole: polaris_pole,
+  name: "EPIC Polaris",
+  slug: "epic-polaris",
+  unit_type: "crisis_unit",
+  capacity: nil,
+  phone: "05 99 05 10 11",
+  email: "epic@ch-polaris.fr",
+  description: "Équipe Psychiatrique d'Intervention et de Crise. Intervient 24h/24 pour toute situation de crise psychiatrique aiguë, en lien avec le SAMU, les urgences générales et les partenaires du territoire.",
+  address: "12 rue des Astres, 33999 Novapolis",
+  pmr_accessible: true,
+  parking_info: "Parking P1 — accès par l'entrée principale",
+  svg_zone_id: "zone-epic",
+  position: 11
+)
+
+Unit.create!(
+  pole: polaris_pole,
+  name: "SECOP Polaris",
+  slug: "secop-polaris",
+  unit_type: "crisis_unit",
+  capacity: nil,
+  phone: "05 99 05 10 12",
+  email: "secop@ch-polaris.fr",
+  description: "Service d'Évaluation de Crise et d'Orientation Psychiatrique. Assure l'évaluation clinique des patients en situation de crise et leur orientation vers la structure de soins la plus adaptée.",
+  address: "12 rue des Astres, 33999 Novapolis",
+  pmr_accessible: true,
+  parking_info: "Parking P1 — accès par l'entrée principale",
+  svg_zone_id: "zone-secop",
+  position: 12
+)
+
+Unit.create!(
+  pole: polaris_pole,
+  name: "Unité Éclipse",
+  slug: "unite-eclipse",
+  unit_type: "ward_open",
+  capacity: 12,
+  phone: "05 99 05 10 13",
+  email: "eclipse@ch-polaris.fr",
+  description: "Unité Post-Urgence. Accueille les patients en sortie de crise aiguë pour une stabilisation à court terme avant orientation vers le parcours de soins adapté.",
+  address: "12 rue des Astres, 33999 Novapolis",
+  pmr_accessible: true,
+  parking_info: "Parking P1 — accès par l'entrée principale",
+  svg_zone_id: "zone-eclipse",
+  position: 13
+)
+
+Unit.create!(
+  pole: polaris_pole,
+  name: "Unité Aube",
+  slug: "unite-aube",
+  unit_type: "perinatal",
+  capacity: nil,
+  phone: "05 99 05 10 14",
+  email: "aube@ch-polaris.fr",
+  description: "Unité de Psychiatrie Périnatale. Accompagnement des femmes enceintes et des mères présentant des troubles psychiques en période périnatale, en lien avec les maternités du territoire.",
+  address: "12 rue des Astres, 33999 Novapolis",
+  pmr_accessible: true,
+  parking_info: "Parking P1 — accès par l'entrée principale",
+  svg_zone_id: "zone-aube",
+  position: 14
+)
+
+Unit.create!(
+  pole: polaris_pole,
+  name: "CSAPA Polaris",
+  slug: "csapa-polaris",
+  unit_type: "csapa",
+  capacity: nil,
+  phone: "05 99 05 10 15",
+  email: "csapa@ch-polaris.fr",
+  description: "Centre de Soins, d'Accompagnement et de Prévention en Addictologie. Accueil ambulatoire, consultations médicales et sociales, accompagnement au sevrage et réduction des risques.",
+  address: "18 rue de la Comète, 33999 Novapolis",
+  pmr_accessible: true,
+  parking_info: "Stationnement en voirie",
+  svg_zone_id: "zone-csapa",
+  position: 15
+)
+
+Unit.create!(
+  pole: polaris_pole,
+  name: "Centre Ressources Autisme Novapolis",
+  slug: "cra-novapolis",
+  unit_type: "expert_center",
+  capacity: nil,
+  phone: "05 99 05 10 16",
+  email: "cra@ch-polaris.fr",
+  description: "Centre Ressources Autisme du territoire de Novapolis. Bilans diagnostiques, accompagnement des familles, formation des professionnels et coordination des parcours pour les personnes autistes.",
+  address: "12 rue des Astres, 33999 Novapolis",
+  pmr_accessible: true,
+  parking_info: "Parking P1 — accès par l'entrée principale",
+  svg_zone_id: "zone-cra",
+  position: 16
+)
+
+Unit.create!(
+  pole: polaris_pole,
+  name: "EMAP Polaris",
+  slug: "emap-polaris",
+  unit_type: "mobile_team",
+  capacity: nil,
+  phone: "05 99 05 10 17",
+  email: "emap@ch-polaris.fr",
+  description: "Équipe Mobile Addiction et Parentalité. Intervient auprès des parents présentant des troubles addictifs pour prévenir les risques de négligence et soutenir la parentalité.",
+  address: "12 rue des Astres, 33999 Novapolis",
+  pmr_accessible: false,
+  parking_info: "Parking P1 — accès par l'entrée principale",
+  svg_zone_id: "zone-emap",
+  position: 18
+)
+
+Unit.create!(
+  pole: polaris_pole,
+  name: "EMAA Arcturus",
+  slug: "emaa-arcturus",
+  unit_type: "mobile_team",
+  capacity: nil,
+  phone: "05 99 05 10 18",
+  email: "emaa@ch-polaris.fr",
+  description: "Équipe Mobile Autisme Adulte. Intervient à domicile et dans les établissements médico-sociaux pour les adultes autistes en situation de crise ou de rupture de parcours.",
+  address: "12 rue des Astres, 33999 Novapolis",
+  pmr_accessible: false,
+  parking_info: "Parking P1 — accès par l'entrée principale",
+  svg_zone_id: "zone-emaa",
+  position: 19
+)
+
+Unit.create!(
+  pole: polaris_pole,
+  name: "MAS Les Étoiles",
+  slug: "mas-les-etoiles",
+  unit_type: "mas",
+  capacity: 30,
+  phone: "05 99 05 10 19",
+  email: "mas@ch-polaris.fr",
+  description: "Maison d'Accueil Spécialisée. Accueille des adultes en situation de handicap psychique sévère nécessitant un accompagnement permanent et une surveillance médicale continue.",
+  address: "7 chemin des Nébuleuses, 33997 Novapolis-Nord",
+  pmr_accessible: true,
+  parking_info: "Parking dédié sur site",
+  svg_zone_id: "zone-mas",
+  position: 20
+)
+
+# ── NOUVELLES UNITÉS PÔLE PLÉIADES ──────────────────────
+Unit.create!(
+  pole: pleiades,
+  name: "CAMSP Étoile",
+  slug: "camsp-etoile",
+  unit_type: "camsp",
+  capacity: nil,
+  phone: "05 99 04 10 09",
+  email: "camsp@ch-polaris.fr",
+  description: "Centre d'Action Médico-Sociale Précoce. Dépistage, diagnostic et accompagnement précoce des enfants de 0 à 6 ans présentant des troubles du développement ou des risques de handicap.",
+  address: "5 allée des Comètes, 33999 Novapolis",
+  pmr_accessible: true,
+  parking_info: "Parking gratuit attenant",
+  svg_zone_id: "zone-camsp",
+  position: 9
+)
+
+Unit.create!(
+  pole: pleiades,
+  name: "Unité Calypso",
+  slug: "unite-calypso",
+  unit_type: "expert_center",
+  capacity: nil,
+  phone: "05 99 04 10 10",
+  email: "calypso@ch-polaris.fr",
+  description: "Unité spécialisée dans la prise en charge des enfants et adolescents présentant des Troubles du Spectre Autistique (TSA). Bilans diagnostiques, guidance parentale et programmes d'intervention comportementale.",
+  address: "5 allée des Comètes, 33999 Novapolis",
+  pmr_accessible: true,
+  parking_info: "Parking gratuit attenant",
+  svg_zone_id: "zone-calypso",
+  position: 10
+)
+
 # ── PÔLE CASSIOPÉE ──────────────────────────────────────
 andromede = Unit.create!(
   pole: cassiopee,
