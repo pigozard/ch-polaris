@@ -1,19 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
-    <title>ChPolaris</title>
+    <title>CH Polaris — Centre Hospitalier Psychiatrique</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Centre Hospitalier Psychiatrique Polaris — Établissement Public de Santé dédié à la psychiatrie adulte, pédopsychiatrie et addictologie à Novapolis.">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "polaris", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
     <%= yield :head %>
   </head>
-
-  <body><%= render "shared/navbar" %>
-<%= render "shared/flashes" %>
-
-    <%= yield %>
+  <body>
+    <a href="#main-content" class="skip-nav">Aller au contenu principal</a>
+    <%= render "shared/navbar" %>
+    <%= render "shared/flashes" %>
+    <main id="main-content">
+      <%= yield %>
+    </main>
   </body>
 </html>

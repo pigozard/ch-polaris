@@ -1,39 +1,36 @@
-<!-- Bandeau fictif -->
-<div style="background:#fff3cd; border-bottom: 2px solid #f0c040; text-align: center; padding: 8px; font-size: 0.78rem; font-family: 'DM Sans', sans-serif; color: #856404; letter-spacing: 0.05em;">
-  ⚠️ Ce site est un <strong>projet fictif</strong> réalisé à des fins de démonstration — Pierre Gozard · Portfolio e-santé
-</div>
-
-<!-- Navbar -->
-<nav style="display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 80px; background: rgba(249,247,244,0.97); border-bottom: 1px solid #e2e4e8; position: sticky; top: 0; z-index: 100;">
-  <%= link_to root_path, style: "text-decoration: none;" do %>
-    <%= image_tag "logo-polaris.png", style: "height: 100px; width: 100px; object-fit: cover; border-radius: 50%;", alt: "CH Polaris" %>
+<nav class="site-nav" aria-label="Navigation principale">
+  <%= link_to root_path, class: "nav-logo", "aria-label": "CH Polaris — Accueil" do %>
+    <%= image_tag "logo-polaris.png", alt: "Logo Centre Hospitalier Polaris" %>
   <% end %>
 
-  <ul style="display: flex; gap: 28px; list-style: none; margin: 0; padding: 0;">
-    <li><a href="#offre" style="font-size: 0.8rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: #6b7280; text-decoration: none;">Offre de soins</a></li>
-    <li><a href="#poles" style="font-size: 0.8rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: #6b7280; text-decoration: none;">Pôles</a></li>
-    <li><%= link_to "Patients", patients_path, style: "font-size: 0.8rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: #6b7280; text-decoration: none;" %></li>
-    <li><%= link_to "Professionnels", professionnels_path, style: "font-size: 0.8rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: #6b7280; text-decoration: none;" %></li>
+  <ul class="nav-links" role="list">
+    <li><a href="#offre" class="nav-link">Offre de soins</a></li>
+    <li><a href="#poles" class="nav-link">Pôles</a></li>
+    <li><%= link_to "Patients", patients_path, class: "nav-link" %></li>
+    <li><%= link_to "Professionnels", professionnels_path, class: "nav-link" %></li>
   </ul>
 
   <div style="display: flex; align-items: center; gap: 16px;">
     <% if user_signed_in? %>
-      <%= link_to "Déconnexion", destroy_user_session_path, data: { turbo_method: :delete }, style: "font-size: 0.8rem; color: #6b7280; text-decoration: none;" %>
+      <%= link_to "Déconnexion", destroy_user_session_path, data: { turbo_method: :delete }, class: "nav-link" %>
     <% end %>
-    <a href="#" style="background: #2e7f7d; color: white; padding: 8px 20px; border-radius: 4px; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none;">Prendre RDV</a>
+    <a href="tel:0599000000" class="nav-phone">05 99 00 00 00</a>
   </div>
 </nav>
 
-<!-- Barre d'orientation -->
-<div style="display: flex; align-items: stretch; height: 52px; border-bottom: 1px solid #e5e7eb;">
-  <%= link_to patients_path, style: "flex: 1; display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: white; background: #2e7f7d; border-right: 1px solid rgba(255,255,255,0.15); transition: background 0.2s;", onmouseover: "this.style.background='#1f5e5c'", onmouseout: "this.style.background='#2e7f7d'" do %>
-    <span style="width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.6); flex-shrink: 0;"></span>
+<nav class="orient-bar" aria-label="Orientation par profil">
+  <%= link_to patients_path,
+      class: "orient-bar-link orient-bar-link--patient",
+      "aria-label": "Espace patients, familles et proches" do %>
+    <span class="dot" aria-hidden="true"></span>
     Vous êtes patient ou proche
-    <span style="opacity: 0.6;">→</span>
+    <span class="arrow" aria-hidden="true">→</span>
   <% end %>
-  <%= link_to professionnels_path, style: "flex: 1; display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: white; background: #111827; transition: background 0.2s;", onmouseover: "this.style.background='#1a2035'", onmouseout: "this.style.background='#111827'" do %>
-    <span style="width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.4); flex-shrink: 0;"></span>
+  <%= link_to professionnels_path,
+      class: "orient-bar-link orient-bar-link--pro",
+      "aria-label": "Espace professionnels de santé" do %>
+    <span class="dot" aria-hidden="true"></span>
     Vous êtes professionnel de santé
-    <span style="opacity: 0.4;">→</span>
+    <span class="arrow" aria-hidden="true">→</span>
   <% end %>
-</div>
+</nav>
