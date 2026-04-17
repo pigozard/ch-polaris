@@ -720,38 +720,6 @@ Unit.create!(
 
 Unit.create!(
   pole: polaris_pole,
-  name: "EMAP Polaris",
-  slug: "emap-polaris",
-  unit_type: "mobile_team",
-  capacity: nil,
-  phone: "05 99 05 10 16",
-  email: "emap@ch-polaris.fr",
-  description: "Équipe Mobile Addiction et Parentalité. Intervient auprès des parents présentant des troubles addictifs pour prévenir les risques de négligence et soutenir la parentalité.",
-  address: "12 rue des Astres, 33999 Novapolis",
-  pmr_accessible: false,
-  parking_info: "Parking P1 — accès par l'entrée principale",
-  svg_zone_id: "zone-emap",
-  position: 17
-)
-
-Unit.create!(
-  pole: polaris_pole,
-  name: "EMAA Arcturus",
-  slug: "emaa-arcturus",
-  unit_type: "mobile_team",
-  capacity: nil,
-  phone: "05 99 05 10 17",
-  email: "emaa@ch-polaris.fr",
-  description: "Équipe Mobile Autisme Adulte. Intervient à domicile et dans les établissements médico-sociaux pour les adultes autistes en situation de crise ou de rupture de parcours.",
-  address: "12 rue des Astres, 33999 Novapolis",
-  pmr_accessible: false,
-  parking_info: "Parking P1 — accès par l'entrée principale",
-  svg_zone_id: "zone-emaa",
-  position: 18
-)
-
-Unit.create!(
-  pole: polaris_pole,
   name: "MAS Les Étoiles",
   slug: "mas-les-etoiles",
   unit_type: "mas",
