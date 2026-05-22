@@ -16,4 +16,8 @@ class PagesController < ApplicationController
     @poles = Pole.ordered.includes(:units)
     @news  = News.recent.includes(:pole)
   end
+
+  def carte
+    @poles = Pole.ordered.includes(:units)
+  end
 end

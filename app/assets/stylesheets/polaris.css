@@ -1026,3 +1026,129 @@ a.hopital-contact-value:hover { color: var(--teal-dark); }
   .hopital-contact-grid { grid-template-columns: 1fr; }
   .hopital-anchors { gap: 6px; }
 }
+
+/* ── NAV icônes ── */
+.nav-link--icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 1rem;
+  padding: 12px 8px;
+}
+.nav-link--icon i { font-size: 1rem; }
+.nav-link-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ── PAGE CARTE ── */
+.carte-placeholder {
+  border: 2px dashed var(--border);
+  border-radius: 12px;
+  padding: 64px 32px;
+  text-align: center;
+  background: var(--bg-alt);
+}
+.carte-placeholder-icon { font-size: 3rem; margin-bottom: 16px; }
+.carte-placeholder-title {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin: 0 0 12px;
+}
+.carte-placeholder-desc {
+  font-size: 0.95rem;
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 480px;
+  margin: 0 auto;
+}
+.carte-pole-block {
+  margin-bottom: 32px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.carte-pole-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  background: var(--bg-alt);
+  border-bottom: 1px solid var(--border);
+}
+.carte-pole-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.carte-pole-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0;
+  flex: 1;
+}
+.carte-pole-count {
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.carte-units-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+}
+.carte-unit-item {
+  padding: 12px 20px;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.carte-unit-name {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+.carte-unit-type {
+  font-size: 0.72rem;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+
+/* ── CARTE SVG wrapper ── */
+.carte-svg-wrapper {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #eef0ea;
+}
+.carte-svg-legend-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 18px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.carte-coming-badge {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--teal-light);
+  color: var(--teal-dark);
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+.carte-svg-hint {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
