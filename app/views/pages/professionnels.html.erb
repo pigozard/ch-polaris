@@ -1,0 +1,76 @@
+<% accent = "#8B5CF6" %>
+
+<!-- ═══════════ HUB HERO ═══════════ -->
+<section class="hub-hero" style="--accent: <%= accent %>;" aria-labelledby="hub-title">
+  <div class="container">
+    <span class="label">Espace</span>
+    <h1 id="hub-title">Professionnels <span class="hub-hero-accent">de santé</span></h1>
+    <p>
+      Les outils et ressources du Centre Hospitalier Polaris pour vous accompagner
+      dans votre exercice : annuaire, programmes ETP, échelles cliniques et adressage.
+    </p>
+    <%= link_to "← Vous êtes patient ou proche ?", patients_path, class: "hub-switch-link" %>
+  </div>
+</section>
+
+<div class="container">
+  <section class="section section--no-border" style="--accent: <%= accent %>;">
+    <div class="hub-grid">
+
+      <%# ── LIVE quand l'annuaire sera codé (semaine 1) ── %>
+      <a href="#" class="hub-card hub-card--soon">
+        <span class="hub-badge">À venir</span>
+        <span class="hub-card-icon" aria-hidden="true">🗂️</span>
+        <span class="hub-card-title">Annuaire des unités</span>
+        <span class="hub-card-desc">Spécialités, contacts directs et secrétariats de l'ensemble des unités, filtrables par pôle et par type.</span>
+        <span class="hub-card-cta">Bientôt disponible</span>
+      </a>
+
+      <%# ── LIVE quand l'outil d'orientation sera codé (semaine 5) ── %>
+      <a href="#" class="hub-card hub-card--soon">
+        <span class="hub-badge">À venir</span>
+        <span class="hub-card-icon" aria-hidden="true">🧭</span>
+        <span class="hub-card-title">Adresser un patient</span>
+        <span class="hub-card-desc">Identifiez la structure la plus adaptée selon la situation clinique et obtenez le bon contact.</span>
+        <span class="hub-card-cta">Bientôt disponible</span>
+      </a>
+
+      <%# ── LIVE quand le catalogue ETP sera codé (semaine 4) ── %>
+      <a href="#" class="hub-card hub-card--soon">
+        <span class="hub-badge">À venir</span>
+        <span class="hub-card-icon" aria-hidden="true">📚</span>
+        <span class="hub-card-title">Catalogue ETP</span>
+        <span class="hub-card-desc">Programmes d'éducation thérapeutique, public cible, prochaines sessions et modalités d'inscription.</span>
+        <span class="hub-card-cta">Bientôt disponible</span>
+      </a>
+
+      <%# ── LIVE quand les échelles seront codées (semaine 7) ── %>
+      <a href="#" class="hub-card hub-card--soon">
+        <span class="hub-badge">À venir</span>
+        <span class="hub-card-icon" aria-hidden="true">📊</span>
+        <span class="hub-card-title">Échelles cliniques</span>
+        <span class="hub-card-desc">HAD, Hamilton, EVA : remplissage interactif, calcul automatique du score et interprétation.</span>
+        <span class="hub-card-cta">Bientôt disponible</span>
+      </a>
+
+      <%# ── LIVE quand la carte SVG sera codée (semaine 8) ── %>
+      <a href="#" class="hub-card hub-card--soon">
+        <span class="hub-badge">À venir</span>
+        <span class="hub-card-icon" aria-hidden="true">🗺️</span>
+        <span class="hub-card-title">Carte de l'établissement</span>
+        <span class="hub-card-desc">Plan interactif : recherchez une unité, sa zone s'illumine sur le plan de l'hôpital.</span>
+        <span class="hub-card-cta">Bientôt disponible</span>
+      </a>
+
+      <%# ── Page contact — à créer quand tu veux ── %>
+      <a href="#" class="hub-card hub-card--soon">
+        <span class="hub-badge">À venir</span>
+        <span class="hub-card-icon" aria-hidden="true">✉️</span>
+        <span class="hub-card-title">Nous contacter</span>
+        <span class="hub-card-desc">Standard, emails par pôle et coordonnées des secrétariats pour joindre la bonne personne.</span>
+        <span class="hub-card-cta">Bientôt disponible</span>
+      </a>
+
+    </div>
+  </section>
+</div>

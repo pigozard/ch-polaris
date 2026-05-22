@@ -11,4 +11,9 @@ class PagesController < ApplicationController
 
   def professionnels
   end
+
+  def hopital
+    @poles = Pole.ordered.includes(:units)
+    @news  = News.recent.includes(:pole)
+  end
 end

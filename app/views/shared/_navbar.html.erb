@@ -4,8 +4,7 @@
   <% end %>
 
   <ul class="nav-links" role="list">
-    <li><a href="#offre" class="nav-link">Offre de soins</a></li>
-    <li><a href="#poles" class="nav-link">Pôles</a></li>
+    <li><%= link_to "Notre établissement", hopital_path, class: "nav-link" %></li>
     <li><%= link_to "Patients", patients_path, class: "nav-link" %></li>
     <li><%= link_to "Professionnels", professionnels_path, class: "nav-link" %></li>
   </ul>
@@ -16,21 +15,4 @@
     <% end %>
     <a href="tel:0599000000" class="nav-phone">05 99 00 00 00</a>
   </div>
-</nav>
-
-<nav class="orient-bar" aria-label="Orientation par profil">
-  <%= link_to patients_path,
-      class: "orient-bar-link orient-bar-link--patient",
-      "aria-label": "Espace patients, familles et proches" do %>
-    <span class="dot" aria-hidden="true"></span>
-    Vous êtes patient ou proche
-    <span class="arrow" aria-hidden="true">→</span>
-  <% end %>
-  <%= link_to professionnels_path,
-      class: "orient-bar-link orient-bar-link--pro",
-      "aria-label": "Espace professionnels de santé" do %>
-    <span class="dot" aria-hidden="true"></span>
-    Vous êtes professionnel de santé
-    <span class="arrow" aria-hidden="true">→</span>
-  <% end %>
 </nav>

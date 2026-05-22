@@ -1,297 +1,95 @@
-<!-- ═══════════ HERO ═══════════ -->
-<section class="hero" aria-label="Présentation de l'établissement">
-  <div class="hero-bg" style="background-image: url('<%= asset_path('hero-hospital.jpg') %>');" role="img" aria-label="Vue aérienne du Centre Hospitalier Polaris"></div>
+<!-- ═══════════ HERO + CHOIX PATIENT/PRO ═══════════ -->
+<section class="hero" aria-label="Présentation de l'établissement et orientation">
+  <div class="hero-bg" style="background-image: url('<%= asset_path('hero-hospital.jpg') %>');" role="img" aria-label="Vue du Centre Hospitalier Polaris"></div>
   <div class="hero-overlay"></div>
 
   <div class="hero-content">
+    <span class="hero-kicker">Centre Hospitalier Polaris</span>
     <h1 class="hero-title">
       Prendre soin de la
       <span class="hero-title-accent">santé mentale</span>,<br>ensemble.
     </h1>
+    <p class="hero-lead">Pour aller à l'essentiel, dites-nous ce qui vous intéresse</p>
 
-    <div class="hero-stats" aria-label="Chiffres clés de l'établissement">
-      <div>
-        <div class="hero-stat-num"><%= Unit.where(unit_type: %w[ward_open ward_closed long_stay]).sum(:capacity) %></div>
-        <div class="hero-stat-label">Lits d'hospitalisation</div>
-      </div>
-      <div class="hero-stat-divider" aria-hidden="true"></div>
-      <div>
-        <div class="hero-stat-num">150</div>
-        <div class="hero-stat-label">Places ambulatoires</div>
-      </div>
-      <div class="hero-stat-divider" aria-hidden="true"></div>
-      <div>
-        <div class="hero-stat-num"><%= Pole.count %></div>
-        <div class="hero-stat-label">Pôles de soins</div>
-      </div>
-      <div class="hero-stat-divider" aria-hidden="true"></div>
-      <div>
-        <div class="hero-stat-num">650</div>
-        <div class="hero-stat-label">Professionnels</div>
-      </div>
+    <div class="hero-doors">
+      <%= link_to patients_path, class: "hero-door hero-door--patient",
+          "aria-label": "Espace patients, familles et proches" do %>
+        <span class="hero-door-top">
+          <span class="hero-door-icon" aria-hidden="true">👤</span>
+          <span class="hero-door-kicker">Patient & proches</span>
+        </span>
+        <span class="hero-door-desc">Mon CMP, mes droits, préparer une visite, urgences.</span>
+        <span class="hero-door-cta">Entrer <span aria-hidden="true">→</span></span>
+      <% end %>
+
+      <%= link_to professionnels_path, class: "hero-door hero-door--pro",
+          "aria-label": "Espace professionnels de santé" do %>
+        <span class="hero-door-top">
+          <span class="hero-door-icon" aria-hidden="true">🩺</span>
+          <span class="hero-door-kicker">Professionnel</span>
+        </span>
+        <span class="hero-door-desc">Annuaire, ETP, échelles cliniques, adressage.</span>
+        <span class="hero-door-cta">Entrer <span aria-hidden="true">→</span></span>
+      <% end %>
     </div>
-
-    <p class="hero-signature">
-      Centre Hospitalier Psychiatrique · Établissement Public de Santé · Fondé en 1968
-    </p>
   </div>
 </section>
 
-<!-- ═══════════ OFFRE DE SOINS ═══════════ -->
-<div class="section--alt">
-  <div class="container">
-    <section class="section section--no-border" id="offre" aria-labelledby="offre-title"
-             data-controller="tabs">
-
-      <div class="section-header">
-        <div>
-          <span class="label">Nos services</span>
-          <h2 class="section-title" id="offre-title">Une prise en charge complète et coordonnée</h2>
-        </div>
-      </div>
-
-      <div class="tabs-nav" role="tablist" aria-label="Offre de soins">
-        <button class="tab-btn active"
-                data-tab="soins"
-                data-tabs-target="btn"
-                data-action="click->tabs#select keydown->tabs#navigate"
-                role="tab"
-                aria-selected="true"
-                aria-controls="tab-soins"
-                id="btn-soins">
-          Soins & Hospitalisation
-        </button>
-        <button class="tab-btn"
-                data-tab="etp"
-                data-tabs-target="btn"
-                data-action="click->tabs#select keydown->tabs#navigate"
-                role="tab"
-                aria-selected="false"
-                aria-controls="tab-etp"
-                id="btn-etp">
-          Éducation Thérapeutique
-        </button>
-        <button class="tab-btn"
-                data-tab="numerique"
-                data-tabs-target="btn"
-                data-action="click->tabs#select keydown->tabs#navigate"
-                role="tab"
-                aria-selected="false"
-                aria-controls="tab-numerique"
-                id="btn-numerique">
-          Numérique & Innovation
-        </button>
-        <button class="tab-btn"
-                data-tab="urgences"
-                data-tabs-target="btn"
-                data-action="click->tabs#select keydown->tabs#navigate"
-                role="tab"
-                aria-selected="false"
-                aria-controls="tab-urgences"
-                id="btn-urgences">
-          Urgences Psychiatriques
-        </button>
-        <button class="tab-btn"
-                data-tab="patients"
-                data-tabs-target="btn"
-                data-action="click->tabs#select keydown->tabs#navigate"
-                role="tab"
-                aria-selected="false"
-                aria-controls="tab-patients"
-                id="btn-patients">
-          Espace Patients
-        </button>
-      </div>
-
-      <div class="tab-panel active"
-           id="tab-soins"
-           data-tab="soins"
-           data-tabs-target="panel"
-           role="tabpanel"
-           aria-labelledby="btn-soins"
-           aria-hidden="false">
-        <div class="tab-content">
-          <h3>Hospitalisations et soins ambulatoires</h3>
-          <p>Du suivi ambulatoire à l'hospitalisation complète, un continuum de soins adapté à chaque situation clinique et à chaque parcours de vie.</p>
-          <ul class="tab-list">
-            <li>Hospitalisation complète ouverte et fermée</li>
-            <li>Centres médico-psychologiques (CMP) de secteur</li>
-            <li>Hôpital de jour adulte et pédopsychiatrique</li>
-            <li>Centres d'Accueil Thérapeutique à Temps Partiel</li>
-            <li>Consultations spécialisées et centres experts</li>
-          </ul>
-        </div>
-        <div class="tab-visual" aria-hidden="true">
-          <div class="tab-visual-icon">🏥</div>
-          <div class="tab-visual-label">Soins & Parcours</div>
-        </div>
-      </div>
-
-      <div class="tab-panel"
-           id="tab-etp"
-           data-tab="etp"
-           data-tabs-target="panel"
-           role="tabpanel"
-           aria-labelledby="btn-etp"
-           aria-hidden="true">
-        <div class="tab-content">
-          <h3>Unité Transversale d'Éducation du Patient</h3>
-          <p>L'UTEP Étoile Polaire coordonne les programmes d'éducation thérapeutique pour l'ensemble de l'établissement, en lien avec les cinq pôles.</p>
-          <ul class="tab-list">
-            <li>5 programmes ETP validés ARS</li>
-            <li>Groupes thérapeutiques et séances individuelles</li>
-            <li>Coordination interprofessionnelle</li>
-            <li>Intégration des proches aidants</li>
-            <li>Évaluation continue des programmes</li>
-          </ul>
-        </div>
-        <div class="tab-visual" aria-hidden="true">
-          <div class="tab-visual-icon">📚</div>
-          <div class="tab-visual-label">Éducation Thérapeutique</div>
-        </div>
-      </div>
-
-      <div class="tab-panel"
-           id="tab-numerique"
-           data-tab="numerique"
-           data-tabs-target="panel"
-           role="tabpanel"
-           aria-labelledby="btn-numerique"
-           aria-hidden="true">
-        <div class="tab-content">
-          <h3>Innovation numérique en santé mentale</h3>
-          <p>Le CH Polaris intègre les outils numériques pour améliorer la coordination des soins, l'expérience patient et la continuité ville-hôpital.</p>
-          <ul class="tab-list">
-            <li>Dossier Patient Informatisé (DPI) unifié</li>
-            <li>Téléconsultation psychiatrique</li>
-            <li>Outils d'évaluation et de suivi numériques</li>
-            <li>Coordination ville-hôpital digitalisée</li>
-            <li>Plateforme e-santé pour les professionnels</li>
-          </ul>
-        </div>
-        <div class="tab-visual" aria-hidden="true">
-          <div class="tab-visual-icon">💻</div>
-          <div class="tab-visual-label">e-Santé & Digital</div>
-        </div>
-      </div>
-
-      <div class="tab-panel"
-           id="tab-urgences"
-           data-tab="urgences"
-           data-tabs-target="panel"
-           role="tabpanel"
-           aria-labelledby="btn-urgences"
-           aria-hidden="true">
-        <div class="tab-content">
-          <h3>Urgences et interventions de crise</h3>
-          <p>Une organisation dédiée aux situations de crise psychiatrique, 24h/24, en lien avec le SAMU et les partenaires du territoire.</p>
-          <ul class="tab-list">
-            <li>Équipe Psychiatrique d'Intervention et de Crise (EPIC)</li>
-            <li>Cellule d'urgence médico-psychologique (CUMP)</li>
-            <li>Unité de liaison psychiatrique (ULPSY)</li>
-            <li>Dispositif de postvention et suivi de crise</li>
-            <li>Coordination SAMU — 15 et 3114</li>
-          </ul>
-        </div>
-        <div class="tab-visual" aria-hidden="true">
-          <div class="tab-visual-icon">🚨</div>
-          <div class="tab-visual-label">Crise & Urgences</div>
-        </div>
-      </div>
-
-      <div class="tab-panel"
-           id="tab-patients"
-           data-tab="patients"
-           data-tabs-target="panel"
-           role="tabpanel"
-           aria-labelledby="btn-patients"
-           aria-hidden="true">
-        <div class="tab-content">
-          <h3>Espace patients & familles</h3>
-          <p>Des ressources et des services pour accompagner patients et proches à chaque étape du parcours de soins.</p>
-          <ul class="tab-list">
-            <li>Sectorisation et orientation vers le bon CMP</li>
-            <li>Droits des patients en psychiatrie</li>
-            <li>Préparer son séjour — règlements par unité</li>
-            <li>FAQ et guides pratiques</li>
-            <li>Maison des Usagers — La Maison Boussole</li>
-          </ul>
-        </div>
-        <div class="tab-visual" aria-hidden="true">
-          <div class="tab-visual-icon">👥</div>
-          <div class="tab-visual-label">Patients & Familles</div>
-        </div>
-      </div>
-
-    </section>
-  </div>
-</div>
-
-<!-- ═══════════ PÔLES ═══════════ -->
-<div class="container">
-  <section class="section" id="poles" aria-labelledby="poles-title">
-    <div class="section-header">
-      <div>
-        <span class="label">Organisation clinique</span>
-        <h2 class="section-title" id="poles-title">Cinq pôles d'expertise</h2>
-      </div>
-      <span class="section-meta"><%= Unit.count %> unités au total</span>
+<!-- ═══════════ CHIFFRES CLÉS ═══════════ -->
+<div class="stats-band">
+  <dl class="stats-band-inner" aria-label="Chiffres clés de l'établissement">
+    <div class="stat-item">
+      <dd class="stat-num"><%= Unit.where(unit_type: %w[ward_open ward_closed long_stay]).sum(:capacity) %></dd>
+      <dt class="stat-label">Lits d'hospitalisation</dt>
     </div>
-    <div class="poles-grid">
-      <% @poles.each_with_index do |pole, index| %>
-        <article class="pole-card">
-          <div class="pole-accent" style="background-color: <%= pole.color %>;" aria-hidden="true"></div>
-          <div class="pole-num" aria-hidden="true">0<%= index + 1 %></div>
-          <h3 class="pole-name"><%= pole.name %></h3>
-          <p class="pole-desc"><%= truncate(pole.description, length: 90) %></p>
-          <p class="pole-count"><%= pole.units.count %> unités</p>
-        </article>
-      <% end %>
+    <div class="stat-item">
+      <dd class="stat-num">150</dd>
+      <dt class="stat-label">Places ambulatoires</dt>
     </div>
-  </section>
+    <div class="stat-item">
+      <dd class="stat-num"><%= Pole.count %></dd>
+      <dt class="stat-label">Pôles de soins</dt>
+    </div>
+    <div class="stat-item">
+      <dd class="stat-num">650</dd>
+      <dt class="stat-label">Professionnels</dt>
+    </div>
+  </dl>
 </div>
-
-<!-- ═══════════ ACTUALITÉS ═══════════ -->
-<% if @news.any? %>
-<div class="section--alt">
-  <div class="container">
-    <section class="section section--no-border" aria-labelledby="news-title">
-      <div class="section-header">
-        <div>
-          <span class="label">Vie de l'établissement</span>
-          <h2 class="section-title" id="news-title">Actualités</h2>
-        </div>
-      </div>
-      <div class="news-grid">
-        <% @news.each do |article| %>
-          <article class="news-card">
-            <p class="news-cat"><%= category_fr(article.category) %></p>
-            <h3 class="news-title"><%= article.title %></h3>
-            <p class="news-summary"><%= article.summary %></p>
-            <div class="news-meta">
-              <time datetime="<%= article.published_at&.iso8601 %>">
-                <%= article.published_at&.strftime("%d %B %Y") %>
-              </time>
-              <% if article.pole %>
-                <span class="news-dot" style="background-color: <%= article.pole.color %>;" aria-hidden="true"></span>
-                <span><%= article.pole.name %></span>
-              <% end %>
-            </div>
-          </article>
-        <% end %>
-      </div>
-      <div class="news-more">
-        <a href="#">Voir toutes les actualités</a>
-      </div>
-    </section>
-  </div>
-</div>
-<% end %>
 
 <!-- ═══════════ URGENCES ═══════════ -->
 <div class="urgences-banner" role="complementary" aria-label="Numéros d'urgence">
   <p>En cas de crise psychiatrique — <strong>15 (SAMU) · 3114 (Numéro national prévention suicide)</strong></p>
   <a href="#" class="urgences-btn">Accès urgences</a>
+</div>
+
+<!-- ═══════════ L'ÉTABLISSEMENT (bloc léger) ═══════════ -->
+<div class="container">
+  <section class="section" aria-labelledby="etab-title">
+    <div class="section-header">
+      <div>
+        <span class="label">L'établissement</span>
+        <h2 class="section-title" id="etab-title">Centre psychiatrique de référence depuis 1968</h2>
+      </div>
+      <%= link_to hopital_path, class: "hopital-cta-link" do %>
+        Notre établissement →
+      <% end %>
+    </div>
+    <p class="etab-intro">
+      Le CH Polaris assure la prise en charge psychiatrique du territoire de Novapolis :
+      adultes, enfants, addictologie et réhabilitation.
+      <%= @poles.count %> pôles coordonnés, <%= Unit.count %> unités.
+    </p>
+    <div class="poles-mini-grid">
+      <% @poles.each do |pole| %>
+        <div class="pole-mini-card">
+          <div class="pole-mini-accent" style="background-color: <%= pole.color %>;" aria-hidden="true"></div>
+          <span class="pole-mini-name"><%= pole.name %></span>
+          <span class="pole-mini-desc"><%= pole.description&.split('.')&.first %>.</span>
+        </div>
+      <% end %>
+    </div>
+  </section>
 </div>
 
 <!-- ═══════════ FOOTER ═══════════ -->
@@ -302,8 +100,8 @@
       <address class="footer-address" style="font-style: normal;">
         12 rue des Astres<br>
         33999 Novapolis<br>
-        <a href="tel:0599000000" style="color: rgba(255,255,255,0.4); text-decoration: none;">05 99 00 00 00</a><br>
-        <a href="mailto:contact@ch-polaris.fr" style="color: rgba(255,255,255,0.4); text-decoration: none;">contact@ch-polaris.fr</a>
+        <a href="tel:0599000000" style="color: #9ca3af; text-decoration: none;">05 99 00 00 00</a><br>
+        <a href="mailto:contact@ch-polaris.fr" style="color: #9ca3af; text-decoration: none;">contact@ch-polaris.fr</a>
       </address>
     </div>
     <nav class="footer-col" aria-label="Accès rapide">
@@ -311,8 +109,8 @@
       <ul>
         <li><%= link_to "Patients & Familles", patients_path %></li>
         <li><%= link_to "Professionnels", professionnels_path %></li>
+        <li><%= link_to "Notre établissement", hopital_path %></li>
         <li><a href="#">Urgences psychiatriques</a></li>
-        <li><a href="#">Nous contacter</a></li>
       </ul>
     </nav>
     <nav class="footer-col" aria-label="Informations légales">

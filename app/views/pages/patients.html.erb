@@ -1,0 +1,88 @@
+<% accent = "#3B82F6" %>
+
+<!-- ═══════════ HUB HERO ═══════════ -->
+<section class="hub-hero" style="--accent: <%= accent %>;" aria-labelledby="hub-title">
+  <div class="container">
+    <span class="label">Espace</span>
+    <h1 id="hub-title">Patients <span class="hub-hero-accent">& proches</span></h1>
+    <p>
+      Tout ce dont vous avez besoin pour vous orienter, comprendre vos droits
+      et préparer un séjour ou une visite. En cas d'urgence, contactez le 15 ou le 3114.
+    </p>
+    <%= link_to "← Vous êtes un professionnel ?", professionnels_path, class: "hub-switch-link" %>
+  </div>
+</section>
+
+<div class="container">
+  <section class="section section--no-border" style="--accent: <%= accent %>;">
+
+    <!-- Bandeau urgence -->
+    <div class="hub-urgence" role="complementary" aria-label="Numéros d'urgence">
+      <span aria-hidden="true" style="font-size:1.4rem;">🚨</span>
+      <div>
+        <strong>En cas de crise ou d'urgence psychiatrique</strong>
+        <div class="hub-urgence-num">
+          SAMU <strong>15</strong> · Prévention suicide <strong>3114</strong> (24h/24, gratuit)
+        </div>
+      </div>
+    </div>
+
+    <div class="hub-grid">
+
+      <%# ── LIVE quand la feature "Sectorisation" sera codée (semaine 2) ── %>
+      <a href="#" class="hub-card hub-card--soon">
+        <span class="hub-badge">À venir</span>
+        <span class="hub-card-icon" aria-hidden="true">📍</span>
+        <span class="hub-card-title">Trouver mon CMP</span>
+        <span class="hub-card-desc">Saisissez votre code postal et obtenez le centre médico-psychologique de votre secteur, avec horaires et contact.</span>
+        <span class="hub-card-cta">Bientôt disponible</span>
+      </a>
+
+      <%# ── LIVE quand l'annuaire sera codé (semaine 1) ── %>
+      <a href="#" class="hub-card hub-card--soon">
+        <span class="hub-badge">À venir</span>
+        <span class="hub-card-icon" aria-hidden="true">🗂️</span>
+        <span class="hub-card-title">Annuaire des unités</span>
+        <span class="hub-card-desc">Horaires de visite et coordonnées de chaque unité, filtrables par pôle et par type de prise en charge.</span>
+        <span class="hub-card-cta">Bientôt disponible</span>
+      </a>
+
+      <%# ── LIVE quand "Règlement par unité" sera codé (semaine 3) ── %>
+      <a href="#" class="hub-card hub-card--soon">
+        <span class="hub-badge">À venir</span>
+        <span class="hub-card-icon" aria-hidden="true">🧳</span>
+        <span class="hub-card-title">Préparer mon séjour</span>
+        <span class="hub-card-desc">Créneaux de visite, objets autorisés, accès PMR et parking : tout pour une visite sereine.</span>
+        <span class="hub-card-cta">Bientôt disponible</span>
+      </a>
+
+      <%# ── LIVE quand l'outil d'orientation sera codé (semaine 5) ── %>
+      <a href="#" class="hub-card hub-card--soon">
+        <span class="hub-badge">À venir</span>
+        <span class="hub-card-icon" aria-hidden="true">🧭</span>
+        <span class="hub-card-title">Outil d'orientation</span>
+        <span class="hub-card-desc">Un questionnaire guidé (non diagnostique) pour comprendre vers quelle structure vous tourner.</span>
+        <span class="hub-card-cta">Bientôt disponible</span>
+      </a>
+
+      <%# ── LIVE quand la FAQ sera codée (semaine 6) ── %>
+      <a href="#" class="hub-card hub-card--soon">
+        <span class="hub-badge">À venir</span>
+        <span class="hub-card-icon" aria-hidden="true">💬</span>
+        <span class="hub-card-title">Questions fréquentes</span>
+        <span class="hub-card-desc">Première consultation, hospitalisation sous contrainte, droits : les réponses aux questions que tout le monde se pose.</span>
+        <span class="hub-card-cta">Bientôt disponible</span>
+      </a>
+
+      <%# ── Page statique "Mes droits" — à créer quand tu veux ── %>
+      <a href="#" class="hub-card hub-card--soon">
+        <span class="hub-badge">À venir</span>
+        <span class="hub-card-icon" aria-hidden="true">⚖️</span>
+        <span class="hub-card-title">Mes droits en psychiatrie</span>
+        <span class="hub-card-desc">Information, consentement, recours, personne de confiance : vos droits expliqués simplement.</span>
+        <span class="hub-card-cta">Bientôt disponible</span>
+      </a>
+
+    </div>
+  </section>
+</div>

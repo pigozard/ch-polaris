@@ -23,6 +23,7 @@ export default class extends Controller {
 
     if (next !== undefined) {
       event.preventDefault()
+      this._keyboardActivated = true
       btns[next].focus()
       this.activate(btns[next])
     }
@@ -34,6 +35,7 @@ export default class extends Controller {
     this.btnTargets.forEach(b => {
       b.classList.remove("active")
       b.setAttribute("aria-selected", "false")
+      b.setAttribute("tabindex", "-1")
     })
 
     this.panelTargets.forEach(p => {
@@ -43,11 +45,18 @@ export default class extends Controller {
 
     btn.classList.add("active")
     btn.setAttribute("aria-selected", "true")
+    btn.setAttribute("tabindex", "0")
 
     const panel = this.panelTargets.find(p => p.dataset.tab === tab)
     if (panel) {
       panel.classList.add("active")
       panel.setAttribute("aria-hidden", "false")
+      panel.setAttribute("tabindex", "-1")
+      // Déplace le focus vers le panel uniquement après navigation clavier
+      if (this._keyboardActivated) {
+        panel.focus()
+        this._keyboardActivated = false
+      }
     }
   }
 }
