@@ -18,6 +18,6 @@ class PagesController < ApplicationController
   end
 
   def carte
-    @poles = Pole.ordered.includes(:units)
+    @poles = Pole.includes(:units).order(:position)
   end
 end
