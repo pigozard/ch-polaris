@@ -1,0 +1,14 @@
+<% if @invalid_format %>
+  <p>Veuillez saisir un code postal valide (5 chiffres).</p>
+<% elsif @not_found %>
+  <p>Aucun CMP trouvé pour ce code postal.</p>
+<% else %>
+  <% @cmps.each do |cmp| %>
+    <div class="cmp-result">
+      <h3><%= cmp.name %></h3>
+      <% if cmp.phone.present? %>
+        <p><%= cmp.phone %></p>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
