@@ -74,5 +74,4 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "minitest", "~> 5.1"
-  gem "rails-controller-testing"
 end
