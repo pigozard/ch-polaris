@@ -1,1 +1,88 @@
-<h1>Annuaire</h1>
+<%# ═══════════ HERO ═══════════ %>
+<section class="hub-hero" aria-labelledby="annuaire-title">
+  <div class="container">
+    <span class="label">Répertoire</span>
+    <h1 id="annuaire-title">Annuaire <span class="hub-hero-accent">des unités</span></h1>
+    <p>Retrouvez les coordonnées, horaires et informations pratiques de toutes les unités du CH Polaris.</p>
+  </div>
+</section>
+
+<%# ═══════════ CONTENU ═══════════ %>
+<div class="container"
+     data-controller="annuaire"
+     data-annuaire-units-value="<%= json_escape(@units_json) %>">
+
+  <section class="section section--no-border">
+
+    <%# ── Filtres ── %>
+    <div class="annuaire-filters">
+      <div class="annuaire-pole-chips" role="group" aria-label="Filtrer par pôle">
+        <button class="annuaire-chip annuaire-chip--active"
+                data-action="click->annuaire#filterPole"
+                data-pole=""
+                type="button">Tous les pôles</button>
+        <% @poles.each do |pole| %>
+          <button class="annuaire-chip"
+                  data-action="click->annuaire#filterPole"
+                  data-pole="<%= pole.slug %>"
+                  style="--chip-color: <%= pole.color %>"
+                  type="button">
+            <%= pole.name %>
+          </button>
+        <% end %>
+      </div>
+
+      <div class="annuaire-filters-right">
+        <select class="annuaire-type-select"
+                data-annuaire-target="typeSelect"
+                data-action="change->annuaire#filterType"
+                aria-label="Filtrer par type">
+          <option value="">Tous les types</option>
+          <% Unit::UNIT_TYPE_LABELS.each do |type, label| %>
+            <option value="<%= type %>"><%= label %></option>
+          <% end %>
+        </select>
+
+        <input type="search"
+               class="annuaire-search-input"
+               placeholder="Rechercher une unité…"
+               data-annuaire-target="searchInput"
+               data-action="input->annuaire#filterSearch"
+               autocomplete="off"
+               aria-label="Rechercher par nom">
+      </div>
+    </div>
+
+    <%# ── Grille (peuplée par Stimulus) ── %>
+    <div class="annuaire-grid"
+         data-annuaire-target="grid"
+         aria-live="polite"
+         aria-label="Liste des unités">
+    </div>
+
+    <p class="annuaire-count" data-annuaire-target="count" aria-live="polite"></p>
+
+  </section>
+</div>
+
+<%# ═══════════ PANNEAU LATÉRAL ═══════════ %>
+<div class="annuaire-panel"
+     data-annuaire-target="panel"
+     role="dialog"
+     aria-modal="true"
+     aria-labelledby="annuaire-panel-title"
+     tabindex="-1"
+     hidden>
+  <div class="annuaire-panel-inner">
+    <button class="annuaire-panel-close"
+            data-action="click->annuaire#closePanel"
+            aria-label="Fermer le panneau"
+            type="button">✕</button>
+    <div data-annuaire-target="panelContent"></div>
+  </div>
+</div>
+
+<div class="annuaire-overlay"
+     data-annuaire-target="overlay"
+     data-action="click->annuaire#closePanel"
+     hidden></div>

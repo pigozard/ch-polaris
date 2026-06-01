@@ -15,10 +15,10 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "GET /annuaire inclut les données d'unités dans le JSON embarqué" do
+  test "GET /annuaire inclut les unités dans le JSON embarqué" do
     get annuaire_path
-    assert_response :success
-    assert_includes response.body, "Annuaire"
+    assert_includes response.body, "CMP Rouen"
+    assert_includes response.body, "data-annuaire-units-value"
   end
 
   # ── Trouver mon CMP ───────────────────────────────────
