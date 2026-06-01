@@ -10,11 +10,28 @@ export default class extends Controller {
     this.searchQuery = ""
     this.render()
     this._handleKeydown = this._onKeydown.bind(this)
+    this._handleCardClick = this._onCardClick.bind(this)
     document.addEventListener("keydown", this._handleKeydown)
+    this.gridTarget.addEventListener("click", this._handleCardClick)
   }
 
   disconnect() {
     document.removeEventListener("keydown", this._handleKeydown)
+    this.gridTarget.removeEventListener("click", this._handleCardClick)
+  }
+
+  _onCardClick(event) {
+    const card = event.target.closest(".annuaire-card")
+    if (!card) return
+    const unitId = parseInt(card.dataset.unitId, 10)
+    const unit   = this.unitsValue.find(u => u.id === unitId)
+    if (!unit) return
+    this._previousFocus = card
+    this.panelContentTarget.innerHTML = this.panelHTML(unit)
+    this.panelTarget.hidden   = false
+    this.overlayTarget.hidden = false
+    document.body.style.overflow = "hidden"
+    this.panelTarget.focus()
   }
 
   _onKeydown(event) {
@@ -76,7 +93,6 @@ export default class extends Controller {
       : ""
     return `
       <button class="annuaire-card"
-              data-action="click->annuaire#openPanel"
               data-unit-id="${unit.id}"
               style="--pole-color: ${this.esc(unit.pole_color)}"
               type="button"
@@ -85,19 +101,6 @@ export default class extends Controller {
         <span class="annuaire-card__type">${this.esc(unit.type_label)}</span>
         ${phone}
       </button>`
-  }
-
-  openPanel(event) {
-    this._previousFocus = event.currentTarget
-    const unitId = parseInt(event.currentTarget.dataset.unitId, 10)
-    const unit   = this.unitsValue.find(u => u.id === unitId)
-    if (!unit) return
-
-    this.panelContentTarget.innerHTML = this.panelHTML(unit)
-    this.panelTarget.hidden  = false
-    this.overlayTarget.hidden = false
-    document.body.style.overflow = "hidden"
-    this.panelTarget.focus()
   }
 
   closePanel() {
