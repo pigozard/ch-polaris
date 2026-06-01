@@ -10,7 +10,7 @@
 <%# ═══════════ CONTENU ═══════════ %>
 <div class="container"
      data-controller="annuaire"
-     data-annuaire-units-value="<%= json_escape(@units_json) %>">
+     data-annuaire-units-value="<%= raw json_escape(@units_json) %>">
 
   <section class="section section--no-border">
 
@@ -56,7 +56,6 @@
     <%# ── Grille (peuplée par Stimulus) ── %>
     <div class="annuaire-grid"
          data-annuaire-target="grid"
-         aria-live="polite"
          aria-label="Liste des unités">
     </div>
 
