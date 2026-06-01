@@ -107,6 +107,16 @@ export default class extends Controller {
     this._previousFocus?.focus()
   }
 
+  parseList(val) {
+    if (!val) return []
+    try { const p = JSON.parse(val); return Array.isArray(p) ? p : [val] }
+    catch { return [val] }
+  }
+
+  listHTML(items) {
+    return `<ul class="annuaire-panel__list">${items.map(i => `<li>${this.esc(i)}</li>`).join("")}</ul>`
+  }
+
   panelHTML(unit) {
     const typeLabels = { consultation: "Consultations", visiting: "Visites", phone: "Téléphone" }
 
@@ -116,7 +126,8 @@ export default class extends Controller {
         ${unit.schedules.map(s => `
           <div class="annuaire-panel__schedule">
             <span class="annuaire-panel__schedule-type">${this.esc(typeLabels[s.type] || s.type)}</span>
-            <span>${this.esc(s.opens_at)}–${this.esc(s.closes_at)}${s.note ? ` <em>(${this.esc(s.note)})</em>` : ""}</span>
+            <span class="annuaire-panel__schedule-hours">${this.esc(s.opens_at)} – ${this.esc(s.closes_at)}</span>
+            ${s.note ? `<span class="annuaire-panel__schedule-note">${this.esc(s.note)}</span>` : ""}
           </div>`).join("")}
       </div>` : ""
 
@@ -131,14 +142,16 @@ export default class extends Controller {
       </div>` : ""
 
     const reg = unit.regulation
+    const forbidden = reg ? this.parseList(reg.forbidden_items) : []
+    const allowed   = reg ? this.parseList(reg.allowed_items)   : []
     const regulationHTML = reg ? `
       <div class="annuaire-panel__section">
         <h3 class="annuaire-panel__section-title">Informations pratiques</h3>
-        ${reg.max_visitors     ? `<p><strong>Visiteurs max&nbsp;:</strong> ${this.esc(String(reg.max_visitors))}</p>`  : ""}
-        ${reg.visiting_notes   ? `<p>${this.esc(reg.visiting_notes)}</p>`                                              : ""}
-        ${reg.allowed_items    ? `<p><strong>Objets autorisés&nbsp;:</strong> ${this.esc(reg.allowed_items)}</p>`       : ""}
-        ${reg.forbidden_items  ? `<p><strong>Objets interdits&nbsp;:</strong> ${this.esc(reg.forbidden_items)}</p>`    : ""}
-        ${reg.access_info      ? `<p><strong>Accès&nbsp;:</strong> ${this.esc(reg.access_info)}</p>`                   : ""}
+        ${reg.max_visitors   ? `<p><strong>Visiteurs maximum&nbsp;:</strong> ${this.esc(String(reg.max_visitors))}</p>` : ""}
+        ${reg.visiting_notes ? `<p class="annuaire-panel__reg-note">${this.esc(reg.visiting_notes)}</p>`               : ""}
+        ${allowed.length     ? `<p class="annuaire-panel__list-label">✅ Objets autorisés</p>${this.listHTML(allowed)}`   : ""}
+        ${forbidden.length   ? `<p class="annuaire-panel__list-label">🚫 Objets interdits</p>${this.listHTML(forbidden)}` : ""}
+        ${reg.access_info    ? `<p><strong>Accès&nbsp;:</strong> ${this.esc(reg.access_info)}</p>`                     : ""}
       </div>` : ""
 
     return `

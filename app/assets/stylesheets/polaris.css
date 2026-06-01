@@ -1423,3 +1423,41 @@ a.hopital-contact-value:hover { color: var(--teal-dark); }
   .annuaire-type-select,
   .annuaire-search-input { width: 100%; }
 }
+
+/* ── Panneau latéral — améliorations horaires et listes ── */
+.annuaire-panel__schedule {
+  flex-direction: column;
+  gap: 3px;
+}
+.annuaire-panel__schedule-hours {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+.annuaire-panel__schedule-note {
+  font-size: 0.82rem;
+  color: var(--muted);
+  font-style: italic;
+}
+.annuaire-panel__reg-note {
+  font-size: 0.88rem;
+  color: var(--body);
+  background: var(--bg-alt);
+  border-left: 3px solid var(--teal);
+  padding: 8px 12px;
+  border-radius: 0 6px 6px 0;
+  margin: 8px 0;
+}
+.annuaire-panel__list-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  margin: 10px 0 4px;
+  color: var(--ink);
+}
+.annuaire-panel__list {
+  margin: 0 0 8px;
+  padding-left: 18px;
+  font-size: 0.85rem;
+  color: var(--body);
+}
+.annuaire-panel__list li { margin-bottom: 2px; }
