@@ -1,14 +1,42 @@
-<% if @invalid_format %>
-  <p>Veuillez saisir un code postal valide (5 chiffres).</p>
-<% elsif @not_found %>
-  <p>Aucun CMP trouvé pour ce code postal.</p>
-<% else %>
-  <% @cmps.each do |cmp| %>
-    <div class="cmp-result">
-      <h3><%= cmp.name %></h3>
-      <% if cmp.phone.present? %>
-        <p><%= cmp.phone %></p>
-      <% end %>
-    </div>
+<%= turbo_frame_tag "cmp-result" do %>
+  <% if @invalid_format %>
+    <p class="cmp-error">Veuillez saisir un code postal valide (5 chiffres).</p>
+  <% elsif @not_found %>
+    <p class="cmp-not-found">
+      Aucun CMP trouvé pour ce code postal.
+      Contactez le standard&nbsp;: <a href="tel:0599000000">05 99 00 00 00</a>.
+    </p>
+  <% else %>
+    <% @cmps.each do |cmp| %>
+      <div class="cmp-result-card">
+        <strong><%= cmp.name %></strong>
+        <span class="cmp-pole-badge"
+              style="background:<%= cmp.pole.color %>20;color:<%= cmp.pole.color %>">
+          <%= cmp.pole.name %>
+        </span>
+        <% if cmp.phone.present? %>
+          <div class="cmp-detail">
+            📞 <a href="tel:<%= cmp.phone.gsub(/\s/, "") %>"><%= cmp.phone %></a>
+          </div>
+        <% end %>
+        <% if cmp.email.present? %>
+          <div class="cmp-detail">
+            ✉️ <a href="mailto:<%= cmp.email %>"><%= cmp.email %></a>
+          </div>
+        <% end %>
+        <% if cmp.address.present? %>
+          <div class="cmp-detail">📍 <%= cmp.address %></div>
+        <% end %>
+        <% consultations = cmp.schedules.select { |s| s.schedule_type == "consultation" } %>
+        <% if consultations.any? %>
+          <div class="cmp-detail">
+            🕐 <%= consultations.map { |s|
+              "#{s.opens_at&.strftime("%H:%M")}–#{s.closes_at&.strftime("%H:%M")}" \
+              "#{" (#{s.note})" if s.note.present?}"
+            }.join(", ") %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
   <% end %>
 <% end %>

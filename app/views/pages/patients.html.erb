@@ -29,14 +29,24 @@
 
     <div class="hub-grid">
 
-      <%# ── LIVE quand la feature "Sectorisation" sera codée (semaine 2) ── %>
-      <a href="#" class="hub-card hub-card--soon">
-        <span class="hub-badge">À venir</span>
+      <%# ── LIVE : Trouver mon CMP ── %>
+      <div class="hub-card hub-card--live hub-card--cmp">
         <span class="hub-card-icon" aria-hidden="true">📍</span>
         <span class="hub-card-title">Trouver mon CMP</span>
-        <span class="hub-card-desc">Saisissez votre code postal et obtenez le centre médico-psychologique de votre secteur, avec horaires et contact.</span>
-        <span class="hub-card-cta">Bientôt disponible</span>
-      </a>
+        <span class="hub-card-desc">Saisissez votre code postal pour trouver votre centre médico-psychologique de secteur.</span>
+
+        <%= form_with url: trouver_mon_cmp_path, method: :get,
+                      data: { turbo_frame: "cmp-result" }, class: "cmp-form" do |f| %>
+          <div class="cmp-search-row">
+            <%= f.text_field :postal_code, placeholder: "Ex : 76100",
+                             pattern: "[0-9]{5}", maxlength: 5, class: "cmp-input",
+                             required: true, "aria-label": "Code postal" %>
+            <%= f.submit "Rechercher", class: "cmp-btn" %>
+          </div>
+        <% end %>
+
+        <%= turbo_frame_tag "cmp-result" %>
+      </div>
 
       <%# ── LIVE quand l'annuaire sera codé (semaine 1) ── %>
       <a href="#" class="hub-card hub-card--soon">
