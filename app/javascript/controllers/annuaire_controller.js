@@ -64,25 +64,32 @@ export default class extends Controller {
     })
   }
 
+  esc(str) {
+    const d = document.createElement("div")
+    d.textContent = str ?? ""
+    return d.innerHTML
+  }
+
   cardHTML(unit) {
     const phone = unit.phone
-      ? `<span class="annuaire-card__phone">${unit.phone}</span>`
+      ? `<span class="annuaire-card__phone">${this.esc(unit.phone)}</span>`
       : ""
     return `
       <button class="annuaire-card"
               data-action="click->annuaire#openPanel"
               data-unit-id="${unit.id}"
-              style="--pole-color: ${unit.pole_color}"
+              style="--pole-color: ${this.esc(unit.pole_color)}"
               type="button"
-              aria-label="Voir ${unit.name}">
-        <span class="annuaire-card__name">${unit.name}</span>
-        <span class="annuaire-card__type">${unit.type_label}</span>
+              aria-label="Voir ${this.esc(unit.name)}">
+        <span class="annuaire-card__name">${this.esc(unit.name)}</span>
+        <span class="annuaire-card__type">${this.esc(unit.type_label)}</span>
         ${phone}
       </button>`
   }
 
   openPanel(event) {
-    const unitId = parseInt(event.currentTarget.dataset.unitId)
+    this._previousFocus = event.currentTarget
+    const unitId = parseInt(event.currentTarget.dataset.unitId, 10)
     const unit   = this.unitsValue.find(u => u.id === unitId)
     if (!unit) return
 
@@ -97,6 +104,7 @@ export default class extends Controller {
     this.panelTarget.hidden  = true
     this.overlayTarget.hidden = true
     document.body.style.overflow = ""
+    this._previousFocus?.focus()
   }
 
   panelHTML(unit) {
@@ -107,8 +115,8 @@ export default class extends Controller {
         <h3 class="annuaire-panel__section-title">Horaires</h3>
         ${unit.schedules.map(s => `
           <div class="annuaire-panel__schedule">
-            <span class="annuaire-panel__schedule-type">${typeLabels[s.type] || s.type}</span>
-            <span>${s.opens_at}–${s.closes_at}${s.note ? ` <em>(${s.note})</em>` : ""}</span>
+            <span class="annuaire-panel__schedule-type">${this.esc(typeLabels[s.type] || s.type)}</span>
+            <span>${this.esc(s.opens_at)}–${this.esc(s.closes_at)}${s.note ? ` <em>(${this.esc(s.note)})</em>` : ""}</span>
           </div>`).join("")}
       </div>` : ""
 
@@ -117,7 +125,7 @@ export default class extends Controller {
         <h3 class="annuaire-panel__section-title">Secteurs couverts</h3>
         <div class="annuaire-panel__sectors">
           ${unit.sectors.map(s =>
-            `<span class="annuaire-panel__sector-tag">${s.city} (${s.postal_code})</span>`
+            `<span class="annuaire-panel__sector-tag">${this.esc(s.city)} (${this.esc(s.postal_code)})</span>`
           ).join("")}
         </div>
       </div>` : ""
@@ -126,31 +134,31 @@ export default class extends Controller {
     const regulationHTML = reg ? `
       <div class="annuaire-panel__section">
         <h3 class="annuaire-panel__section-title">Informations pratiques</h3>
-        ${reg.max_visitors     ? `<p><strong>Visiteurs max&nbsp;:</strong> ${reg.max_visitors}</p>`       : ""}
-        ${reg.visiting_notes   ? `<p>${reg.visiting_notes}</p>`                                           : ""}
-        ${reg.allowed_items    ? `<p><strong>Objets autorisés&nbsp;:</strong> ${reg.allowed_items}</p>`   : ""}
-        ${reg.forbidden_items  ? `<p><strong>Objets interdits&nbsp;:</strong> ${reg.forbidden_items}</p>` : ""}
-        ${reg.access_info      ? `<p><strong>Accès&nbsp;:</strong> ${reg.access_info}</p>`                : ""}
+        ${reg.max_visitors     ? `<p><strong>Visiteurs max&nbsp;:</strong> ${this.esc(String(reg.max_visitors))}</p>`  : ""}
+        ${reg.visiting_notes   ? `<p>${this.esc(reg.visiting_notes)}</p>`                                              : ""}
+        ${reg.allowed_items    ? `<p><strong>Objets autorisés&nbsp;:</strong> ${this.esc(reg.allowed_items)}</p>`       : ""}
+        ${reg.forbidden_items  ? `<p><strong>Objets interdits&nbsp;:</strong> ${this.esc(reg.forbidden_items)}</p>`    : ""}
+        ${reg.access_info      ? `<p><strong>Accès&nbsp;:</strong> ${this.esc(reg.access_info)}</p>`                   : ""}
       </div>` : ""
 
     return `
       <div class="annuaire-panel__header">
         <span class="annuaire-panel__pole-badge"
-              style="background:${unit.pole_color}20;color:${unit.pole_color}">
-          ${unit.pole_name}
+              style="background:${this.esc(unit.pole_color)}20;color:${this.esc(unit.pole_color)}">
+          ${this.esc(unit.pole_name)}
         </span>
-        <h2 class="annuaire-panel__title" id="annuaire-panel-title">${unit.name}</h2>
-        <p class="annuaire-panel__type">${unit.type_label}</p>
+        <h2 class="annuaire-panel__title" id="annuaire-panel-title">${this.esc(unit.name)}</h2>
+        <p class="annuaire-panel__type">${this.esc(unit.type_label)}</p>
       </div>
 
-      ${unit.description ? `<div class="annuaire-panel__section"><p class="annuaire-panel__desc">${unit.description}</p></div>` : ""}
+      ${unit.description ? `<div class="annuaire-panel__section"><p class="annuaire-panel__desc">${this.esc(unit.description)}</p></div>` : ""}
 
       <div class="annuaire-panel__section">
-        ${unit.phone   ? `<div class="annuaire-panel__contact">📞 <a href="tel:${unit.phone.replace(/\s/g,"")}">${unit.phone}</a></div>` : ""}
-        ${unit.email   ? `<div class="annuaire-panel__contact">✉️ <a href="mailto:${unit.email}">${unit.email}</a></div>`               : ""}
-        ${unit.address ? `<div class="annuaire-panel__contact">📍 ${unit.address}</div>`                                               : ""}
-        ${unit.pmr     ? `<div class="annuaire-panel__contact annuaire-panel__pmr">♿ Accessible PMR</div>`                             : ""}
-        ${unit.parking ? `<div class="annuaire-panel__contact">🅿️ ${unit.parking}</div>`                                              : ""}
+        ${unit.phone   ? `<div class="annuaire-panel__contact">📞 <a href="tel:${this.esc(unit.phone.replace(/\s/g,""))}">${this.esc(unit.phone)}</a></div>` : ""}
+        ${unit.email   ? `<div class="annuaire-panel__contact">✉️ <a href="mailto:${this.esc(unit.email)}">${this.esc(unit.email)}</a></div>`               : ""}
+        ${unit.address ? `<div class="annuaire-panel__contact">📍 ${this.esc(unit.address)}</div>`                                                          : ""}
+        ${unit.pmr     ? `<div class="annuaire-panel__contact annuaire-panel__pmr">♿ Accessible PMR</div>`                                                  : ""}
+        ${unit.parking ? `<div class="annuaire-panel__contact">🅿️ ${this.esc(unit.parking)}</div>`                                                         : ""}
       </div>
 
       ${schedulesHTML}
