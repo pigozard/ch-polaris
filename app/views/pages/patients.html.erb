@@ -48,14 +48,13 @@
         <%= turbo_frame_tag "cmp-result" %>
       </div>
 
-      <%# ── LIVE quand l'annuaire sera codé (semaine 1) ── %>
-      <a href="#" class="hub-card hub-card--soon">
-        <span class="hub-badge">À venir</span>
+      <%# ── LIVE : Annuaire des unités ── %>
+      <%= link_to annuaire_path, class: "hub-card hub-card--live" do %>
         <span class="hub-card-icon" aria-hidden="true">🗂️</span>
         <span class="hub-card-title">Annuaire des unités</span>
         <span class="hub-card-desc">Horaires de visite et coordonnées de chaque unité, filtrables par pôle et par type de prise en charge.</span>
-        <span class="hub-card-cta">Bientôt disponible</span>
-      </a>
+        <span class="hub-card-cta">Consulter l'annuaire →</span>
+      <% end %>
 
       <%# ── LIVE quand "Règlement par unité" sera codé (semaine 3) ── %>
       <a href="#" class="hub-card hub-card--soon">

@@ -17,14 +17,13 @@
   <section class="section section--no-border" style="--accent: <%= accent %>;">
     <div class="hub-grid">
 
-      <%# ── LIVE quand l'annuaire sera codé (semaine 1) ── %>
-      <a href="#" class="hub-card hub-card--soon">
-        <span class="hub-badge">À venir</span>
+      <%# ── LIVE : Annuaire des unités ── %>
+      <%= link_to annuaire_path, class: "hub-card hub-card--live" do %>
         <span class="hub-card-icon" aria-hidden="true">🗂️</span>
         <span class="hub-card-title">Annuaire des unités</span>
         <span class="hub-card-desc">Spécialités, contacts directs et secrétariats de l'ensemble des unités, filtrables par pôle et par type.</span>
-        <span class="hub-card-cta">Bientôt disponible</span>
-      </a>
+        <span class="hub-card-cta">Consulter l'annuaire →</span>
+      <% end %>
 
       <%# ── LIVE quand l'outil d'orientation sera codé (semaine 5) ── %>
       <a href="#" class="hub-card hub-card--soon">
