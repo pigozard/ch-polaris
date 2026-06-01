@@ -40,6 +40,6 @@ class PagesController < ApplicationController
       @cmps = []
     end
 
-    render partial: "pages/cmp_result"
+    render partial: "pages/cmp_result", layout: false
   end
 end
