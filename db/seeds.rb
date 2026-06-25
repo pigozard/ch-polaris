@@ -656,17 +656,17 @@ Unit.create!(
 
 Unit.create!(
   pole: polaris_pole,
-  name: "SECOP Polaris",
-  slug: "secop-polaris",
+  name: "Urgences Psy Polaris",
+  slug: "urgences-psy-polaris",
   unit_type: "crisis_unit",
   capacity: nil,
   phone: "05 99 05 10 12",
-  email: "secop@ch-polaris.fr",
+  email: "urgences-psy@ch-polaris.fr",
   description: "Service d'Évaluation de Crise et d'Orientation Psychiatrique. Assure l'évaluation clinique des patients en situation de crise et leur orientation vers la structure de soins la plus adaptée.",
   address: "12 rue des Astres, 33999 Novapolis",
   pmr_accessible: true,
   parking_info: "Parking P1 — accès par l'entrée principale",
-  svg_zone_id: "zone-secop",
+  svg_zone_id: "zone-urgences-psy",
   position: 12
 )
 
