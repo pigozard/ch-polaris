@@ -49,8 +49,18 @@ UNIT_TYPES = %w[
     "perinatal"     => "Unité périnatale"
   }.freeze
 
+  AUDIENCE_LABELS = {
+    "adult" => "Adultes",
+    "child" => "Enfants (0–11 ans)",
+    "teen"  => "Adolescents (12–17 ans)"
+  }.freeze
+
   def self.type_label(type)
     UNIT_TYPE_LABELS.fetch(type, type)
+  end
+
+  def audience_label
+    AUDIENCE_LABELS[audience]
   end
 
   def to_annuaire_json(pole)
@@ -91,6 +101,7 @@ UNIT_TYPES = %w[
   validates :name, presence: true
   validates :slug, presence: true, uniqueness: true
   validates :unit_type, presence: true, inclusion: { in: UNIT_TYPES }
+  validates :audience, inclusion: { in: AUDIENCE_LABELS.keys }, allow_nil: true
 
   before_validation :generate_slug
 

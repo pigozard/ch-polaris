@@ -30,10 +30,12 @@ class PagesController < ApplicationController
 
   def trouver_mon_cmp
     @postal_code = params[:postal_code].to_s.strip
+    audience = params[:audience].presence_in(Unit::AUDIENCE_LABELS.keys)
 
     if @postal_code.match?(/\A\d{5}\z/)
       unit_ids = Sector.where(postal_code: @postal_code).pluck(:unit_id)
       @cmps = Unit.where(id: unit_ids, unit_type: "cmp").includes(:schedules, :pole)
+      @cmps = @cmps.where(audience: audience) if audience
       @not_found = @cmps.empty?
     else
       @invalid_format = true

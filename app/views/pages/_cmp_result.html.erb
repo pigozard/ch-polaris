@@ -10,6 +10,9 @@
     <% @cmps.each do |cmp| %>
       <div class="cmp-result-card">
         <strong><%= cmp.name %></strong>
+        <% if cmp.audience_label %>
+          <span class="cmp-audience">Public : <%= cmp.audience_label %></span>
+        <% end %>
         <span class="cmp-pole-badge"
               style="background:<%= cmp.pole.color %>20;color:<%= cmp.pole.color %>">
           <%= cmp.pole.name %>

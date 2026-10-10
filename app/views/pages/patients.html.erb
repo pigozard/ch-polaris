@@ -33,12 +33,21 @@
       <div class="hub-card hub-card--live hub-card--cmp">
         <span class="hub-card-icon" aria-hidden="true">📍</span>
         <span class="hub-card-title">Trouver mon CMP</span>
-        <span class="hub-card-desc">Saisissez votre code postal pour trouver votre centre médico-psychologique de secteur.</span>
+        <span class="hub-card-desc">Choisissez le public concerné et saisissez votre code postal pour trouver votre centre médico-psychologique de secteur.</span>
 
         <%= form_with url: trouver_mon_cmp_path, method: :get,
                       data: { turbo_frame: "cmp-result" }, class: "cmp-form" do |f| %>
+          <fieldset class="cmp-audience-choice">
+            <legend class="visually-hidden">Public concerné</legend>
+            <% Unit::AUDIENCE_LABELS.each_with_index do |(value, label), i| %>
+              <label class="cmp-audience-option">
+                <%= f.radio_button :audience, value, checked: i.zero? %>
+                <span><%= label %></span>
+              </label>
+            <% end %>
+          </fieldset>
           <div class="cmp-search-row">
-            <%= f.text_field :postal_code, placeholder: "Ex : 76100",
+            <%= f.text_field :postal_code, placeholder: "Ex : 99999",
                              pattern: "[0-9]{5}", maxlength: 5, class: "cmp-input",
                              required: true, "aria-label": "Code postal" %>
             <%= f.submit "Rechercher", class: "cmp-btn" %>

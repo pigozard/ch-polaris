@@ -55,4 +55,24 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_not_includes response.body, "UH Orion 1"
   end
+
+  test "GET /patients/trouver-mon-cmp filtre par public" do
+    @unit.update!(audience: "adult")
+    child_cmp = Unit.create!(pole: @pole, name: "CMP Enfants Rouen", unit_type: "cmp", audience: "child")
+    Sector.create!(unit: child_cmp, postal_code: "76100", city: "Rouen")
+
+    get trouver_mon_cmp_path, params: { postal_code: "76100", audience: "child" }
+    assert_response :success
+    assert_includes response.body, "CMP Enfants Rouen"
+    assert_includes response.body, "Enfants (0–11 ans)"
+    assert_not_includes response.body, "CMP Rouen<"
+  end
+
+  test "GET /patients/trouver-mon-cmp sans CMP pour ce public affiche message non trouvé" do
+    @unit.update!(audience: "adult")
+
+    get trouver_mon_cmp_path, params: { postal_code: "76100", audience: "teen" }
+    assert_response :success
+    assert_includes response.body, "Aucun CMP"
+  end
 end

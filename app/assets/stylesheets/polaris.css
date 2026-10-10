@@ -1398,6 +1398,41 @@ a.hopital-contact-value:hover { color: var(--teal-dark); }
   align-self: flex-start;
 }
 .cmp-detail { font-size: 0.85rem; color: var(--body); }
+.cmp-audience { font-size: 0.8rem; font-weight: 600; color: var(--teal-dark); }
+.cmp-audience-choice {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 14px 0 0;
+  padding: 0;
+  border: none;
+}
+.cmp-audience-option { cursor: pointer; }
+.cmp-audience-option input { position: absolute; opacity: 0; pointer-events: none; }
+.cmp-audience-option span {
+  display: inline-block;
+  padding: 5px 12px;
+  border: 1.5px solid var(--border);
+  border-radius: 20px;
+  font-size: 0.8rem;
+  color: var(--body);
+  transition: border-color 0.15s, background 0.15s;
+}
+.cmp-audience-option input:checked + span {
+  border-color: var(--teal);
+  background: var(--teal-light);
+  color: var(--teal-dark);
+  font-weight: 600;
+}
+.cmp-audience-option input:focus-visible + span { outline: 3px solid var(--teal); outline-offset: 2px; }
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
 .cmp-detail a { color: var(--teal-dark); text-decoration: none; }
 .cmp-detail a:hover { text-decoration: underline; }
 .cmp-error {
