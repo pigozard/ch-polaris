@@ -191,7 +191,7 @@
           <div class="pole-accent" style="background-color: <%= pole.color %>;" aria-hidden="true"></div>
           <div class="pole-num" aria-hidden="true">0<%= index + 1 %></div>
           <h3 class="pole-name"><%= pole.name %></h3>
-          <p class="pole-desc"><%= truncate(pole.description, length: 120) %></p>
+          <p class="pole-desc"><%= pole.description %></p>
           <p class="pole-count"><%= pole.units.count %> unités</p>
         </article>
       <% end %>
@@ -251,7 +251,7 @@
       <div class="hopital-contact-card">
         <h3 class="hopital-contact-label">Adresse</h3>
         <address class="hopital-contact-value" style="font-style:normal;">
-          12 rue des Astres<br>33999 Novapolis
+          12 rue des Astres<br>99999 Novapolis
         </address>
       </div>
       <div class="hopital-contact-card">

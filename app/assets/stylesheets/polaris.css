@@ -470,6 +470,8 @@ button:focus-visible {
   border: 1px solid var(--border);
   border-radius: 8px;
   padding: 28px 22px;
+  display: flex;
+  flex-direction: column;
   transition: box-shadow 0.2s, border-color 0.2s;
 }
 .pole-card:hover {
@@ -507,7 +509,8 @@ button:focus-visible {
 }
 
 .pole-count {
-  margin-top: 14px;
+  margin-top: auto;
+  padding-top: 14px;
   font-size: 0.65rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
