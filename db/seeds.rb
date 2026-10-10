@@ -40,7 +40,7 @@ lyra = Pole.create!(
 pleiades = Pole.create!(
   name: "Pôle Pléiades",
   slug: "pleiades",
-  description: "Le Pôle Pléiades assure la prise en charge psychiatrique des enfants et adolescents de 0 à 18 ans sur l'ensemble du territoire de Novapolis. Il dispose d'unités d'hospitalisation, d'hôpitaux de jour et de CMP dédiés par tranche d'âge.",
+  description: "Le Pôle Pléiades assure la prise en charge psychiatrique des enfants et adolescents de 0 à 17 ans sur l'ensemble du territoire de Novapolis. Il dispose d'unités d'hospitalisation, d'hôpitaux de jour et de CMP dédiés par tranche d'âge.",
   color: "#22C55E",
   position: 4,
   transversal: false
@@ -393,7 +393,7 @@ Unit.create!(
   capacity: 15,
   phone: "05 99 04 10 05",
   email: "hdj.merope@ch-polaris.fr",
-  description: "Hôpital de Jour pour enfants de 6 à 12 ans. Soins intensifs à temps partiel, ateliers thérapeutiques, soutien aux apprentissages et travail avec les familles.",
+  description: "Hôpital de Jour pour enfants de 6 à 11 ans. Soins intensifs à temps partiel, ateliers thérapeutiques, soutien aux apprentissages et travail avec les familles.",
   address: "12 rue des Astres, 99999 Novapolis",
   pmr_accessible: true,
   parking_info: "Parking P3 — accès par l'entrée pédiatrique",
