@@ -1,0 +1,20 @@
+<%# Bloc « Pour en savoir plus » — coordonnées lues depuis l'unité UTEP en base %>
+<% if utep %>
+  <aside class="etp-contact" aria-labelledby="etp-contact-title">
+    <h2 id="etp-contact-title" class="etp-contact-title">Pour en savoir plus</h2>
+    <p>
+      Vous êtes patient, proche ou professionnel ? Rapprochez-vous de
+      l'<strong><%= utep.name %></strong> (Unité Transversale d'Éducation du Patient) :
+      l'équipe vous renseigne sur les programmes et organise l'entretien préalable.
+    </p>
+    <ul class="etp-contact-list">
+      <% if utep.phone.present? %>
+        <li>📞 <a href="tel:<%= utep.phone.delete(" ") %>"><%= utep.phone %></a></li>
+      <% end %>
+    </ul>
+    <% if utep.email.present? %>
+      <%= mail_to utep.email, "Écrire à l'UTEP", subject: subject, class: "etp-contact-btn" %>
+      <p class="etp-contact-note">Ce bouton ouvre votre messagerie. Aucune donnée n'est enregistrée sur ce site.</p>
+    <% end %>
+  </aside>
+<% end %>

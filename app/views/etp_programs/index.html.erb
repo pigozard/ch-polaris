@@ -1,0 +1,51 @@
+<%# ═══════════ HERO ═══════════ %>
+<section class="hub-hero" aria-labelledby="etp-title">
+  <div class="container">
+    <span class="label">Éducation thérapeutique</span>
+    <h1 id="etp-title">Programmes <span class="hub-hero-accent">d'éducation thérapeutique</span></h1>
+    <p>
+      Mieux comprendre sa maladie, son traitement et apprendre à vivre avec au quotidien :
+      les programmes d'éducation thérapeutique du patient (ETP) se déroulent en petits groupes
+      ou en individuel, avec une équipe de soignants formés.
+    </p>
+    <%= link_to "← Retour à l'espace patients", patients_path, class: "hub-switch-link" %>
+  </div>
+</section>
+
+<div class="container">
+  <section class="section section--no-border">
+
+    <%# ── Filtre par pathologie (liens simples, fonctionne sans JavaScript) ── %>
+    <nav class="etp-filters" aria-label="Filtrer par pathologie">
+      <%= link_to "Tous les programmes", etp_programs_path,
+                  class: ["annuaire-chip", ("annuaire-chip--active" if @pathology.nil?)],
+                  aria: { current: ("page" if @pathology.nil?) } %>
+      <% EtpProgram::PATHOLOGY_LABELS.slice(*@pathologies).each do |value, label| %>
+        <%= link_to label, etp_programs_path(pathology: value),
+                    class: ["annuaire-chip", ("annuaire-chip--active" if @pathology == value)],
+                    aria: { current: ("page" if @pathology == value) } %>
+      <% end %>
+    </nav>
+
+    <div class="hub-grid">
+      <% @etp_programs.each do |program| %>
+        <%= link_to etp_program_path(program), class: "hub-card hub-card--live" do %>
+          <span class="etp-pathology"><%= program.pathology_label %></span>
+          <span class="hub-card-title"><%= program.name %></span>
+          <span class="hub-card-desc"><%= truncate(program.description, length: 160) %></span>
+          <span class="etp-meta">
+            <%= [program.duration, program.modality_label].compact.join(" · ") %>
+          </span>
+          <span class="hub-card-cta">Voir le programme →</span>
+        <% end %>
+      <% end %>
+    </div>
+
+    <% if @etp_programs.empty? %>
+      <p>Aucun programme pour le moment.</p>
+    <% end %>
+
+    <%= render "utep_contact", utep: @utep, subject: "Demande d'information — programmes d'éducation thérapeutique" %>
+
+  </section>
+</div>

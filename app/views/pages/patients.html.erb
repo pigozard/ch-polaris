@@ -65,6 +65,14 @@
         <span class="hub-card-cta">Consulter l'annuaire →</span>
       <% end %>
 
+      <%# ── LIVE : Programmes ETP ── %>
+      <%= link_to etp_programs_path, class: "hub-card hub-card--live" do %>
+        <span class="hub-card-icon" aria-hidden="true">📚</span>
+        <span class="hub-card-title">Programmes d'éducation thérapeutique</span>
+        <span class="hub-card-desc">Mieux comprendre sa maladie et son traitement : découvrez les ateliers proposés et les prochaines sessions.</span>
+        <span class="hub-card-cta">Voir les programmes →</span>
+      <% end %>
+
       <%# ── LIVE quand "Règlement par unité" sera codé (semaine 3) ── %>
       <a href="#" class="hub-card hub-card--soon">
         <span class="hub-badge">À venir</span>

@@ -34,14 +34,13 @@
         <span class="hub-card-cta">Bientôt disponible</span>
       </a>
 
-      <%# ── LIVE quand le catalogue ETP sera codé (semaine 4) ── %>
-      <a href="#" class="hub-card hub-card--soon">
-        <span class="hub-badge">À venir</span>
+      <%# ── LIVE : Catalogue ETP ── %>
+      <%= link_to etp_programs_path, class: "hub-card hub-card--live" do %>
         <span class="hub-card-icon" aria-hidden="true">📚</span>
         <span class="hub-card-title">Catalogue ETP</span>
-        <span class="hub-card-desc">Programmes d'éducation thérapeutique, public cible, prochaines sessions et modalités d'inscription.</span>
-        <span class="hub-card-cta">Bientôt disponible</span>
-      </a>
+        <span class="hub-card-desc">Programmes d'éducation thérapeutique, public cible, prochaines sessions et contact de l'UTEP.</span>
+        <span class="hub-card-cta">Consulter le catalogue →</span>
+      <% end %>
 
       <%# ── LIVE quand les échelles seront codées (semaine 7) ── %>
       <a href="#" class="hub-card hub-card--soon">

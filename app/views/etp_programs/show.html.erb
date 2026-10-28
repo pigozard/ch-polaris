@@ -1,0 +1,64 @@
+<%# ═══════════ HERO ═══════════ %>
+<section class="hub-hero" aria-labelledby="etp-program-title">
+  <div class="container">
+    <span class="label"><%= @etp_program.pathology_label %></span>
+    <h1 id="etp-program-title"><%= @etp_program.name %></h1>
+    <p><%= @etp_program.description %></p>
+    <%= link_to "← Tous les programmes", etp_programs_path, class: "hub-switch-link" %>
+  </div>
+</section>
+
+<div class="container">
+  <section class="section section--no-border etp-detail">
+
+    <dl class="etp-facts">
+      <% if @etp_program.duration.present? %>
+        <div><dt>Durée</dt><dd><%= @etp_program.duration %></dd></div>
+      <% end %>
+      <div><dt>Format</dt><dd><%= @etp_program.modality_label %></dd></div>
+      <div><dt>Lieu</dt><dd><%= @etp_program.unit.name %></dd></div>
+    </dl>
+
+    <% if @etp_program.target_audience.present? %>
+      <h2 class="etp-heading">À qui s'adresse ce programme ?</h2>
+      <p><%= @etp_program.target_audience %></p>
+    <% end %>
+
+    <h2 class="etp-heading">Conditions pour participer</h2>
+    <p><%= @etp_program.prerequisites %></p>
+
+    <h2 class="etp-heading">Prochaines sessions</h2>
+    <% if @etp_sessions.any? %>
+      <ul class="etp-sessions">
+        <% @etp_sessions.each do |session| %>
+          <li class="etp-session">
+            <span class="etp-status etp-status--<%= session.status %>"><%= session.status_label %></span>
+            <strong>
+              <% if session.recurrence.present? %>
+                <%= session.recurrence %>
+              <% elsif session.ends_on.present? %>
+                Du <%= session.starts_on.strftime("%d/%m/%Y") %> au <%= session.ends_on.strftime("%d/%m/%Y") %>
+              <% else %>
+                Le <%= session.starts_on.strftime("%d/%m/%Y") %>
+              <% end %>
+            </strong>
+            <% if session.location.present? %>
+              <span><%= session.location %></span>
+            <% end %>
+            <% if session.status == "open" && session.remaining_places %>
+              <span><%= pluralize(session.remaining_places, "place restante", plural: "places restantes") %></span>
+            <% end %>
+            <% if session.registration_info.present? %>
+              <span class="etp-session-info"><%= session.registration_info %></span>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>Aucune session programmée pour le moment. Contactez l'UTEP pour connaître les prochaines dates.</p>
+    <% end %>
+
+    <%= render "utep_contact", utep: @utep, subject: "Demande d'information — #{@etp_program.name}" %>
+
+  </section>
+</div>

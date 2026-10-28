@@ -1499,3 +1499,77 @@ a.hopital-contact-value:hover { color: var(--teal-dark); }
   color: var(--body);
 }
 .annuaire-panel__list li { margin-bottom: 2px; }
+
+/* ═══════════════════════════════════════
+   CATALOGUE ETP  (/etp)
+   ═══════════════════════════════════════ */
+.etp-filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+.etp-filters .annuaire-chip { text-decoration: none; }
+
+.etp-pathology {
+  align-self: flex-start;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--teal-dark);
+  background: var(--teal-light);
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+}
+.etp-meta { font-size: 0.82rem; color: var(--muted); margin-bottom: 12px; }
+
+.etp-detail { max-width: 760px; }
+.etp-heading {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: var(--ink);
+  margin: 32px 0 10px;
+}
+.etp-facts { display: flex; flex-wrap: wrap; gap: 12px 32px; margin: 0; }
+.etp-facts dt { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.etp-facts dd { margin: 0; color: var(--ink); }
+
+.etp-sessions { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+.etp-session {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px 20px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+.etp-session-info { font-size: 0.85rem; color: var(--muted); }
+.etp-status {
+  align-self: flex-start;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 2px 10px;
+  border-radius: 20px;
+}
+.etp-status--open      { background: #ecfdf5; color: #065f46; }
+.etp-status--full      { background: #fef3c7; color: #78350f; }
+.etp-status--cancelled { background: #f3f4f6; color: #374151; }
+
+.etp-contact {
+  margin-top: 40px;
+  padding: 24px 26px;
+  border-radius: 10px;
+  background: var(--teal-light);
+  border: 1px solid var(--border);
+}
+.etp-contact-title { font-size: 1.1rem; font-weight: 600; color: var(--ink); margin: 0 0 8px; }
+.etp-contact-list { list-style: none; padding: 0; margin: 0 0 14px; }
+.etp-contact-list a { color: var(--teal-dark); font-weight: 600; }
+.etp-contact-btn {
+  display: inline-block;
+  padding: 10px 18px;
+  border-radius: 8px;
+  background: var(--teal-dark);
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+}
+.etp-contact-btn:hover { background: var(--teal); color: white; }
+.etp-contact-note { font-size: 0.8rem; color: var(--muted); margin: 8px 0 0; }
