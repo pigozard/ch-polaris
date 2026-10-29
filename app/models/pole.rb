@@ -7,7 +7,7 @@ class Pole < ApplicationRecord
   validates :name, presence: true
   validates :slug, presence: true, uniqueness: true
   validates :color, presence: true,
-                    format: { with: /\A#[0-9A-Fa-f]{3,6}\z/, message: "doit être un code hexadécimal" }
+                    format: { with: /\A#[0-9A-Fa-f]{3,6}\z/, message: :invalid_hex }
 
   before_validation :generate_slug
 

@@ -22,10 +22,10 @@ class PagesController < ApplicationController
   end
 
   def annuaire
-    @poles = Pole.ordered.includes(units: [:schedules, :sectors, :unit_regulation])
-    @units_json = @poles.flat_map { |pole|
+    @poles = Pole.ordered.includes(units: %i[schedules sectors unit_regulation])
+    @units_json = @poles.flat_map do |pole|
       pole.units.sort_by { |u| u.position.to_i }.map { |u| u.to_annuaire_json(pole) }
-    }.to_json
+    end.to_json
   end
 
   def mes_droits
@@ -42,9 +42,7 @@ class PagesController < ApplicationController
     audience = params[:audience].presence_in(Unit::AUDIENCE_LABELS.keys)
 
     if @postal_code.match?(/\A\d{5}\z/)
-      unit_ids = Sector.where(postal_code: @postal_code).pluck(:unit_id)
-      @cmps = Unit.where(id: unit_ids, unit_type: "cmp").includes(:schedules, :pole)
-      @cmps = @cmps.where(audience: audience) if audience
+      @cmps = find_cmps(@postal_code, audience)
       @not_found = @cmps.empty?
     else
       @invalid_format = true
@@ -52,5 +50,13 @@ class PagesController < ApplicationController
     end
 
     render partial: "pages/cmp_result", layout: false
+  end
+
+  private
+
+  def find_cmps(postal_code, audience)
+    unit_ids = Sector.where(postal_code: postal_code).pluck(:unit_id)
+    cmps = Unit.where(id: unit_ids, unit_type: "cmp").includes(:schedules, :pole)
+    audience ? cmps.where(audience: audience) : cmps
   end
 end

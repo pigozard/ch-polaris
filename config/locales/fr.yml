@@ -1,4 +1,4 @@
-# Traductions françaises minimales : dates uniquement.
+# Traductions françaises minimales : dates et messages de validation propres à l'app.
 # Les autres textes (Devise, Simple Form…) retombent sur l'anglais (config.i18n.fallbacks).
 fr:
   date:
@@ -14,3 +14,10 @@ fr:
       - :day
       - :month
       - :year
+  activerecord:
+    errors:
+      models:
+        pole:
+          attributes:
+            color:
+              invalid_hex: "doit être un code hexadécimal"

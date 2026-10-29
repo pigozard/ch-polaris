@@ -5,27 +5,27 @@ class Unit < ApplicationRecord
   has_one :unit_regulation, dependent: :destroy
   has_many :etp_programs, dependent: :destroy
 
-UNIT_TYPES = %w[
-  ward_open
-  ward_closed
-  cmp
-  hdj
-  cattp
-  sessad
-  empp
-  mobile_team
-  ulpsy
-  cump
-  expert_center
-  utep
-  users_house
-  long_stay
-  csapa
-  mas
-  camsp
-  crisis_unit
-  perinatal
-].freeze
+  UNIT_TYPES = %w[
+    ward_open
+    ward_closed
+    cmp
+    hdj
+    cattp
+    sessad
+    empp
+    mobile_team
+    ulpsy
+    cump
+    expert_center
+    utep
+    users_house
+    long_stay
+    csapa
+    mas
+    camsp
+    crisis_unit
+    perinatal
+  ].freeze
 
   UNIT_TYPE_LABELS = {
     "ward_open"     => "Hospitalisation ouverte",
@@ -82,22 +82,24 @@ UNIT_TYPES = %w[
       pole_slug:   pole.slug,
       pole_name:   pole.name,
       pole_color:  pole.color,
-      schedules:   schedules.map { |s|
+      schedules:   schedules.map do |s|
         {
           type:      s.schedule_type,
           opens_at:  s.opens_at&.strftime("%H:%M"),
           closes_at: s.closes_at&.strftime("%H:%M"),
           note:      s.note
         }
-      },
+      end,
       sectors:     sectors.map { |s| { postal_code: s.postal_code, city: s.city } },
-      regulation:  unit_regulation ? {
-        max_visitors:    unit_regulation.max_visitors,
-        allowed_items:   unit_regulation.allowed_items,
-        forbidden_items: unit_regulation.forbidden_items,
-        visiting_notes:  unit_regulation.visiting_notes,
-        access_info:     unit_regulation.access_info
-      } : nil
+      regulation:  if unit_regulation
+                     {
+                       max_visitors: unit_regulation.max_visitors,
+                       allowed_items: unit_regulation.allowed_items,
+                       forbidden_items: unit_regulation.forbidden_items,
+                       visiting_notes: unit_regulation.visiting_notes,
+                       access_info: unit_regulation.access_info
+                     }
+                   end
     }
   end
 

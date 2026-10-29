@@ -43,3 +43,13 @@ Style/EmptyMethod:
   Enabled: false
 Bundler/OrderedGems:
   Enabled: false
+
+# Le projet aligne les `=>` en colonnes (tables de libellés) : on accepte ce style
+Layout/HashAlignment:
+  EnforcedHashRocketStyle: table
+  EnforcedColonStyle: [key, table]
+# Un hash ou un tableau sur plusieurs lignes compte pour une seule ligne
+Metrics/MethodLength:
+  CountAsOne: ['hash', 'array', 'heredoc']
+Metrics/ClassLength:
+  CountAsOne: ['hash', 'array', 'heredoc']
