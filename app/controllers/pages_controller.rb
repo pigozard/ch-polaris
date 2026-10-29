@@ -28,6 +28,10 @@ class PagesController < ApplicationController
     }.to_json
   end
 
+  def mes_droits
+    @users_house = Unit.find_by(unit_type: "users_house")
+  end
+
   def preparer_mon_sejour
     @units = Unit.hospitalization.includes(:pole).order(:name)
     @emergency_unit = Unit.find_by(slug: "urgences-psy-polaris")

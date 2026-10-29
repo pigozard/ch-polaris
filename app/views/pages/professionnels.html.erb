@@ -51,14 +51,13 @@
         <span class="hub-card-cta">Bientôt disponible</span>
       </a>
 
-      <%# ── LIVE quand la carte SVG sera codée (semaine 8) ── %>
-      <a href="#" class="hub-card hub-card--soon">
-        <span class="hub-badge">À venir</span>
+      <%# ── LIVE : Carte de l'établissement ── %>
+      <%= link_to carte_path, class: "hub-card hub-card--live" do %>
         <span class="hub-card-icon" aria-hidden="true">🗺️</span>
         <span class="hub-card-title">Carte de l'établissement</span>
         <span class="hub-card-desc">Plan interactif : recherchez une unité, sa zone s'illumine sur le plan de l'hôpital.</span>
-        <span class="hub-card-cta">Bientôt disponible</span>
-      </a>
+        <span class="hub-card-cta">Ouvrir le plan →</span>
+      <% end %>
 
       <%# ── Page contact — à créer quand tu veux ── %>
       <a href="#" class="hub-card hub-card--soon">

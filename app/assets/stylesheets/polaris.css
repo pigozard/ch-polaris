@@ -1625,3 +1625,24 @@ a.hopital-contact-value:hover { color: var(--teal-dark); }
   color: var(--muted);
 }
 .sejour-table tbody th { font-weight: 600; color: var(--ink); }
+
+/* ═══════════════════════════════════════
+   MES DROITS  (/patients/mes-droits)
+   ═══════════════════════════════════════ */
+.droits-item {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0 22px;
+  margin-top: 12px;
+  max-width: 820px;
+}
+.droits-item summary {
+  cursor: pointer;
+  padding: 16px 0;
+  font-weight: 600;
+  color: var(--ink);
+}
+.droits-item summary:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; }
+.droits-item[open] { padding-bottom: 8px; }
+.droits-item[open] summary { color: var(--teal-dark); }
+.droits-short { color: var(--teal-dark); }

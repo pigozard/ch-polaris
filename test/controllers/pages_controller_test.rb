@@ -19,6 +19,40 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     assert_includes response.body, news_index_path
   end
 
+  # ── Mes droits ────────────────────────────────────────
+
+  test "GET /patients/mes-droits explique les soins sans consentement" do
+    get mes_droits_path
+    assert_response :success
+    assert_includes response.body, "personne de confiance"
+    assert_includes response.body, "juge"
+  end
+
+  test "GET /patients/mes-droits affiche le contact de la Maison des Usagers" do
+    Unit.create!(pole: @pole, name: "Maison Boussole", unit_type: "users_house",
+                 phone: "05 99 05 10 20", email: "usagers@test.fr")
+    get mes_droits_path
+    assert_includes response.body, "Maison Boussole"
+    assert_includes response.body, "05 99 05 10 20"
+  end
+
+  test "GET /patients relie la carte Mes droits" do
+    get patients_path
+    assert_select "a.hub-card--live[href=?]", mes_droits_path
+  end
+
+  test "GET /patients/preparer-mon-sejour renvoie vers Mes droits" do
+    get preparer_mon_sejour_path
+    assert_select "a[href=?]", mes_droits_path
+  end
+
+  # ── Professionnels ────────────────────────────────────
+
+  test "GET /professionnels relie la carte de l'établissement au plan" do
+    get professionnels_path
+    assert_select "a.hub-card--live[href=?]", carte_path
+  end
+
   # ── Préparer mon séjour ───────────────────────────────
 
   test "GET /patients/preparer-mon-sejour affiche le parking de chaque unité d'hospitalisation" do

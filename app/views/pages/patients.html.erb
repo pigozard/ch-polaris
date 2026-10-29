@@ -99,14 +99,13 @@
         <span class="hub-card-cta">Bientôt disponible</span>
       </a>
 
-      <%# ── Page statique "Mes droits" — à créer quand tu veux ── %>
-      <a href="#" class="hub-card hub-card--soon">
-        <span class="hub-badge">À venir</span>
+      <%# ── LIVE : Mes droits en psychiatrie ── %>
+      <%= link_to mes_droits_path, class: "hub-card hub-card--live" do %>
         <span class="hub-card-icon" aria-hidden="true">⚖️</span>
         <span class="hub-card-title">Mes droits en psychiatrie</span>
         <span class="hub-card-desc">Information, consentement, recours, personne de confiance : vos droits expliqués simplement.</span>
-        <span class="hub-card-cta">Bientôt disponible</span>
-      </a>
+        <span class="hub-card-cta">Connaître mes droits →</span>
+      <% end %>
 
     </div>
   </section>

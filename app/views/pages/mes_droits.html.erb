@@ -1,0 +1,236 @@
+<% accent = "#3B82F6" %>
+
+<%# ═══════════ HERO ═══════════ %>
+<section class="hub-hero" style="--accent: <%= accent %>;" aria-labelledby="droits-title">
+  <div class="container">
+    <span class="label">Vos droits</span>
+    <h1 id="droits-title">Mes droits <span class="hub-hero-accent">en psychiatrie</span></h1>
+    <p>
+      Hospitalisé avec ou sans votre accord, vous gardez des droits. Voici les principaux,
+      expliqués simplement. Cliquez sur une question pour afficher la réponse.
+    </p>
+    <%= link_to "← Retour à l'espace patients", patients_path, class: "hub-switch-link" %>
+  </div>
+</section>
+
+<div class="container droits" style="--accent: <%= accent %>;">
+
+  <%# ═══════════ DROITS DE TOUT PATIENT ═══════════ %>
+  <section class="section section--no-border" aria-labelledby="droits-tous-title">
+    <span class="label">Pour tous les patients</span>
+    <h2 class="section-title" id="droits-tous-title">Les droits de tout patient</h2>
+
+    <details class="droits-item">
+      <summary>Est-ce qu'on doit m'expliquer mes soins ?</summary>
+      <p class="droits-short"><strong>En bref :</strong> oui, et votre avis compte.</p>
+      <p>
+        Les soignants doivent vous expliquer votre état de santé, les traitements proposés,
+        leurs effets et les autres possibilités, avec des mots que vous comprenez.
+        Vous pouvez poser toutes vos questions. Hors soins sans consentement, aucun soin
+        ne peut vous être imposé : vous pouvez accepter ou refuser.
+      </p>
+    </details>
+
+    <details class="droits-item">
+      <summary>Qu'est-ce qu'une personne de confiance ?</summary>
+      <p class="droits-short"><strong>En bref :</strong> quelqu'un que vous choisissez pour vous accompagner.</p>
+      <p>
+        Vous pouvez désigner par écrit une personne de confiance : un proche, un ami, votre médecin traitant.
+        Elle peut vous accompagner dans vos démarches, assister aux entretiens médicaux si vous le souhaitez,
+        et sera consultée si un jour vous n'êtes plus en état de donner votre avis.
+        Vous pouvez changer d'avis et la remplacer à tout moment.
+      </p>
+      <p>
+        À ne pas confondre avec la <strong>personne à prévenir</strong>, qui est simplement contactée
+        en cas de besoin, sans rôle dans les décisions de soins.
+      </p>
+    </details>
+
+    <details class="droits-item">
+      <summary>Puis-je lire mon dossier médical ?</summary>
+      <p class="droits-short"><strong>En bref :</strong> oui, en le demandant par écrit.</p>
+      <p>
+        Adressez une demande écrite à la direction de l'établissement, avec une copie de votre pièce d'identité.
+        Le dossier vous est communiqué au plus tôt 48 heures après votre demande (délai de réflexion)
+        et au plus tard 8 jours après, ou 2 mois si les informations datent de plus de 5 ans.
+        Vous pouvez le consulter sur place ou en recevoir une copie.
+      </p>
+    </details>
+
+    <details class="droits-item">
+      <summary>Les soignants peuvent-ils parler de moi à ma famille ?</summary>
+      <p class="droits-short"><strong>En bref :</strong> pas sans votre accord.</p>
+      <p>
+        Tout ce qui vous concerne est couvert par le secret médical. Vous pouvez même demander
+        que votre présence à l'hôpital ne soit pas révélée aux personnes qui appellent.
+      </p>
+    </details>
+
+    <details class="droits-item">
+      <summary>Je ne suis pas satisfait : que puis-je faire ?</summary>
+      <p class="droits-short"><strong>En bref :</strong> parlez-en, puis écrivez à la direction si besoin.</p>
+      <p>
+        Commencez si possible par en parler à l'équipe ou au cadre de santé de l'unité.
+        Vous pouvez ensuite écrire à la direction de l'établissement. Votre réclamation est examinée
+        par la <strong>Commission des usagers</strong>, où siègent des représentants des usagers,
+        indépendants de l'hôpital, qui peuvent vous accompagner.
+      </p>
+    </details>
+  </section>
+
+  <%# ═══════════ SOINS SANS CONSENTEMENT ═══════════ %>
+  <section class="section" aria-labelledby="droits-ssc-title">
+    <span class="label">Soins sans consentement</span>
+    <h2 class="section-title" id="droits-ssc-title">Quand les soins sont imposés</h2>
+
+    <details class="droits-item">
+      <summary>Soins libres, soins sans consentement : quelle différence ?</summary>
+      <p class="droits-short"><strong>En bref :</strong> en soins libres, c'est vous qui décidez.</p>
+      <p>
+        La plupart des patients sont soignés en <strong>soins libres</strong> : ils ont accepté
+        l'hospitalisation et ont les mêmes droits que dans n'importe quel hôpital, y compris celui de partir.
+      </p>
+      <p>
+        Les <strong>soins sans consentement</strong> sont une exception : ils ne sont possibles que si
+        les troubles empêchent la personne de consentir et rendent des soins immédiats nécessaires,
+        ou s'ils mettent en danger la sécurité des personnes. Ils sont strictement encadrés par la loi.
+      </p>
+    </details>
+
+    <details class="droits-item">
+      <summary>Qui décide de soins sans mon accord ?</summary>
+      <p class="droits-short"><strong>En bref :</strong> le directeur de l'hôpital ou le préfet, toujours sur avis médical.</p>
+      <ul>
+        <li>
+          <strong>À la demande d'un tiers</strong> : un proche fait la demande, appuyée par des certificats médicaux,
+          et le directeur de l'hôpital prend la décision.
+        </li>
+        <li>
+          <strong>En cas de péril imminent</strong> : si aucun proche ne peut faire la demande et que la situation
+          est grave, un certificat médical suffit. L'hôpital doit alors informer votre famille.
+        </li>
+        <li>
+          <strong>Sur décision du préfet</strong> : quand les troubles compromettent la sûreté des personnes
+          ou portent gravement atteinte à l'ordre public.
+        </li>
+      </ul>
+    </details>
+
+    <details class="droits-item">
+      <summary>Que se passe-t-il les premiers jours ?</summary>
+      <p class="droits-short"><strong>En bref :</strong> 72 heures d'observation, avec deux examens médicaux.</p>
+      <p>
+        Une période d'observation de 72 heures maximum commence. Un psychiatre vous examine dans les
+        24 heures, puis à nouveau avant la fin des 72 heures. À l'issue de cette période, les soins
+        peuvent s'arrêter, se poursuivre à l'hôpital, ou continuer hors de l'hôpital
+        (voir « programme de soins » plus bas).
+      </p>
+      <p>
+        On doit vous informer de la décision, de ses raisons et de vos droits, dès que votre état le permet.
+      </p>
+    </details>
+
+    <details class="droits-item">
+      <summary>Un juge vérifie-t-il mon hospitalisation ?</summary>
+      <p class="droits-short"><strong>En bref :</strong> oui, automatiquement, et vous avez droit à un avocat.</p>
+      <p>
+        Si vous êtes hospitalisé à temps complet sans votre accord, le <strong>juge</strong> (juge des
+        libertés et de la détention) contrôle obligatoirement la mesure avant le 12<sup>e</sup> jour,
+        puis tous les 6 mois. Vous êtes entendu lors d'une audience, assisté d'un avocat, gratuitement si besoin.
+        Le juge peut mettre fin à l'hospitalisation.
+      </p>
+      <p>Vous pouvez aussi saisir le juge vous-même, à tout moment.</p>
+    </details>
+
+    <details class="droits-item">
+      <summary>Quels droits je garde pendant l'hospitalisation ?</summary>
+      <p class="droits-short"><strong>En bref :</strong> beaucoup, même sans votre accord aux soins.</p>
+      <ul>
+        <li>Être informé de votre situation et des recours possibles</li>
+        <li>Prendre conseil auprès d'un médecin ou d'un avocat de votre choix</li>
+        <li>Envoyer et recevoir du courrier</li>
+        <li>Contacter le juge, le préfet, le procureur ou le maire</li>
+        <li>Saisir la commission départementale des soins psychiatriques</li>
+        <li>Saisir le Contrôleur général des lieux de privation de liberté</li>
+        <li>Voter et pratiquer votre religion</li>
+      </ul>
+    </details>
+
+    <details class="droits-item">
+      <summary>Isolement et contention : qu'est-ce que la loi prévoit ?</summary>
+      <p class="droits-short"><strong>En bref :</strong> en dernier recours, pour une durée limitée et contrôlée.</p>
+      <p>
+        L'isolement (chambre fermée) et la contention (attaches) ne sont possibles qu'en soins sans
+        consentement, en dernier recours, pour prévenir un danger immédiat. Ils sont décidés par un
+        psychiatre, pour une durée limitée par la loi, avec une surveillance régulière.
+        Au-delà de certaines durées, le juge est informé et peut y mettre fin.
+      </p>
+    </details>
+
+    <details class="droits-item">
+      <summary>Qu'est-ce qu'un « programme de soins » ?</summary>
+      <p class="droits-short"><strong>En bref :</strong> des soins obligatoires, mais en dehors de l'hôpital.</p>
+      <p>
+        Après une hospitalisation, les soins sans consentement peuvent se poursuivre sous une autre forme :
+        consultations au CMP, hôpital de jour, traitement à domicile… Le programme précise les soins et
+        leur rythme. Il est établi par un psychiatre, qui recueille votre avis.
+      </p>
+    </details>
+  </section>
+
+  <%# ═══════════ QUI PEUT M'AIDER ═══════════ %>
+  <section class="section" aria-labelledby="droits-aide-title">
+    <span class="label">Être accompagné</span>
+    <h2 class="section-title" id="droits-aide-title">Qui peut m'aider ?</h2>
+
+    <div class="sejour-paths">
+      <% if @users_house %>
+        <div class="sejour-path">
+          <h3 class="sejour-path-title"><%= @users_house.name %></h3>
+          <p>
+            La Maison des Usagers accueille patients et proches, informe sur les droits
+            et met en relation avec les associations et les représentants des usagers.
+          </p>
+          <% if @users_house.phone.present? %>
+            <p class="sejour-phone">
+              📞 <a href="tel:<%= @users_house.phone.delete(" ") %>"><%= @users_house.phone %></a>
+            </p>
+          <% end %>
+          <% if @users_house.email.present? %>
+            <p class="sejour-phone">✉️ <%= mail_to @users_house.email %></p>
+          <% end %>
+        </div>
+      <% end %>
+
+      <div class="sejour-path">
+        <h3 class="sejour-path-title">En dehors de l'hôpital</h3>
+        <ul class="sejour-list">
+          <li><strong>La commission départementale des soins psychiatriques</strong>, qui examine la situation des personnes en soins sans consentement</li>
+          <li><strong>Le Contrôleur général des lieux de privation de liberté</strong>, qui peut être saisi par simple courrier</li>
+          <li><strong>Un avocat</strong>, y compris au titre de l'aide juridictionnelle</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="sejour-note">
+      Cette page donne une information générale et ne remplace pas un conseil juridique.
+      Textes de référence : Code de la santé publique, loi du 5 juillet 2011 relative aux droits
+      des personnes faisant l'objet de soins psychiatriques, et loi du 22 janvier 2022 sur
+      l'isolement et la contention.
+    </p>
+  </section>
+
+  <%# ═══════════ URGENCE ═══════════ %>
+  <section class="section">
+    <div class="hub-urgence" role="complementary" aria-label="Numéros d'urgence">
+      <span aria-hidden="true" style="font-size:1.4rem;">🚨</span>
+      <div>
+        <strong>En cas de crise ou d'urgence psychiatrique</strong>
+        <div class="hub-urgence-num">
+          SAMU <strong>15</strong> · Prévention suicide <strong>3114</strong> (24h/24, gratuit)
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
