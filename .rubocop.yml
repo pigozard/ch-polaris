@@ -12,6 +12,7 @@ AllCops:
     - 'support/**/*'
     - 'tmp/**/*'
     - 'test/**/*'
+    - 'vendor/**/*' # gems installées par la CI (bundler-cache)
 
 Style/ConditionalAssignment:
   Enabled: false

@@ -35,7 +35,7 @@ jobs:
           bundler-cache: true # bundle install + cache des gems
 
       - name: Préparer la base de test
-        run: bin/rails db:schema:load
+        run: bin/rails db:create db:schema:load
 
       - name: Lancer les tests
         run: bin/rails test
