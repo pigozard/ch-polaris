@@ -28,6 +28,11 @@ class PagesController < ApplicationController
     }.to_json
   end
 
+  def preparer_mon_sejour
+    @units = Unit.hospitalization.includes(:pole).order(:name)
+    @emergency_unit = Unit.find_by(slug: "urgences-psy-polaris")
+  end
+
   def trouver_mon_cmp
     @postal_code = params[:postal_code].to_s.strip
     audience = params[:audience].presence_in(Unit::AUDIENCE_LABELS.keys)

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get "carte",           to: "pages#carte"
   get "annuaire",                 to: "pages#annuaire",        as: :annuaire
   get "patients/trouver-mon-cmp", to: "pages#trouver_mon_cmp", as: :trouver_mon_cmp
+  get "patients/preparer-mon-sejour", to: "pages#preparer_mon_sejour", as: :preparer_mon_sejour
 
   resources :etp_programs, path: "etp", only: [:index, :show]
   resources :news, path: "actualites", only: [:index, :show]

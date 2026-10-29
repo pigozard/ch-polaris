@@ -562,7 +562,7 @@ button:focus-visible {
   padding-top: 14px;
   border-top: 1px solid var(--border);
   font-size: 0.7rem;
-  color: #9ca3af;
+  color: var(--muted); /* #4b5563 sur blanc → 7.56:1 AA ✅ */
   display: flex;
   align-items: center;
   gap: 8px;
@@ -1587,3 +1587,41 @@ a.hopital-contact-value:hover { color: var(--teal-dark); }
 .news-article { max-width: 720px; }
 .news-article-lead { font-size: 1.15rem; color: var(--ink); line-height: 1.7; margin-bottom: 24px; }
 .news-article-content { font-size: 1rem; line-height: 1.8; color: var(--body); }
+
+/* ═══════════════════════════════════════
+   PRÉPARER MON SÉJOUR  (/patients/preparer-mon-sejour)
+   ═══════════════════════════════════════ */
+.sejour-paths {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+.sejour-path {
+  padding: 24px 26px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+.sejour-path-title { font-size: 1.05rem; font-weight: 600; color: var(--ink); margin: 0 0 14px; }
+.sejour-steps { padding-left: 1.2rem; margin: 0; display: grid; gap: 10px; }
+.sejour-list { padding-left: 1.2rem; margin: 0 0 14px; display: grid; gap: 6px; }
+.sejour-phone a { font-weight: 600; color: var(--teal-dark); }
+.sejour-note {
+  margin-top: 24px;
+  padding: 16px 20px;
+  border-left: 3px solid var(--teal);
+  background: var(--teal-light);
+  border-radius: 0 8px 8px 0;
+}
+.sejour-table-wrap { overflow-x: auto; margin-top: 16px; }
+.sejour-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+.sejour-table th,
+.sejour-table td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--border); }
+.sejour-table thead th {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.sejour-table tbody th { font-weight: 600; color: var(--ink); }

@@ -19,6 +19,41 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     assert_includes response.body, news_index_path
   end
 
+  # ── Préparer mon séjour ───────────────────────────────
+
+  test "GET /patients/preparer-mon-sejour affiche le parking de chaque unité d'hospitalisation" do
+    Unit.create!(pole: @pole, name: "Unité Véga", unit_type: "ward_open",
+                 parking_info: "Parking P1 — accès par l'entrée principale")
+    get preparer_mon_sejour_path
+    assert_response :success
+    assert_includes response.body, "Unité Véga"
+    assert_includes response.body, "Parking P1 — accès par l&#39;entrée principale"
+  end
+
+  test "GET /patients/preparer-mon-sejour n'affiche pas les unités sans hospitalisation" do
+    get preparer_mon_sejour_path
+    assert_not_includes response.body, "CMP Rouen"
+  end
+
+  test "GET /patients/preparer-mon-sejour décrit l'arrivée par les urgences psy" do
+    Unit.create!(pole: @pole, name: "Urgences Psy Polaris", slug: "urgences-psy-polaris",
+                 unit_type: "crisis_unit", phone: "05 99 05 10 12")
+    get preparer_mon_sejour_path
+    assert_includes response.body, "Urgences Psy Polaris"
+    assert_includes response.body, "05 99 05 10 12"
+  end
+
+  test "GET /patients/preparer-mon-sejour renvoie vers l'annuaire et le plan" do
+    get preparer_mon_sejour_path
+    assert_includes response.body, annuaire_path
+    assert_includes response.body, carte_path
+  end
+
+  test "GET /patients relie la carte Préparer mon séjour" do
+    get patients_path
+    assert_includes response.body, preparer_mon_sejour_path
+  end
+
   # ── Annuaire ──────────────────────────────────────────
 
   test "GET /annuaire répond 200" do

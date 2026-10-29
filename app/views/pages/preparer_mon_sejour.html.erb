@@ -1,0 +1,158 @@
+<% accent = "#3B82F6" %>
+
+<%# ═══════════ HERO ═══════════ %>
+<section class="hub-hero" style="--accent: <%= accent %>;" aria-labelledby="sejour-title">
+  <div class="container">
+    <span class="label">Hospitalisation</span>
+    <h1 id="sejour-title">Préparer <span class="hub-hero-accent">mon séjour</span></h1>
+    <p>
+      Ce qu'il faut savoir avant d'arriver : le déroulé de l'admission, les documents à apporter,
+      les affaires à prévoir et comment rejoindre votre unité.
+    </p>
+    <%= link_to "← Retour à l'espace patients", patients_path, class: "hub-switch-link" %>
+  </div>
+</section>
+
+<div class="container sejour" style="--accent: <%= accent %>;">
+
+  <%# ═══════════ ADMISSION ═══════════ %>
+  <section class="section section--no-border" aria-labelledby="sejour-admission-title">
+    <span class="label">Étape par étape</span>
+    <h2 class="section-title" id="sejour-admission-title">Le jour de l'admission</h2>
+
+    <div class="sejour-paths">
+      <div class="sejour-path">
+        <h3 class="sejour-path-title">Votre hospitalisation est programmée</h3>
+        <ol class="sejour-steps">
+          <li>
+            <strong>Bureau des entrées</strong>, dans le hall principal : présentez vos documents
+            pour ouvrir votre dossier administratif.
+          </li>
+          <li>
+            <strong>Accueil dans l'unité</strong> par un infirmier, qui vous présente le service,
+            votre chambre et les règles de vie.
+          </li>
+          <li>
+            <strong>Entretien d'accueil et inventaire</strong> de vos effets personnels. Certains objets
+            peuvent être confiés à l'équipe pendant votre séjour.
+          </li>
+          <li>
+            <strong>Rencontre avec le psychiatre</strong> de l'unité, le jour même ou le lendemain.
+          </li>
+        </ol>
+      </div>
+
+      <div class="sejour-path">
+        <h3 class="sejour-path-title">Vous arrivez par les urgences psychiatriques</h3>
+        <p>
+          Votre admission administrative est faite directement aux
+          <strong><%= @emergency_unit&.name || "urgences psychiatriques" %></strong> :
+          vous n'avez pas besoin de passer par le bureau des entrées.
+          Si vous n'aviez pas vos documents sur vous, un proche pourra les apporter plus tard.
+        </p>
+        <p>
+          Une fois votre transfert organisé, l'accueil dans l'unité se déroule comme pour une
+          hospitalisation programmée : présentation du service, entretien d'accueil, puis rencontre
+          avec le psychiatre.
+        </p>
+        <% if @emergency_unit&.phone.present? %>
+          <p class="sejour-phone">
+            Urgences psychiatriques :
+            <a href="tel:<%= @emergency_unit.phone.delete(" ") %>"><%= @emergency_unit.phone %></a>
+          </p>
+        <% end %>
+      </div>
+    </div>
+
+    <p class="sejour-note">
+      La plupart des hospitalisations se font en <strong>soins libres</strong>, avec votre accord.
+      Dans certaines situations, des soins sans consentement peuvent être décidés : ils sont
+      strictement encadrés par la loi, et vous gardez des droits (information, recours,
+      personne de confiance).
+    </p>
+  </section>
+
+  <%# ═══════════ DOCUMENTS & AFFAIRES ═══════════ %>
+  <section class="section" aria-labelledby="sejour-bagage-title">
+    <span class="label">Avant de partir</span>
+    <h2 class="section-title" id="sejour-bagage-title">Ce qu'il faut apporter</h2>
+
+    <div class="sejour-paths">
+      <div class="sejour-path">
+        <h3 class="sejour-path-title">Documents</h3>
+        <ul class="sejour-list">
+          <li>Pièce d'identité</li>
+          <li>Carte Vitale ou attestation de droits</li>
+          <li>Carte de mutuelle</li>
+          <li>Ordonnances et traitements en cours, à remettre à l'équipe soignante</li>
+          <li>Coordonnées de votre médecin traitant</li>
+          <li>Nom et coordonnées de votre personne de confiance, si vous en avez désigné une</li>
+        </ul>
+      </div>
+
+      <div class="sejour-path">
+        <h3 class="sejour-path-title">Affaires personnelles</h3>
+        <ul class="sejour-list">
+          <li>Vêtements confortables pour plusieurs jours</li>
+          <li>Produits d'hygiène</li>
+          <li>De quoi lire ou vous occuper</li>
+          <li>Évitez les objets de valeur et les grosses sommes d'argent</li>
+        </ul>
+        <p>
+          Chaque unité a son propre règlement (objets autorisés ou interdits, horaires de visite).
+          <%= link_to "Consultez le règlement de votre unité dans l'annuaire →", annuaire_path %>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <%# ═══════════ ACCÈS ═══════════ %>
+  <section class="section" aria-labelledby="sejour-acces-title">
+    <span class="label">Venir à l'hôpital</span>
+    <h2 class="section-title" id="sejour-acces-title">Accès et stationnement</h2>
+
+    <p>
+      Centre Hospitalier Polaris — 12 rue des Astres, 99999 Novapolis.
+      Le stationnement et l'entrée à utiliser dépendent de votre unité.
+      <%= link_to "Voir le plan de l'établissement →", carte_path %>
+    </p>
+
+    <div class="sejour-table-wrap">
+      <table class="sejour-table">
+        <caption class="visually-hidden">Stationnement, entrée et accessibilité par unité d'hospitalisation</caption>
+        <thead>
+          <tr>
+            <th scope="col">Unité</th>
+            <th scope="col">Pôle</th>
+            <th scope="col">Stationnement et entrée</th>
+            <th scope="col">Accès PMR</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @units.each do |unit| %>
+            <tr>
+              <th scope="row"><%= unit.name %></th>
+              <td><%= unit.pole.name %></td>
+              <td><%= unit.parking_info.presence || "Renseignez-vous auprès de l'unité" %></td>
+              <td><%= unit.pmr_accessible? ? "Oui" : "Non" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <%# ═══════════ URGENCE ═══════════ %>
+  <section class="section">
+    <div class="hub-urgence" role="complementary" aria-label="Numéros d'urgence">
+      <span aria-hidden="true" style="font-size:1.4rem;">🚨</span>
+      <div>
+        <strong>En cas de crise ou d'urgence psychiatrique</strong>
+        <div class="hub-urgence-num">
+          SAMU <strong>15</strong> · Prévention suicide <strong>3114</strong> (24h/24, gratuit)
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>

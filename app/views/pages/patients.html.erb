@@ -73,14 +73,13 @@
         <span class="hub-card-cta">Voir les programmes →</span>
       <% end %>
 
-      <%# ── LIVE quand "Règlement par unité" sera codé (semaine 3) ── %>
-      <a href="#" class="hub-card hub-card--soon">
-        <span class="hub-badge">À venir</span>
+      <%# ── LIVE : Préparer mon séjour ── %>
+      <%= link_to preparer_mon_sejour_path, class: "hub-card hub-card--live" do %>
         <span class="hub-card-icon" aria-hidden="true">🧳</span>
         <span class="hub-card-title">Préparer mon séjour</span>
-        <span class="hub-card-desc">Créneaux de visite, objets autorisés, accès PMR et parking : tout pour une visite sereine.</span>
-        <span class="hub-card-cta">Bientôt disponible</span>
-      </a>
+        <span class="hub-card-desc">Le jour de l'admission, les documents à apporter, l'accès et le stationnement pour chaque unité.</span>
+        <span class="hub-card-cta">Préparer mon arrivée →</span>
+      <% end %>
 
       <%# ── LIVE quand l'outil d'orientation sera codé (semaine 5) ── %>
       <a href="#" class="hub-card hub-card--soon">

@@ -55,6 +55,9 @@ UNIT_TYPES = %w[
     "teen"  => "Adolescents (12–17 ans)"
   }.freeze
 
+  # Unités où le patient séjourne (hors urgences, consultations et équipes mobiles)
+  HOSPITALIZATION_TYPES = %w[ward_open ward_closed long_stay perinatal].freeze
+
   def self.type_label(type)
     UNIT_TYPE_LABELS.fetch(type, type)
   end
@@ -107,6 +110,7 @@ UNIT_TYPES = %w[
 
   scope :ordered, -> { order(:position) }
   scope :by_type, ->(type) { where(unit_type: type) }
+  scope :hospitalization, -> { where(unit_type: HOSPITALIZATION_TYPES) }
 
   private
 
