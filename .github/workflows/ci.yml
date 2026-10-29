@@ -7,7 +7,7 @@ on:
 jobs:
   # ── Tests (Minitest) avec une vraie base PostgreSQL ──
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     services:
       postgres:
@@ -42,7 +42,7 @@ jobs:
 
   # ── Style du code ──
   rubocop:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - uses: ruby/setup-ruby@v1
@@ -53,7 +53,7 @@ jobs:
 
   # ── Failles de sécurité ──
   brakeman:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - uses: ruby/setup-ruby@v1
