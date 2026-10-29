@@ -8,6 +8,17 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     @sector = Sector.create!(unit: @unit, postal_code: "76100", city: "Rouen")
   end
 
+  # ── Hôpital ───────────────────────────────────────────
+
+  test "GET /hopital affiche la date des actualités en français et un lien vers le détail" do
+    news = News.create!(title: "Semaine culturelle", category: "event",
+                        published: true, published_at: Time.zone.local(2026, 3, 12))
+    get hopital_path
+    assert_includes response.body, "12 mars 2026"
+    assert_includes response.body, news_path(news)
+    assert_includes response.body, news_index_path
+  end
+
   # ── Annuaire ──────────────────────────────────────────
 
   test "GET /annuaire répond 200" do

@@ -1,0 +1,27 @@
+<%# ═══════════ HERO ═══════════ %>
+<section class="hub-hero" aria-labelledby="news-article-title">
+  <div class="container">
+    <span class="label"><%= category_fr(@article.category) %></span>
+    <h1 id="news-article-title"><%= @article.title %></h1>
+    <p class="news-article-meta">
+      <% if @article.published_at %>
+        Publié le <time datetime="<%= @article.published_at.iso8601 %>"><%= l(@article.published_at.to_date, format: :long) %></time>
+      <% end %>
+      <% if @article.pole %>
+        · <%= @article.pole.name %>
+      <% end %>
+    </p>
+    <%= link_to "← Toutes les actualités", news_index_path, class: "hub-switch-link" %>
+  </div>
+</section>
+
+<div class="container">
+  <article class="section section--no-border news-article">
+    <% if @article.summary.present? %>
+      <p class="news-article-lead"><%= @article.summary %></p>
+    <% end %>
+    <% if @article.content.present? %>
+      <div class="news-article-content"><%= @article.content %></div>
+    <% end %>
+  </article>
+</div>

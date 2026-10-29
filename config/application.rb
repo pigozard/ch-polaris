@@ -27,6 +27,10 @@ module ChPolaris
     # in config/environments, which are processed later.
     #
     # config.time_zone = "Central Time (US & Canada)"
+    config.i18n.default_locale = :fr
+    config.i18n.available_locales = [:fr, :en]
+    # Devise et Simple Form n'ont que des traductions anglaises : on retombe sur l'anglais
+    config.i18n.fallbacks = [:en]
     # config.eager_load_paths << Rails.root.join("extras")
   end
 end

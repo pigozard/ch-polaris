@@ -1004,6 +1004,7 @@ News.create!(
   title: "Journée Mondiale de la Santé Mentale — Le CH Polaris mobilisé",
   slug: "journee-mondiale-sante-mentale-2025",
   summary: "À l'occasion de la Journée Mondiale de la Santé Mentale du 10 octobre, le CH Polaris organise une journée portes ouvertes et des ateliers de sensibilisation ouverts au grand public.",
+  content: "<p>De 10h à 17h, le hall principal accueille les visiteurs : présentation des unités, rencontres avec les équipes soignantes et stands des associations d'usagers partenaires.</p><p>Trois ateliers sont proposés au grand public : « Parler de santé mentale sans tabou », « Repérer les signes d'une souffrance psychique chez un proche » et une initiation à la cohérence cardiaque.</p><p>L'entrée est libre et gratuite. La Maison des Usagers tiendra un point d'information toute la journée.</p>",
   category: "health_day",
   published_at: Date.today - 10,
   published: true
@@ -1014,6 +1015,7 @@ News.create!(
   title: "Ouverture d'un nouveau groupe ETP dédié aux troubles bipolaires",
   slug: "nouveau-groupe-etp-bipolaire-2025",
   summary: "L'UTEP Étoile Polaire ouvre une nouvelle session du programme « Vivre avec un trouble bipolaire » à partir du mois prochain. Les inscriptions sont ouvertes sur entretien infirmier.",
+  content: "<p>Le programme « Vivre avec un trouble bipolaire » se déroule en 8 séances de 2 heures, en petit groupe. Il aide à mieux connaître la maladie, à repérer les signes annonciateurs d'une rechute et à mieux vivre avec son traitement.</p><p>Avant d'intégrer le groupe, chaque participant rencontre une infirmière coordinatrice de l'UTEP lors d'un entretien individuel.</p><p>Patients, proches ou professionnels : pour toute question, contactez l'UTEP Étoile Polaire.</p>",
   category: "announcement",
   published_at: Date.today - 5,
   published: true
@@ -1024,6 +1026,7 @@ News.create!(
   title: "Le Pôle Cassiopée obtient la certification HAS avec mention",
   slug: "pole-cassiopee-certification-has-2025",
   summary: "La Haute Autorité de Santé a certifié le Pôle Cassiopée avec mention, saluant la qualité de la prise en charge, la démarche qualité et l'implication des équipes soignantes.",
+  content: "<p>La visite des experts-visiteurs s'est déroulée sur quatre jours. Ils ont rencontré les équipes, des patients et des représentants des usagers, et suivi plusieurs parcours de soins de bout en bout.</p><p>Le rapport souligne en particulier la qualité de l'accueil des familles, la traçabilité des décisions de soins et la dynamique des équipes autour de la démarche qualité.</p><p>La direction remercie l'ensemble des professionnels du pôle pour leur engagement tout au long de la préparation.</p>",
   category: "institutional",
   published_at: Date.today - 2,
   published: true
@@ -1034,6 +1037,7 @@ News.create!(
   title: "Bienvenue au Dr. Lemaire, nouveau psychiatre à l'Unité Andromède",
   slug: "bienvenue-dr-lemaire-andromede",
   summary: "Le CH Polaris accueille le Dr. Sophie Lemaire, psychiatre spécialisée dans les troubles de l'humeur, qui rejoint l'équipe de l'Unité Andromède à compter du 1er novembre.",
+  content: "<p>Formée au CHU de Novapolis, le Dr. Lemaire a exercé pendant six ans dans un centre expert des troubles bipolaires avant de rejoindre le CH Polaris.</p><p>Au sein de l'Unité Andromède, elle participera à la prise en charge des patients hospitalisés et développera des consultations de suivi en lien avec l'UTEP.</p><p>Toute l'équipe lui souhaite la bienvenue.</p>",
   category: "announcement",
   published_at: Date.today - 30,
   published: true
@@ -1044,6 +1048,7 @@ News.create!(
   title: "Le groupe de travail éthique remet son rapport à la direction",
   slug: "rapport-groupe-travail-ethique-2025",
   summary: "Le groupe de travail pluridisciplinaire sur l'éthique clinique a remis son rapport annuel à la direction du CH Polaris. Ce document aborde les enjeux de l'isolement thérapeutique et du consentement aux soins.",
+  content: "<p>Composé de psychiatres, d'infirmiers, de psychologues, d'un juriste et de représentants des usagers, le groupe s'est réuni à huit reprises au cours de l'année.</p><p>Le rapport formule des recommandations concrètes : mieux informer le patient sur ses droits dès l'admission, associer davantage la personne de confiance et renforcer la traçabilité des mesures d'isolement.</p><p>Ces recommandations seront présentées en commission médicale d'établissement avant leur mise en œuvre.</p>",
   category: "institutional",
   published_at: Date.today - 45,
   published: true
@@ -1054,6 +1059,7 @@ News.create!(
   title: "La Semaine Culturelle du CH Polaris arrive — inscrivez-vous !",
   slug: "semaine-culturelle-ch-polaris-2025",
   summary: "Du 18 au 22 novembre, le CH Polaris organise sa Semaine Culturelle annuelle : expositions, concerts, ateliers créatifs ouverts aux patients, familles et professionnels. Programme complet disponible à l'accueil.",
+  content: "<p>Au programme : une exposition des œuvres réalisées en atelier d'art-thérapie, deux concerts dans le parc, des ateliers d'écriture et une projection-débat.</p><p>Les activités sont ouvertes aux patients, à leurs proches et aux professionnels. Certaines nécessitent une inscription préalable auprès de l'accueil ou de la Maison des Usagers.</p><p>Cette semaine est l'occasion de faire de l'hôpital un lieu de rencontre et de création, ouvert sur la ville.</p>",
   category: "event",
   published_at: Date.today - 60,
   published: true
@@ -1064,6 +1070,7 @@ News.create!(
   title: "Le CH Polaris rejoint le GHT Nouvelle-Aquitaine Atlantique",
   slug: "ch-polaris-ght-nouvelle-aquitaine-atlantique",
   summary: "Le Centre Hospitalier Polaris intègre le Groupement Hospitalier de Territoire Nouvelle-Aquitaine Atlantique, renforçant ainsi les coopérations territoriales et la continuité des parcours de soins.",
+  content: "<p>Un groupement hospitalier de territoire réunit plusieurs établissements publics autour d'un projet médical partagé. Le CH Polaris y apporte son expertise en santé mentale.</p><p>Concrètement, cette adhésion facilite l'orientation des patients entre établissements, le partage de compétences et l'organisation de la psychiatrie de liaison dans les hôpitaux généraux du territoire.</p><p>Pour les patients, rien ne change dans leur suivi habituel : leur CMP et leurs équipes de soins restent les mêmes.</p>",
   category: "institutional",
   published_at: Date.today - 75,
   published: true
@@ -1074,6 +1081,7 @@ News.create!(
   title: "L'EMPP Lumière étend ses interventions au territoire de Val-Serein",
   slug: "empp-lumiere-extension-val-serein",
   summary: "Suite à un partenariat avec le CCAS de Val-Serein, l'Équipe Mobile Psychiatrie Précarité étend désormais ses maraudes et interventions au territoire de Val-Serein, en lien avec les équipes sociales locales.",
+  content: "<p>L'Équipe Mobile Psychiatrie Précarité va à la rencontre des personnes en situation de précarité qui n'accèdent pas aux soins : dans la rue, en centre d'hébergement ou en accueil de jour.</p><p>Avec cette extension, l'équipe assure une permanence hebdomadaire au CCAS de Val-Serein et intervient à la demande des travailleurs sociaux du territoire.</p><p>Les professionnels qui souhaitent solliciter l'EMPP peuvent la joindre via l'annuaire des unités.</p>",
   category: "announcement",
   published_at: Date.today - 90,
   published: true

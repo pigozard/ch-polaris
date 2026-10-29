@@ -14,6 +14,10 @@ class News < ApplicationRecord
   scope :published, -> { where(published: true).order(published_at: :desc) }
   scope :recent, -> { published.limit(3) }
 
+  def to_param
+    slug
+  end
+
   private
 
   def generate_slug

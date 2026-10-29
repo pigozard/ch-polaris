@@ -1,0 +1,22 @@
+<%# ═══════════ HERO ═══════════ %>
+<section class="hub-hero" aria-labelledby="news-index-title">
+  <div class="container">
+    <span class="label">Vie de l'établissement</span>
+    <h1 id="news-index-title">Actualités <span class="hub-hero-accent">du CH Polaris</span></h1>
+    <p>Événements, projets des équipes et nouvelles de l'établissement.</p>
+    <%= link_to "← Notre établissement", hopital_path, class: "hub-switch-link" %>
+  </div>
+</section>
+
+<div class="container">
+  <section class="section section--no-border">
+    <% if @news.any? %>
+      <h2 class="visually-hidden">Toutes les actualités</h2>
+      <div class="news-grid">
+        <%= render partial: "news/news_card", collection: @news, as: :article %>
+      </div>
+    <% else %>
+      <p>Aucune actualité pour le moment.</p>
+    <% end %>
+  </section>
+</div>

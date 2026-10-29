@@ -211,23 +211,9 @@
         </div>
       </div>
       <div class="news-grid">
-        <% @news.each do |article| %>
-          <article class="news-card">
-            <p class="news-cat"><%= category_fr(article.category) %></p>
-            <h3 class="news-title"><%= article.title %></h3>
-            <p class="news-summary"><%= article.summary %></p>
-            <div class="news-meta">
-              <time datetime="<%= article.published_at&.iso8601 %>">
-                <%= article.published_at&.strftime("%d %B %Y") %>
-              </time>
-              <% if article.pole %>
-                <span class="news-dot" style="background-color: <%= article.pole.color %>;" aria-hidden="true"></span>
-                <span><%= article.pole.name %></span>
-              <% end %>
-            </div>
-          </article>
-        <% end %>
+        <%= render partial: "news/news_card", collection: @news, as: :article %>
       </div>
+      <p class="news-more"><%= link_to "Toutes les actualités →", news_index_path %></p>
     </section>
   </div>
 </div>

@@ -1,0 +1,14 @@
+<article class="news-card">
+  <p class="news-cat"><%= category_fr(article.category) %></p>
+  <h3 class="news-title"><%= link_to article.title, news_path(article), class: "news-link" %></h3>
+  <p class="news-summary"><%= article.summary %></p>
+  <div class="news-meta">
+    <% if article.published_at %>
+      <time datetime="<%= article.published_at.iso8601 %>"><%= l(article.published_at.to_date, format: :long) %></time>
+    <% end %>
+    <% if article.pole %>
+      <span class="news-dot" style="background-color: <%= article.pole.color %>;" aria-hidden="true"></span>
+      <span><%= article.pole.name %></span>
+    <% end %>
+  </div>
+</article>

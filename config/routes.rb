@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get "patients/trouver-mon-cmp", to: "pages#trouver_mon_cmp", as: :trouver_mon_cmp
 
   resources :etp_programs, path: "etp", only: [:index, :show]
+  resources :news, path: "actualites", only: [:index, :show]
 
   get "up" => "rails/health#show", as: :rails_health_check
 end

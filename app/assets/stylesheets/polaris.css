@@ -1573,3 +1573,17 @@ a.hopital-contact-value:hover { color: var(--teal-dark); }
 }
 .etp-contact-btn:hover { background: var(--teal); color: white; }
 .etp-contact-note { font-size: 0.8rem; color: var(--muted); margin: 8px 0 0; }
+
+/* ═══════════════════════════════════════
+   ACTUALITÉS  (/actualites)
+   ═══════════════════════════════════════ */
+/* Toute la carte est cliquable, mais un seul lien (le titre) pour les lecteurs d'écran */
+.news-card { position: relative; }
+.news-link { color: inherit; text-decoration: none; }
+.news-link::after { content: ""; position: absolute; inset: 0; border-radius: 8px; }
+.news-card:hover .news-link { color: var(--teal-dark); }
+
+.news-article-meta { font-size: 0.9rem; color: var(--muted); margin-top: 8px; }
+.news-article { max-width: 720px; }
+.news-article-lead { font-size: 1.15rem; color: var(--ink); line-height: 1.7; margin-bottom: 24px; }
+.news-article-content { font-size: 1rem; line-height: 1.8; color: var(--body); }
