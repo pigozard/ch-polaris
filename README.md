@@ -1,5 +1,7 @@
 # CH Polaris
 
+[![CI](https://github.com/pigozard/ch-polaris/actions/workflows/ci.yml/badge.svg)](https://github.com/pigozard/ch-polaris/actions/workflows/ci.yml)
+
 Site web du Centre Hospitalier Polaris — établissement public de psychiatrie adulte, pédopsychiatrique et addictologie.
 
 > Projet personnel : l'établissement, ses unités et ses données sont fictifs.
