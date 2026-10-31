@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   get "patients/preparer-mon-sejour", to: "pages#preparer_mon_sejour", as: :preparer_mon_sejour
   get "patients/mes-droits",          to: "pages#mes_droits",          as: :mes_droits
 
+  # Outils bien-être (un outil = une action de ToolsController)
+  get "patients/outils/coherence-cardiaque", to: "tools#cardiac_coherence", as: :cardiac_coherence_tool
+
   resources :etp_programs, path: "etp", only: [:index, :show]
   resources :news, path: "actualites", only: [:index, :show]
 

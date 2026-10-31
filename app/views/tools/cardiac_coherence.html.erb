@@ -1,0 +1,171 @@
+<% accent = "#3B82F6" %>
+
+<%# ═══════════ HERO ═══════════ %>
+<section class="hub-hero" style="--accent: <%= accent %>;" aria-labelledby="coherence-title">
+  <div class="container">
+    <span class="label">Outil bien-être</span>
+    <h1 id="coherence-title">Cohérence <span class="hub-hero-accent">cardiaque</span></h1>
+    <p>
+      Quelques minutes de respiration guidée pour apaiser le stress : inspirez et expirez
+      au rythme de Clara, 6 respirations par minute.
+    </p>
+    <%= link_to "← Retour à l'espace patients", patients_path, class: "hub-switch-link" %>
+  </div>
+</section>
+
+<div class="container">
+  <div class="section section--no-border breath" data-controller="breathing">
+
+    <%# ── En-tête de l'exercice ── %>
+    <header class="breath-top">
+      <h2 class="breath-title">Respirez avec <span>Clara</span></h2>
+      <div class="breath-today" data-breathing-target="today" aria-label="0 séance aujourd’hui sur 3 recommandées">
+        <p class="breath-label">Aujourd’hui</p>
+        <div class="breath-dots" aria-hidden="true">
+          <span class="breath-dot" data-breathing-target="dot"></span>
+          <span class="breath-dot" data-breathing-target="dot"></span>
+          <span class="breath-dot" data-breathing-target="dot"></span>
+        </div>
+        <span class="breath-today-txt" data-breathing-target="todayTxt" aria-hidden="true">0/3</span>
+      </div>
+    </header>
+
+    <%# ── Scène : Clara, consigne, progression, réglages ── %>
+    <section class="breath-stage" data-breathing-target="stage" data-phase="idle" aria-label="Guide de respiration">
+      <div class="breath-who">
+        <svg viewBox="-30 -40 460 460" role="img" aria-labelledby="breath-fig-title">
+          <title id="breath-fig-title">Clara respire. Le disque grandit à l’inspiration, ses cheveux flottent vers le haut à l’expiration.</title>
+          <defs>
+            <clipPath id="breath-bust-clip"><circle cx="200" cy="200" r="186"></circle></clipPath>
+            <clipPath id="breath-globe-clip"><circle cx="200" cy="345" r="25"></circle></clipPath>
+          </defs>
+
+          <%# Repères : disque vide (120) et disque plein (182) %>
+          <circle class="breath-ring" cx="200" cy="200" r="204"></circle>
+          <circle class="breath-ring breath-ring-dash" cx="200" cy="200" r="182"></circle>
+          <circle class="breath-ring breath-ring-dash" cx="200" cy="200" r="120"></circle>
+
+          <%# Disque de respiration : froid (vide) sous chaud (plein) %>
+          <circle class="breath-disc-cool" data-breathing-target="discCool" cx="200" cy="200" r="150"></circle>
+          <circle class="breath-disc-warm" data-breathing-target="discWarm" cx="200" cy="200" r="150"></circle>
+          <circle class="breath-arc" data-breathing-target="arc" cx="200" cy="200" r="194" transform="rotate(-90 200 200)" style="opacity:0"></circle>
+
+          <g data-breathing-target="bubbles"></g>
+
+          <g data-breathing-target="who">
+            <g class="breath-hair" data-breathing-target="hairBack"></g>
+
+            <g clip-path="url(#breath-bust-clip)">
+              <path class="breath-skin" d="M183 218 L183 278 Q200 292 217 278 L217 218 Z"></path>
+              <path class="breath-skin-shade" d="M183 218 L217 218 L217 226 Q200 256 183 226 Z"></path>
+              <path class="breath-top-fill" d="M86 430 C90 336 126 296 172 284 Q200 298 228 284 C274 296 310 336 314 430 Z"></path>
+              <path class="breath-fold" d="M130 344 Q138 364 135 396"></path>
+              <path class="breath-fold" d="M270 344 Q262 364 265 396"></path>
+              <%# Drapeau du Brésil : losange jaune, globe bleu, bande blanche, étoiles %>
+              <path class="breath-flag-yellow" d="M200 305 L276 345 L200 385 L124 345 Z"></path>
+              <circle class="breath-flag-blue" cx="200" cy="345" r="25"></circle>
+              <g clip-path="url(#breath-globe-clip)">
+                <path class="breath-flag-band" d="M172 352 Q198 332 228 340"></path>
+                <circle class="breath-flag-star" cx="187" cy="358" r="1.5"></circle>
+                <circle class="breath-flag-star" cx="196" cy="362" r="1.2"></circle>
+                <circle class="breath-flag-star" cx="205" cy="357" r="1.5"></circle>
+                <circle class="breath-flag-star" cx="213" cy="363" r="1.2"></circle>
+                <circle class="breath-flag-star" cx="200" cy="335" r="1.2"></circle>
+              </g>
+              <path class="breath-top-shade" d="M172 284 Q200 298 228 284 L233 291 Q200 310 167 291 Z"></path>
+            </g>
+
+            <path class="breath-skin" d="M154 176 C154 136 174 124 200 124 C226 124 246 136 246 176 C246 212 226 238 200 238 C174 238 154 212 154 176 Z"></path>
+            <path class="breath-hair-cap" d="M150 190 A50 70 0 0 1 250 190 C246 166 238 146 214 140 Q205 138 200 146 Q195 138 186 140 C162 146 154 166 150 190 Z"></path>
+            <path class="breath-part" d="M200 146 Q198 134 200 121"></path>
+
+            <path class="breath-feat" d="M169 167 Q179 161 190 165"></path>
+            <path class="breath-feat" d="M210 165 Q221 161 231 167"></path>
+            <path class="breath-feat" d="M170 181 Q180 188 190 181"></path>
+            <path class="breath-feat" d="M210 181 Q220 188 230 181"></path>
+            <path class="breath-feat breath-feat-soft" d="M170 181 L165 178"></path>
+            <path class="breath-feat breath-feat-soft" d="M230 181 L235 178"></path>
+            <path class="breath-feat breath-feat-soft" d="M201 190 Q196 202 203 204"></path>
+            <ellipse class="breath-blush" cx="172" cy="201" rx="9" ry="5"></ellipse>
+            <ellipse class="breath-blush" cx="228" cy="201" rx="9" ry="5"></ellipse>
+            <path class="breath-lip-line" data-breathing-target="mouthClosed" d="M189 217 Q200 224 211 217"></path>
+            <ellipse class="breath-lip" data-breathing-target="mouthOpen" cx="200" cy="219" rx="4.5" ry="3" style="opacity:0"></ellipse>
+
+            <g class="breath-hair" data-breathing-target="hairFront"></g>
+          </g>
+        </svg>
+      </div>
+
+      <div class="breath-readout">
+        <p class="breath-phase" data-breathing-target="phase" aria-live="polite">Installez-vous</p>
+        <p class="breath-hintline">
+          <span data-breathing-target="hint">5 s pour inspirer, 5 s pour expirer</span>
+          <span class="breath-count" data-breathing-target="count"></span>
+        </p>
+      </div>
+
+      <div class="breath-progress">
+        <div class="breath-bar"><span data-breathing-target="barFill"></span></div>
+        <div class="breath-meta">
+          <span data-breathing-target="cycleTxt">30 respirations</span>
+          <span data-breathing-target="timeTxt">Reste 05:00</span>
+        </div>
+      </div>
+
+      <fieldset class="breath-settings" data-breathing-target="settings">
+        <legend class="breath-label">Durée de la séance</legend>
+        <div class="breath-seg">
+          <% [[3, "Découverte"], [5, "Recommandé"], [10, "Prolongé"]].each do |minutes, label| %>
+            <input type="radio" name="duree" id="breath-d-<%= minutes %>" value="<%= minutes %>"
+                   <%= "checked" if minutes == 5 %>
+                   data-breathing-target="duration" data-action="change->breathing#chooseDuration">
+            <label for="breath-d-<%= minutes %>"><b><%= minutes %> min</b><span><%= label %></span></label>
+          <% end %>
+        </div>
+      </fieldset>
+
+      <div class="breath-actions">
+        <button class="breath-btn breath-btn-primary" type="button"
+                data-breathing-target="primary" data-action="breathing#toggle">Commencer</button>
+        <button class="breath-btn breath-btn-ghost" type="button" hidden
+                data-breathing-target="stop" data-action="breathing#stop">Arrêter</button>
+      </div>
+    </section>
+
+    <%# ── Règle 365 ── %>
+    <section class="breath-rule" aria-labelledby="breath-rule-title">
+      <div class="breath-rule-head">
+        <h2 id="breath-rule-title">La règle 365</h2>
+        <p>Le repère le plus utilisé pour pratiquer la cohérence cardiaque au quotidien.</p>
+      </div>
+      <div class="breath-rule-grid">
+        <div class="breath-fig"><span class="breath-big">3</span><strong>fois par jour</strong><small>par exemple au lever, avant le déjeuner, en fin d’après-midi</small></div>
+        <div class="breath-fig"><span class="breath-big">6</span><strong>respirations par minute</strong><small>soit un cycle complet toutes les 10 secondes</small></div>
+        <div class="breath-fig"><span class="breath-big">5</span><strong>minutes par séance</strong><small>environ 30 respirations</small></div>
+      </div>
+      <ul class="breath-tips">
+        <li><b>Posture</b>Assis, dos droit, pieds à plat au sol.</li>
+        <li><b>Ventre</b>Il se gonfle à l’inspiration et se creuse à l’expiration.</li>
+        <li><b>Confort</b>Si la tête tourne, reprenez une respiration normale.</li>
+      </ul>
+      <p class="breath-foot">
+        <strong>Outil de bien-être, pas un soin.</strong> Il ne remplace pas un avis médical.
+        Votre compteur de séances reste dans ce navigateur : rien n’est envoyé au site.
+      </p>
+    </section>
+
+  </div>
+
+  <%# ═══════════ URGENCE ═══════════ %>
+  <section class="section">
+    <div class="hub-urgence" role="complementary" aria-label="Numéros d'urgence">
+      <span aria-hidden="true" style="font-size:1.4rem;">🚨</span>
+      <div>
+        <strong>En cas de crise ou d'urgence psychiatrique</strong>
+        <div class="hub-urgence-num">
+          SAMU <strong>15</strong> · Prévention suicide <strong>3114</strong> (24h/24, gratuit)
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

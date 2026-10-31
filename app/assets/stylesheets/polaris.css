@@ -1646,3 +1646,115 @@ a.hopital-contact-value:hover { color: var(--teal-dark); }
 .droits-item[open] { padding-bottom: 8px; }
 .droits-item[open] summary { color: var(--teal-dark); }
 .droits-short { color: var(--teal-dark); }
+
+/* ═══════════════════════════════════════
+   COHÉRENCE CARDIAQUE  (/patients/outils/coherence-cardiaque)
+   Tout est préfixé « breath- » / « --b- » pour ne pas entrer en conflit avec le site
+   ═══════════════════════════════════════ */
+.breath {
+  --b-surface: #F9FBF9; --b-ink: #16262A; --b-muted: #566868; --b-line: #D2DBD7;
+  --b-inhale: #C26F33; --b-exhale: #1F7F76; --b-accent: #1E5F59; --b-on-accent: #F4FAF8; --b-accent-soft: #DDEBE7;
+  --b-disc-warm: #F4D6BA; --b-disc-cool: #CBE5E0; --b-ring: #B9C9C5; --b-bubble: #FFFFFF;
+  /* Clara : mêmes teintes partout, elle est posée sur le disque */
+  --b-hair: #231915; --b-hair-edge: #4A372F;
+  --b-skin: #C78C66; --b-skin-shade: #A46A4A; --b-blush: #D86F5C; --b-feature: #3B2620; --b-lip: #8E4A3C;
+  --b-top: #009C3B; --b-top-shade: #007A2E; /* t-shirt drapeau du Brésil */
+  --b-flag-yellow: #FFDF00; --b-flag-blue: #002776; --b-flag-white: #FFFFFF;
+  display: flex; flex-direction: column; gap: 28px; color: var(--b-ink);
+}
+
+/* En-tête de l'exercice */
+.breath-top { display: flex; align-items: center; justify-content: space-between; gap: 12px 24px; flex-wrap: wrap; padding-bottom: 16px; border-bottom: 1px solid var(--b-line); }
+.breath-title { font-family: var(--font-display); font-weight: 400; font-size: 1.9rem; line-height: 1.1; margin: 0; color: var(--b-ink); }
+.breath-title span { color: var(--b-exhale); }
+.breath-today { display: flex; align-items: center; gap: 10px; font-size: .85rem; color: var(--b-muted); }
+.breath-dots { display: flex; gap: 6px; }
+.breath-dot { width: 12px; height: 12px; border-radius: 50%; border: 1.5px solid var(--b-exhale); transition: background .4s; }
+.breath-dot.is-on { background: var(--b-exhale); }
+.breath-today-txt { font-variant-numeric: tabular-nums; color: var(--b-ink); font-weight: 500; }
+.breath-label { margin: 0; font-size: .75rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--b-muted); }
+
+/* Scène */
+.breath-stage { display: flex; flex-direction: column; align-items: center; gap: 14px; min-width: 0; }
+.breath-who { width: 100%; max-width: 460px; aspect-ratio: 1; }
+.breath-who svg { display: block; width: 100%; height: 100%; overflow: visible; }
+
+.breath-readout { display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; min-height: 6.6rem; }
+.breath-phase { font-family: var(--font-display); font-weight: 500; font-size: clamp(2.3rem, 6.5vw, 3.5rem); line-height: 1.05; margin: 0; color: var(--b-ink); transition: color .6s; }
+.breath-stage[data-phase="inhale"] .breath-phase { color: var(--b-inhale); }
+.breath-stage[data-phase="exhale"] .breath-phase,
+.breath-stage[data-phase="prep"] .breath-phase,
+.breath-stage[data-phase="done"] .breath-phase { color: var(--b-exhale); }
+.breath-hintline { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 10px; margin: 0; color: var(--b-muted); }
+.breath-count { min-width: 2.4em; padding: 1px 10px; border-radius: 999px; border: 1px solid var(--b-line); background: var(--b-surface); font-variant-numeric: tabular-nums; font-weight: 500; color: var(--b-ink); text-align: center; }
+.breath-count:empty { display: none; }
+
+.breath-progress { width: 100%; max-width: 420px; display: flex; flex-direction: column; gap: 6px; }
+.breath-bar { height: 6px; border-radius: 999px; background: var(--b-line); overflow: hidden; }
+.breath-bar span { display: block; height: 100%; width: 0; background: var(--b-exhale); border-radius: inherit; }
+.breath-meta { display: flex; justify-content: space-between; gap: 12px; font-size: .85rem; color: var(--b-muted); font-variant-numeric: tabular-nums; }
+
+.breath-actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+.breath-btn { font: inherit; font-weight: 500; border-radius: 999px; padding: 13px 30px; min-width: 9.5rem; cursor: pointer; border: 1.5px solid transparent; transition: filter .2s, border-color .2s; }
+.breath-btn-primary { background: var(--b-accent); color: var(--b-on-accent); }
+.breath-btn-primary:hover { filter: brightness(1.08); }
+.breath-btn-ghost { background: transparent; color: var(--b-ink); border-color: var(--b-line); }
+.breath-btn-ghost:hover { border-color: var(--b-muted); }
+.breath-btn:focus-visible { outline: 2px solid var(--b-accent); outline-offset: 3px; }
+
+/* Choix de la durée */
+.breath-settings { border: 0; margin: 0; padding: 0; min-width: 0; width: 100%; max-width: 420px; }
+.breath-settings legend { width: 100%; padding: 0; margin-bottom: 10px; text-align: center; float: none; }
+.breath-seg { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.breath-seg input { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
+.breath-seg label { display: flex; flex-direction: column; align-items: center; gap: 1px; padding: 10px 6px; border: 1px solid var(--b-line); border-radius: 12px; background: var(--b-surface); cursor: pointer; text-align: center; transition: border-color .2s, background .2s; }
+.breath-seg label b { font-weight: 500; font-size: .95rem; font-variant-numeric: tabular-nums; }
+.breath-seg label span { font-size: .75rem; color: var(--b-muted); }
+.breath-seg input:checked + label { border-color: var(--b-accent); background: var(--b-accent-soft); }
+.breath-seg input:focus-visible + label { outline: 2px solid var(--b-accent); outline-offset: 2px; }
+
+/* Règle 365 */
+.breath-rule { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 24px 40px; padding-top: 28px; border-top: 1px solid var(--b-line); }
+@media (max-width: 860px) { .breath-rule { grid-template-columns: minmax(0, 1fr); } }
+.breath-rule h2 { font-family: var(--font-display); font-weight: 400; font-size: 1.7rem; line-height: 1.15; margin: 0 0 6px; color: var(--b-ink); }
+.breath-rule-head p { margin: 0; color: var(--b-muted); max-width: 40ch; }
+.breath-rule-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.breath-fig { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.breath-big { font-family: var(--font-display); font-size: clamp(2.6rem, 7vw, 3.8rem); line-height: 1; color: var(--b-exhale); }
+.breath-fig strong { font-weight: 500; line-height: 1.3; }
+.breath-fig small { color: var(--b-muted); font-size: .82rem; line-height: 1.4; }
+.breath-tips { grid-column: 2; list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 860px) { .breath-tips { grid-column: auto; } }
+@media (max-width: 560px) { .breath-tips { grid-template-columns: minmax(0, 1fr); } }
+.breath-tips li { padding-top: 10px; border-top: 1px solid var(--b-line); font-size: .9rem; color: var(--b-muted); }
+.breath-tips b { display: block; font-weight: 500; color: var(--b-ink); }
+.breath-foot { grid-column: 1 / -1; margin: 0; font-size: .85rem; color: var(--b-muted); }
+
+/* Dessin SVG de Clara */
+.breath-ring { fill: none; stroke: var(--b-ring); stroke-width: 1; }
+.breath-ring-dash { stroke-dasharray: 2 7; }
+.breath-disc-cool { fill: var(--b-disc-cool); }
+.breath-disc-warm { fill: var(--b-disc-warm); }
+.breath-arc { fill: none; stroke: var(--b-exhale); stroke-width: 3; stroke-linecap: round; stroke-dasharray: 1218.94; transition: opacity .4s, stroke .4s; }
+.breath-stage[data-phase="inhale"] .breath-arc { stroke: var(--b-inhale); }
+.breath-bubble { fill: var(--b-bubble); fill-opacity: .45; stroke: var(--b-exhale); stroke-width: 1.2; }
+.breath-skin { fill: var(--b-skin); }
+.breath-skin-shade { fill: var(--b-skin-shade); }
+.breath-top-fill { fill: var(--b-top); }
+.breath-top-shade { fill: var(--b-top-shade); }
+.breath-flag-yellow { fill: var(--b-flag-yellow); }
+.breath-flag-blue { fill: var(--b-flag-blue); }
+.breath-flag-band { fill: none; stroke: var(--b-flag-white); stroke-width: 5; }
+.breath-flag-star { fill: var(--b-flag-white); }
+.breath-fold { fill: none; stroke: var(--b-top-shade); stroke-width: 3; stroke-linecap: round; }
+.breath-hair circle, .breath-hair-cap { fill: var(--b-hair); stroke: var(--b-hair-edge); stroke-width: 1.3; }
+.breath-part { fill: none; stroke: var(--b-hair-edge); stroke-width: 1.6; stroke-linecap: round; }
+.breath-feat { fill: none; stroke: var(--b-feature); stroke-width: 2.4; stroke-linecap: round; }
+.breath-feat-soft { stroke-width: 1.8; opacity: .55; }
+.breath-blush { fill: var(--b-blush); opacity: .28; }
+.breath-lip-line { fill: none; stroke: var(--b-lip); stroke-width: 2.6; stroke-linecap: round; }
+.breath-lip { fill: var(--b-lip); }
+
+@media (prefers-reduced-motion: reduce) {
+  .breath-phase, .breath-dot, .breath-settings, .breath-arc { transition: none; }
+}
