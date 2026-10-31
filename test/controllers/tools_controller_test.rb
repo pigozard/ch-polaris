@@ -1,6 +1,20 @@
 require "test_helper"
 
 class ToolsControllerTest < ActionDispatch::IntegrationTest
+  # ── Liste des outils ──────────────────────────────────
+
+  test "GET /patients/outils liste la cohérence cardiaque" do
+    get tools_path
+    assert_response :success
+    assert_select "h1", /Outils/
+    assert_select "a.hub-card--live[href=?]", cardiac_coherence_tool_path
+  end
+
+  test "GET /patients relie la carte Outils bien-être" do
+    get patients_path
+    assert_select "a.hub-card--live[href=?]", tools_path
+  end
+
   # ── Cohérence cardiaque ───────────────────────────────
 
   test "GET /patients/outils/coherence-cardiaque affiche l'exercice avec Clara" do
@@ -24,8 +38,8 @@ class ToolsControllerTest < ActionDispatch::IntegrationTest
     assert_includes response.body, "3114"
   end
 
-  test "GET /patients relie la carte Cohérence cardiaque" do
-    get patients_path
-    assert_select "a.hub-card--live[href=?]", cardiac_coherence_tool_path
+  test "GET /patients/outils/coherence-cardiaque renvoie vers la liste des outils" do
+    get cardiac_coherence_tool_path
+    assert_select "a.hub-switch-link[href=?]", tools_path
   end
 end

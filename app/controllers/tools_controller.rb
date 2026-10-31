@@ -2,6 +2,9 @@
 class ToolsController < ApplicationController
   skip_before_action :authenticate_user!
 
+  def index
+  end
+
   def cardiac_coherence
   end
 end
