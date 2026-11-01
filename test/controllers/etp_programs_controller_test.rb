@@ -23,6 +23,12 @@ class EtpProgramsControllerTest < ActionDispatch::IntegrationTest
     assert_includes response.body, "Trouble bipolaire"
   end
 
+  test "GET /etp affiche le prochain recrutement de chaque programme" do
+    @anxiety.update!(recruitment_months: [1, 5, 9])
+    get etp_programs_path
+    assert_includes response.body, "Prochain recrutement"
+  end
+
   test "GET /etp filtre par pathologie" do
     get etp_programs_path, params: { pathology: "anxiety" }
     assert_response :success
@@ -45,17 +51,22 @@ class EtpProgramsControllerTest < ActionDispatch::IntegrationTest
 
   # ── Détail ────────────────────────────────────────────
 
-  test "GET /etp/:id affiche le programme et ses sessions" do
+  test "GET /etp/:id affiche les mois de recrutement au lieu des sessions" do
+    @bipolar.update!(recruitment_months: [2, 10])
     EtpSession.create!(etp_program: @bipolar, session_type: "recurring",
-                       recurrence: "Tous les mardis de 14h à 16h",
-                       max_participants: 8, current_participants: 6, status: "open")
+                       recurrence: "Tous les mardis de 14h à 16h", status: "open")
 
     get etp_program_path(@bipolar)
     assert_response :success
     assert_includes response.body, "Entretien préalable avec l&#39;UTEP."
-    assert_includes response.body, "Tous les mardis de 14h à 16h"
-    assert_includes response.body, "2 places restantes"
-    assert_includes response.body, "Ouvert"
+    assert_includes response.body, "février et octobre"
+    assert_includes response.body, "Prochain recrutement"
+    assert_not_includes response.body, "Tous les mardis de 14h à 16h"
+  end
+
+  test "GET /etp/:id sans mois de recrutement renvoie vers l'UTEP" do
+    get etp_program_path(@bipolar)
+    assert_includes response.body, "Contactez l'UTEP"
   end
 
   test "GET /etp/:id propose un email à l'UTEP avec le nom du programme en objet" do

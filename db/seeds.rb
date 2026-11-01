@@ -868,7 +868,8 @@ prog_bipolaire = EtpProgram.create!(
   pathology: "bipolar",
   prerequisites: "Diagnostic posé par un psychiatre. Être en phase de stabilisation depuis au moins 3 mois. Entretien individuel préalable avec une infirmière coordinatrice de l'UTEP.",
   duration: "8 séances de 2h",
-  modality: "group"
+  modality: "group",
+  recruitment_months: [2, 10]
 )
 
 prog_depression = EtpProgram.create!(
@@ -879,7 +880,8 @@ prog_depression = EtpProgram.create!(
   pathology: "depression",
   prerequisites: "Suivi psychiatrique en cours. Au moins un épisode dépressif traité. Entretien préalable avec l'UTEP. Accord du psychiatre référent.",
   duration: "6 séances de 2h",
-  modality: "group"
+  modality: "group",
+  recruitment_months: [3, 11]
 )
 
 prog_addiction = EtpProgram.create!(
@@ -890,7 +892,8 @@ prog_addiction = EtpProgram.create!(
   pathology: "addiction",
   prerequisites: "Être suivi au CSAPA Lyra ou en HDJ Deneb. Sevrage stabilisé. Motivation exprimée lors d'un entretien infirmier préalable.",
   duration: "5 séances de 2h30",
-  modality: "mixed"
+  modality: "mixed",
+  recruitment_months: [1, 3, 5, 7, 9, 11]
 )
 
 prog_anxiete = EtpProgram.create!(
@@ -901,7 +904,8 @@ prog_anxiete = EtpProgram.create!(
   pathology: "anxiety",
   prerequisites: "Diagnostic établi par un psychiatre ou psychologue. Suivi en cours. Entretien individuel préalable avec l'UTEP.",
   duration: "6 séances de 1h30",
-  modality: "group"
+  modality: "group",
+  recruitment_months: [1, 5, 9]
 )
 
 prog_schizo = EtpProgram.create!(
@@ -912,7 +916,8 @@ prog_schizo = EtpProgram.create!(
   pathology: "schizophrenia",
   prerequisites: "Diagnostic posé. Stabilisation clinique depuis au moins 6 mois. Accord du psychiatre référent. Entretien préalable avec l'UTEP.",
   duration: "8 séances de 2h",
-  modality: "group"
+  modality: "group",
+  recruitment_months: [1, 4, 9]
 )
 
 puts "📅 Creating ETP sessions..."

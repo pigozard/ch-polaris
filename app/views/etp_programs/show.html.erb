@@ -28,35 +28,14 @@
     <h2 class="etp-heading">Conditions pour participer</h2>
     <p><%= @etp_program.prerequisites %></p>
 
-    <h2 class="etp-heading">Prochaines sessions</h2>
-    <% if @etp_sessions.any? %>
-      <ul class="etp-sessions">
-        <% @etp_sessions.each do |session| %>
-          <li class="etp-session">
-            <span class="etp-status etp-status--<%= session.status %>"><%= session.status_label %></span>
-            <strong>
-              <% if session.recurrence.present? %>
-                <%= session.recurrence %>
-              <% elsif session.ends_on.present? %>
-                Du <%= session.starts_on.strftime("%d/%m/%Y") %> au <%= session.ends_on.strftime("%d/%m/%Y") %>
-              <% else %>
-                Le <%= session.starts_on.strftime("%d/%m/%Y") %>
-              <% end %>
-            </strong>
-            <% if session.location.present? %>
-              <span><%= session.location %></span>
-            <% end %>
-            <% if session.status == "open" && session.remaining_places %>
-              <span><%= pluralize(session.remaining_places, "place restante", plural: "places restantes") %></span>
-            <% end %>
-            <% if session.registration_info.present? %>
-              <span class="etp-session-info"><%= session.registration_info %></span>
-            <% end %>
-          </li>
-        <% end %>
-      </ul>
+    <h2 class="etp-heading">Recrutement des groupes</h2>
+    <% if (next_recruitment = @etp_program.next_recruitment) %>
+      <p>Les groupes démarrent en <strong><%= @etp_program.recruitment_months_label %></strong>.</p>
+      <p class="etp-recruitment">
+        Prochain recrutement : <strong><%= l(next_recruitment, format: :month_year) %></strong>
+      </p>
     <% else %>
-      <p>Aucune session programmée pour le moment. Contactez l'UTEP pour connaître les prochaines dates.</p>
+      <p>Contactez l'UTEP pour connaître les prochaines dates de recrutement.</p>
     <% end %>
 
     <%= render "utep_contact", utep: @utep, subject: "Demande d'information — #{@etp_program.name}" %>

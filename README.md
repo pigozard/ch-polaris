@@ -31,7 +31,7 @@ Site web du Centre Hospitalier Polaris — établissement public de psychiatrie 
 | Professionnels | `/professionnels` | Hub professionnels |
 | Annuaire | `/annuaire` | Toutes les unités, recherche par nom ou par besoin, filtres et détails |
 | Plan | `/carte` | Plan SVG interactif de l'établissement |
-| Catalogue ETP | `/etp` | Programmes d'éducation thérapeutique et leurs sessions |
+| Catalogue ETP | `/etp` | Programmes d'éducation thérapeutique et leurs mois de recrutement |
 | Actualités | `/actualites` | Liste et détail des actualités publiées |
 | Préparer mon séjour | `/patients/preparer-mon-sejour` | Admission, documents, accès et stationnement par unité |
 | Mes droits | `/patients/mes-droits` | Droits des patients et soins sans consentement, sans jargon |
@@ -74,7 +74,7 @@ Ajouter un mot-clé ou un besoin : modifier ce fichier (mots sans accents), puis
 ### Catalogue ETP (`/etp`)
 
 - Filtre par pathologie (liens simples, fonctionne sans JavaScript)
-- Fiche programme : public, prérequis, durée, sessions avec statut et places restantes
+- Fiche programme : public, prérequis, durée, mois de recrutement des groupes (« janvier, avril et septembre ») et prochain recrutement calculé à partir de la date du jour, pour que la page ne vieillisse jamais
 - Contact de l'UTEP (lu en base) et bouton `mailto:` pré-rempli — aucune donnée stockée sur le site
 
 ### Actualités (`/actualites`)

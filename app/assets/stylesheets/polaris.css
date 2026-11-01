@@ -1570,6 +1570,13 @@ a.hopital-contact-value:hover { color: var(--teal-dark); }
   border-radius: 10px;
 }
 .etp-session-info { font-size: 0.85rem; color: var(--muted); }
+.etp-recruitment {
+  display: inline-block;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: var(--teal-light);
+  color: var(--ink);
+}
 .etp-status {
   align-self: flex-start;
   font-size: 0.72rem;

@@ -37,6 +37,9 @@
           <span class="etp-meta">
             <%= [program.duration, program.modality_label].compact.join(" · ") %>
           </span>
+          <% if (next_recruitment = program.next_recruitment) %>
+            <span class="etp-meta">Prochain recrutement : <%= l(next_recruitment, format: :month_year) %></span>
+          <% end %>
           <span class="hub-card-cta">Voir le programme →</span>
         <% end %>
       <% end %>

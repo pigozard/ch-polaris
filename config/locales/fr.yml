@@ -6,6 +6,7 @@ fr:
       default: "%d/%m/%Y"
       short: "%-d %b"
       long: "%-d %B %Y"
+      month_year: "%B %Y"
     day_names: [dimanche, lundi, mardi, mercredi, jeudi, vendredi, samedi]
     abbr_day_names: [dim, lun, mar, mer, jeu, ven, sam]
     month_names: [~, janvier, février, mars, avril, mai, juin, juillet, août, septembre, octobre, novembre, décembre]
@@ -14,6 +15,12 @@ fr:
       - :day
       - :month
       - :year
+  # Liste en français : « janvier, avril et septembre » (to_sentence)
+  support:
+    array:
+      words_connector: ", "
+      two_words_connector: " et "
+      last_word_connector: " et "
   activerecord:
     errors:
       models:

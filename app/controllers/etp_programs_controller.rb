@@ -11,7 +11,6 @@ class EtpProgramsController < ApplicationController
 
   def show
     @etp_program = EtpProgram.find(params[:id])
-    @etp_sessions = @etp_program.etp_sessions.order(:starts_on)
   end
 
   private
