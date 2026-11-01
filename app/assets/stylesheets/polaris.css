@@ -526,7 +526,7 @@ button:focus-visible {
   font-size: 0.65rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #9ca3af;
+  color: var(--muted); /* #4b5563 sur blanc → 7.56:1 AA ✅ (était #9ca3af, 2.54:1) */
 }
 
 /* ── NEWS ── */
@@ -1199,13 +1199,15 @@ a.hopital-contact-value:hover { color: var(--teal-dark); }
   cursor: pointer;
   transition: background 0.15s, border-color 0.15s, color 0.15s;
 }
+/* Couleur du pôle assombrie (65 % + noir) : texte blanc ≥ 5:1 pour les 5 pôles AA ✅ */
+.annuaire-chip { --chip-dark: color-mix(in srgb, var(--chip-color, var(--teal)) 65%, black); }
 .annuaire-chip:hover {
-  border-color: var(--chip-color, var(--teal));
-  color: var(--chip-color, var(--teal));
+  border-color: var(--chip-dark);
+  color: var(--chip-dark);
 }
 .annuaire-chip--active {
-  background: var(--chip-color, var(--teal));
-  border-color: var(--chip-color, var(--teal));
+  background: var(--chip-dark);
+  border-color: var(--chip-dark);
   color: white;
 }
 .annuaire-filters-right { display: flex; gap: 10px; align-items: center; }
