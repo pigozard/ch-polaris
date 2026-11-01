@@ -29,7 +29,7 @@ Site web du Centre Hospitalier Polaris — établissement public de psychiatrie 
 | Notre établissement | `/hopital` | Offre de soins, pôles, dernières actualités |
 | Patients & proches | `/patients` | Hub patients, widget CMP, numéros d'urgence |
 | Professionnels | `/professionnels` | Hub professionnels |
-| Annuaire | `/annuaire` | Toutes les unités, filtrables et avec détails |
+| Annuaire | `/annuaire` | Toutes les unités, recherche par nom ou par besoin, filtres et détails |
 | Plan | `/carte` | Plan SVG interactif de l'établissement |
 | Catalogue ETP | `/etp` | Programmes d'éducation thérapeutique et leurs sessions |
 | Actualités | `/actualites` | Liste et détail des actualités publiées |
@@ -40,11 +40,31 @@ Site web du Centre Hospitalier Polaris — établissement public de psychiatrie 
 
 ### Annuaire des unités (`/annuaire`)
 
+L'annuaire sert aussi d'**outil d'orientation**, pour les patients comme pour les professionnels qui adressent un patient.
+
 - Filtrage par pôle (chips colorées), par type et par recherche textuelle
-- **Recherche par nom ou par besoin** : « Persée » comme « bipolaire », « alcool », « maman »… Le dictionnaire `config/orientation.yml` relie des mots-clés aux unités (sans accents ni majuscules, en mots entiers : « père » ne trouve pas « espère »). Chaque fiche trouvée indique « Proposé pour : … »
-- Sécurité : toute recherche, quel que soit le mot tapé, affiche un encadré d'urgence (15, 3114, urgences psy)
 - Panneau latéral au clic : contacts, horaires, règlement visite, secteurs géographiques
 - Données JSON embarquées côté serveur, rendu client via Stimulus
+
+**Recherche par nom ou par besoin**
+
+- On peut taper un nom (« Persée »), un type (« cmp », « hôpital de jour ») ou un besoin avec ses propres mots (« bipolaire », « alcool », « maman », « ado »…)
+- Chaque fiche trouvée par besoin indique pourquoi elle est proposée : « Proposé pour : Troubles bipolaires »
+- Comparaison sans accents ni majuscules, en mots entiers (« père » ne trouve pas « espère ») ou par début de mot pendant la saisie (« accouch » trouve « accouchement »)
+- **Sécurité** : toute recherche, quel que soit le mot tapé, affiche un encadré « En cas d'urgence » (15, 3114, urgences psy) annoncé aux lecteurs d'écran
+- Aucun diagnostic : c'est la personne qui nomme son besoin, l'annuaire indique seulement où s'adresser
+
+**Dictionnaire des besoins (`config/orientation.yml`)**
+
+13 besoins (troubles bipolaires, dépression, addictions, autisme, périnatalité, enfants, adolescents, psychose, personnes âgées, précarité, traumatisme collectif, proches et aidants, éducation thérapeutique), chacun relié à des unités par leur slug :
+
+```yaml
+- libelle: Troubles bipolaires
+  mots: [bipolaire, bipolarite, maniaco, maniaco-depressif, humeur]
+  unites: [centre-expert-capella, shedar]
+```
+
+Ajouter un mot-clé ou un besoin : modifier ce fichier (mots sans accents), puis redémarrer le serveur, car le fichier est lu une seule fois au démarrage. Un test vérifie que chaque slug cité existe bien dans les seeds.
 
 ### Widget "Trouver mon CMP" (page patients)
 
@@ -99,6 +119,10 @@ Ajouter un outil : une route sous `patients/outils/…`, une action dans `ToolsC
 | `NewsController` | Actualités (`index`, `show` par slug) |
 | `ToolsController` | Outils bien-être pour les patients |
 
+| Modèle sans table | Rôle |
+|-------------------|------|
+| `Orientation` | Lit `config/orientation.yml` et fournit à chaque unité ses besoins (`Orientation.needs_for(unit)`), embarqués dans le JSON de l'annuaire |
+
 Toutes les pages publiques sont accessibles sans connexion (`skip_before_action :authenticate_user!`).
 
 Principes d'accessibilité suivis : contrastes AA, liens et boutons utilisables au clavier, filtres en simples liens, `aria-live` pour les contenus qui changent, numéros d'urgence (15, 3114) visibles sur les pages patients.
@@ -112,7 +136,14 @@ Pole ─┬─ Unit ─┬─ Schedule
       │        └─ EtpProgram ── EtpSession
       └─ News (Action Text, Active Storage)
 User (Devise)
+
+Orientation (config/orientation.yml, sans table) ── besoins → Unit (par slug)
 ```
+
+## Évolutions envisagées
+
+- **Chatbot guidé** pour orienter les nouveaux visiteurs, en s'appuyant sur le dictionnaire `config/orientation.yml`
+- **Modalités d'adressage** (critères, pièces à joindre, délais) dans le panneau de chaque unité, pour les professionnels
 
 ## Installation
 
