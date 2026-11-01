@@ -41,6 +41,8 @@ Site web du Centre Hospitalier Polaris — établissement public de psychiatrie 
 ### Annuaire des unités (`/annuaire`)
 
 - Filtrage par pôle (chips colorées), par type et par recherche textuelle
+- **Recherche par nom ou par besoin** : « Persée » comme « bipolaire », « alcool », « maman »… Le dictionnaire `config/orientation.yml` relie des mots-clés aux unités (sans accents ni majuscules, en mots entiers : « père » ne trouve pas « espère »). Chaque fiche trouvée indique « Proposé pour : … »
+- Sécurité : toute recherche, quel que soit le mot tapé, affiche un encadré d'urgence (15, 3114, urgences psy)
 - Panneau latéral au clic : contacts, horaires, règlement visite, secteurs géographiques
 - Données JSON embarquées côté serveur, rendu client via Stimulus
 

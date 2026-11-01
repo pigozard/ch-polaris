@@ -1,0 +1,62 @@
+# Dictionnaire de la recherche par besoin de l'annuaire.
+#
+# Chaque besoin relie des mots-clés à des unités (par leur slug).
+# L'encadré d'urgence (15, 3114, urgences psy) s'affiche pour toute recherche.
+#
+# Les mots sont comparés sans accents ni majuscules, en mots entiers
+# (« père » ne correspond pas à « espère »). Ce fichier n'établit aucun diagnostic :
+# il indique seulement où s'adresser.
+
+besoins:
+  - libelle: Troubles bipolaires
+    mots: [bipolaire, bipolarite, maniaco, maniaco-depressif, humeur]
+    unites: [centre-expert-capella, shedar]
+
+  - libelle: Dépression
+    mots: [depression, deprime, deprimee, depressif, depressive, moral, tristesse]
+    unites: [cmp-val-nord, cmp-belvedere, centre-expert-sirius, shedar]
+
+  - libelle: Addictions
+    mots: [alcool, cannabis, drogue, drogues, addiction, addict, dependance, sevrage, jeu, jeux]
+    unites: [csapa-lyra, altair, hdj-deneb]
+
+  - libelle: Autisme
+    mots: [autisme, autiste, tsa, asperger]
+    unites: [cra-novapolis, centre-expert-arcturus, unite-calypso, camsp-etoile]
+
+  - libelle: Périnatalité
+    mots: [grossesse, enceinte, bebe, post-partum, mere, maman, pere, papa,
+           accouchement, accoucher, accouche, accouchee]
+    unites: [unite-aube]
+
+  - libelle: Enfants
+    mots: [enfant, enfants, pedopsychiatrie]
+    unites: [cmp-les-cometes, hdj-merope, camsp-etoile, sessad-celene]
+
+  - libelle: Adolescents
+    mots: [ado, ados, adolescent, adolescente, adolescents]
+    unites: [cmp-electre, hdj-taygete, cattp-asterope, maia]
+
+  - libelle: Psychose
+    mots: [schizophrenie, schizophrene, psychose, hallucination, hallucinations, entendre des voix]
+    unites: [cmp-val-nord, cmp-belvedere, hdj-deneb, vega]
+
+  - libelle: Personnes âgées
+    mots: [personne agee, personnes agees, ehpad, senior, seniors]
+    unites: [empp-aurore]
+
+  - libelle: Précarité
+    mots: [sans domicile, sdf, rue, precarite]
+    unites: [empp-lumiere]
+
+  - libelle: Traumatisme collectif
+    mots: [attentat, catastrophe, trauma, traumatisme]
+    unites: [cump-polaris]
+
+  - libelle: Proches et aidants
+    mots: [proche, proches, famille, aidant, aidants, ecoute]
+    unites: [maison-boussole]
+
+  - libelle: Éducation thérapeutique
+    mots: [etp, education therapeutique]
+    unites: [utep-etoile-polaire]

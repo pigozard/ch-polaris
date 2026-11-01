@@ -101,6 +101,20 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     assert_includes response.body, "data-annuaire-units-value"
   end
 
+  test "GET /annuaire embarque les mots-clés de besoin de chaque unité" do
+    Unit.create!(pole: @pole, name: "Unité Aube", slug: "unite-aube", unit_type: "perinatal")
+    get annuaire_path
+    assert_includes response.body, "maman"
+    assert_includes response.body, "Périnatalité"
+  end
+
+  test "GET /annuaire prépare un seul encadré d'urgence pour toutes les recherches" do
+    get annuaire_path
+    assert_select "[data-annuaire-target=emergency]", /3114/
+    assert_select "[data-annuaire-target=reminder]", count: 0
+    assert_select "[data-annuaire-emergency-value]", count: 0
+  end
+
   # ── Trouver mon CMP ───────────────────────────────────
 
   test "GET /patients/trouver-mon-cmp avec code postal valide retourne le CMP" do

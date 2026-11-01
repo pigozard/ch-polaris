@@ -79,6 +79,7 @@ class Unit < ApplicationRecord
       address:     address,
       parking:     parking_info,
       description: description,
+      needs:       Orientation.needs_for(self),
       pole_slug:   pole.slug,
       pole_name:   pole.name,
       pole_color:  pole.color,

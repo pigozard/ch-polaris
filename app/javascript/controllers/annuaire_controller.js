@@ -1,7 +1,24 @@
 import { Controller } from "@hotwired/stimulus"
 
+// Texte comparable : minuscules, sans accents, ponctuation remplacée par des espaces
+// (« Dépression ! » → « depression »)
+const normalize = (str) => (str ?? "")
+  .toLowerCase()
+  .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+  .replace(/[^a-z0-9]+/g, " ")
+  .trim()
+
+// Un mot-clé correspond à la recherche si :
+// - il apparaît en mots entiers dans la phrase tapée (« mon pere » → « pere », mais pas « espere ») ;
+// - ou s'il commence par ce qui est en train d'être tapé (« accouch » → « accouchement »).
+const keywordMatches = (query, keyword) => {
+  const k = normalize(keyword)
+  return ` ${query} `.includes(` ${k} `) || (query.length >= 3 && k.startsWith(query))
+}
+
 export default class extends Controller {
-  static targets = ["grid", "panel", "panelContent", "overlay", "count", "searchInput", "typeSelect"]
+  static targets = ["grid", "panel", "panelContent", "overlay", "count", "searchInput", "typeSelect",
+                    "emergency"]
   static values  = { units: Array }
 
   connect() {
@@ -54,11 +71,12 @@ export default class extends Controller {
   }
 
   filterSearch(event) {
-    this.searchQuery = event.currentTarget.value.toLowerCase()
+    this.searchQuery = normalize(event.currentTarget.value)
     this.render()
   }
 
   render() {
+    this.renderEmergency()
     const units = this.filteredUnits()
 
     if (units.length === 0) {
@@ -76,9 +94,27 @@ export default class extends Controller {
     return this.unitsValue.filter(u => {
       const matchPole   = !this.activePole  || u.pole_slug === this.activePole
       const matchType   = !this.activeType  || u.type      === this.activeType
-      const matchSearch = !this.searchQuery || u.name.toLowerCase().includes(this.searchQuery)
+      const matchSearch = !this.searchQuery || this.matchesName(u) || this.matchedNeeds(u).length > 0
       return matchPole && matchType && matchSearch
     })
+  }
+
+  // Recherche par nom ou par type d'unité (« Persée », « cmp », « hôpital de jour »)
+  matchesName(unit) {
+    return normalize(`${unit.name} ${unit.type_label}`).includes(this.searchQuery)
+  }
+
+  // Besoins de l'unité dont un mot-clé correspond (« bipolaire » → « Troubles bipolaires »)
+  matchedNeeds(unit) {
+    if (!this.searchQuery) return []
+    return (unit.needs || []).filter(need =>
+      need.keywords.some(keyword => keywordMatches(this.searchQuery, keyword)))
+  }
+
+  // Encadré d'urgence (15, 3114, urgences psy) affiché pour toute recherche,
+  // quel que soit le mot tapé : la personne a l'information même avec un mauvais mot-clé
+  renderEmergency() {
+    this.emergencyTarget.hidden = this.searchQuery === ""
   }
 
   esc(str) {
@@ -91,6 +127,10 @@ export default class extends Controller {
     const phone = unit.phone
       ? `<span class="annuaire-card__phone">${this.esc(unit.phone)}</span>`
       : ""
+    const needs = this.matchedNeeds(unit).map(n => n.label)
+    const reason = needs.length
+      ? `<span class="annuaire-card__reason">Proposé pour : ${this.esc(needs.join(", "))}</span>`
+      : ""
     return `
       <button class="annuaire-card"
               data-unit-id="${unit.id}"
@@ -99,6 +139,7 @@ export default class extends Controller {
               aria-label="Voir ${this.esc(unit.name)}">
         <span class="annuaire-card__name">${this.esc(unit.name)}</span>
         <span class="annuaire-card__type">${this.esc(unit.type_label)}</span>
+        ${reason}
         ${phone}
       </button>`
   }

@@ -1249,6 +1249,19 @@ a.hopital-contact-value:hover { color: var(--teal-dark); }
 }
 .annuaire-card__name { font-weight: 600; font-size: 0.95rem; color: var(--ink); }
 .annuaire-card__type { font-size: 0.78rem; color: var(--muted); }
+.annuaire-card__reason { font-size: 0.75rem; font-weight: 600; color: var(--teal-dark); }
+
+/* Recherche par besoin : encadré d'urgence affiché pour toute recherche */
+.annuaire-emergency {
+  background: #fef2f2;
+  border: 2px solid #dc2626;
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  color: #7f1d1d; /* sur #fef2f2 → 9.6:1 AA ✅ */
+}
+.annuaire-emergency p { margin: 6px 0 0; }
+.annuaire-emergency a { color: #7f1d1d; font-weight: 700; }
 .annuaire-card__phone { font-size: 0.82rem; color: var(--teal-dark); margin-top: 4px; }
 .annuaire-empty {
   grid-column: 1 / -1;

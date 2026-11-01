@@ -26,6 +26,7 @@ class PagesController < ApplicationController
     @units_json = @poles.flat_map do |pole|
       pole.units.sort_by { |u| u.position.to_i }.map { |u| u.to_annuaire_json(pole) }
     end.to_json
+    @emergency_unit = Unit.find_by(slug: "urgences-psy-polaris")
   end
 
   def mes_droits

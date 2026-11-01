@@ -45,12 +45,25 @@
 
         <input type="search"
                class="annuaire-search-input"
-               placeholder="Rechercher une unité…"
+               placeholder="Nom ou besoin : Persée, bipolaire, alcool…"
                data-annuaire-target="searchInput"
                data-action="input->annuaire#filterSearch"
                autocomplete="off"
-               aria-label="Rechercher par nom">
+               aria-label="Rechercher une unité par son nom ou par un besoin">
       </div>
+    </div>
+
+    <%# ── Urgence : encadré affiché pour toute recherche ── %>
+    <div class="annuaire-emergency" data-annuaire-target="emergency" role="alert" hidden>
+      <strong>En cas d'urgence</strong>
+      <p>
+        Appelez le <a href="tel:15">15</a> (SAMU) ou le <a href="tel:3114">3114</a>
+        (prévention du suicide, 24h/24, gratuit).
+        <% if @emergency_unit&.phone.present? %>
+          Les <%= @emergency_unit.name %> vous accueillent aussi :
+          <a href="tel:<%= @emergency_unit.phone.delete(" ") %>"><%= @emergency_unit.phone %></a>.
+        <% end %>
+      </p>
     </div>
 
     <%# ── Grille (peuplée par Stimulus) ── %>
