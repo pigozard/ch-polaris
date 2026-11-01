@@ -36,6 +36,13 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     assert_includes response.body, "05 99 05 10 20"
   end
 
+  test "GET /patients n'a plus de carte Outil d'orientation, intégrée à l'annuaire" do
+    get patients_path
+    assert_not_includes response.body, "Outil d&#39;orientation"
+    assert_not_includes response.body, "Outil d'orientation"
+    assert_select "a.hub-card--live[href=?]", annuaire_path, text: /besoin/
+  end
+
   test "GET /patients relie la carte Mes droits" do
     get patients_path
     assert_select "a.hub-card--live[href=?]", mes_droits_path
