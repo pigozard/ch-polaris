@@ -4,7 +4,7 @@
 
 Site web du Centre Hospitalier Polaris — établissement public de psychiatrie adulte, pédopsychiatrique et addictologie.
 
-> Projet personnel : l'établissement, ses unités et ses données sont fictifs.
+> Projet personnel : l'établissement, ses unités et ses données sont fictifs. Un bandeau le rappelle en haut de chaque page (`shared/_demo_banner.html.erb`).
 
 ## Stack
 
