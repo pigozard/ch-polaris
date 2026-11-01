@@ -55,6 +55,15 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
 
   # ── Professionnels ────────────────────────────────────
 
+  test "les cartes À venir ne sont ni des liens ni atteignables au clavier" do
+    [patients_path, professionnels_path].each do |path|
+      get path
+      assert_select ".hub-card--soon", minimum: 1
+      assert_select "a.hub-card--soon", 0, "carte À venir en lien sur #{path}"
+      assert_select ".hub-card--soon[tabindex]", 0
+    end
+  end
+
   test "GET /professionnels n'a plus de carte Adresser un patient, intégrée à l'annuaire" do
     get professionnels_path
     assert_not_includes response.body, "Adresser un patient"
