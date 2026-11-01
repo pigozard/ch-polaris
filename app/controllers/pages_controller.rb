@@ -6,6 +6,7 @@ class PagesController < ApplicationController
     @news = News.recent
     @beds_count = Unit.hospitalization.sum(:capacity)
     @ambulatory_places_count = Unit.ambulatory.sum(:capacity)
+    @units_count = Unit.count
   end
 
   def patients

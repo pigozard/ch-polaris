@@ -19,6 +19,20 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     assert_select ".stat-num", "52"
   end
 
+  test "GET / affiche le nombre d'unités au lieu d'un effectif écrit en dur" do
+    get root_path
+    assert_select ".stat-label", "Unités de soins"
+    assert_select ".stat-num", Unit.count.to_s
+    assert_select ".stat-num", text: "650", count: 0
+  end
+
+  test "GET / place chaque libellé avant son chiffre dans la liste des chiffres clés" do
+    get root_path
+    assert_select ".stat-item" do |items|
+      items.each { |item| assert_equal "dt", item.element_children.first.name }
+    end
+  end
+
   # ── Hôpital ───────────────────────────────────────────
 
   test "GET /hopital affiche la date des actualités en français et un lien vers le détail" do

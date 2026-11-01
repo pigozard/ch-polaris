@@ -338,6 +338,8 @@ button:focus-visible {
   border-right: 1px solid var(--border);
 }
 .stat-item:last-child { border-right: none; }
+/* Dans le HTML, le libellé (dt) précède le chiffre (dd) ; visuellement, le chiffre reste au-dessus */
+.stat-item { display: flex; flex-direction: column-reverse; }
 .stat-num {
   display: block;
   font-family: var(--font-display);
@@ -345,6 +347,7 @@ button:focus-visible {
   font-weight: 400;
   color: var(--teal-dark);
   line-height: 1;
+  margin: 0;
 }
 .stat-label {
   display: block;

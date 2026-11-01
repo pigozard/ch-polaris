@@ -39,20 +39,20 @@
 <div class="stats-band">
   <dl class="stats-band-inner" aria-label="Chiffres clés de l'établissement">
     <div class="stat-item">
-      <dd class="stat-num"><%= @beds_count %></dd>
       <dt class="stat-label">Lits d'hospitalisation</dt>
+      <dd class="stat-num"><%= @beds_count %></dd>
     </div>
     <div class="stat-item">
-      <dd class="stat-num"><%= @ambulatory_places_count %></dd>
       <dt class="stat-label">Places ambulatoires</dt>
+      <dd class="stat-num"><%= @ambulatory_places_count %></dd>
     </div>
     <div class="stat-item">
-      <dd class="stat-num"><%= Pole.count %></dd>
       <dt class="stat-label">Pôles de soins</dt>
+      <dd class="stat-num"><%= @poles.size %></dd>
     </div>
     <div class="stat-item">
-      <dd class="stat-num">650</dd>
-      <dt class="stat-label">Professionnels</dt>
+      <dt class="stat-label">Unités de soins</dt>
+      <dd class="stat-num"><%= @units_count %></dd>
     </div>
   </dl>
 </div>
