@@ -30,10 +30,10 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
 
   test "GET /patients/mes-droits affiche le contact de la Maison des Usagers" do
     Unit.create!(pole: @pole, name: "Maison Boussole", unit_type: "users_house",
-                 phone: "05 99 05 10 20", email: "usagers@test.fr")
+                 phone: "05 36 49 05 20", email: "usagers@test.fr")
     get mes_droits_path
     assert_includes response.body, "Maison Boussole"
-    assert_includes response.body, "05 99 05 10 20"
+    assert_includes response.body, "05 36 49 05 20"
   end
 
   test "GET /patients n'a plus de carte Outil d'orientation, intégrée à l'annuaire" do
@@ -93,10 +93,10 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
 
   test "GET /patients/preparer-mon-sejour décrit l'arrivée par les urgences psy" do
     Unit.create!(pole: @pole, name: "Urgences Psy Polaris", slug: "urgences-psy-polaris",
-                 unit_type: "crisis_unit", phone: "05 99 05 10 12")
+                 unit_type: "crisis_unit", phone: "05 36 49 05 12")
     get preparer_mon_sejour_path
     assert_includes response.body, "Urgences Psy Polaris"
-    assert_includes response.body, "05 99 05 10 12"
+    assert_includes response.body, "05 36 49 05 12"
   end
 
   test "GET /patients/preparer-mon-sejour renvoie vers l'annuaire et le plan" do
