@@ -671,8 +671,11 @@ button:focus-visible {
   line-height: 1.9;
 }
 
-.footer-col h6 {
+/* h2 pour respecter l'ordre des titres ; le style reste celui d'un petit intertitre */
+.footer-heading {
+  font-family: var(--font-body);
   font-size: 0.63rem;
+  line-height: 1.6;
   font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;

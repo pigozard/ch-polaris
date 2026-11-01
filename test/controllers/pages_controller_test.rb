@@ -33,6 +33,14 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test "GET / enchaîne les niveaux de titres sans en sauter" do
+    get root_path
+    levels = css_select("h1, h2, h3, h4, h5, h6").map { |h| h.name[1].to_i }
+    levels.each_cons(2) do |previous, current|
+      assert_operator current, :<=, previous + 1, "saut de titre h#{previous} → h#{current}"
+    end
+  end
+
   # ── Hôpital ───────────────────────────────────────────
 
   test "GET /hopital affiche la date des actualités en français et un lien vers le détail" do
