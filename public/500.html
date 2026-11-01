@@ -1,66 +1,53 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-  <title>We're sorry, but something went wrong (500)</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Une erreur est survenue — CH Polaris</title>
+  <!-- Page statique : elle doit s'afficher même si l'application Rails est en panne
+       (aucune dépendance externe, couleurs reprises de polaris.css) -->
   <style>
-  .rails-default-error-page {
-    background-color: #EFEFEF;
-    color: #2E2F30;
-    text-align: center;
-    font-family: arial, sans-serif;
-    margin: 0;
-  }
-
-  .rails-default-error-page div.dialog {
-    width: 95%;
-    max-width: 33em;
-    margin: 4em auto 0;
-  }
-
-  .rails-default-error-page div.dialog > div {
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #BBB;
-    border-top: #B00100 solid 4px;
-    border-top-left-radius: 9px;
-    border-top-right-radius: 9px;
-    background-color: white;
-    padding: 7px 12% 0;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  }
-
-  .rails-default-error-page h1 {
-    font-size: 100%;
-    color: #730E15;
-    line-height: 1.5em;
-  }
-
-  .rails-default-error-page div.dialog > p {
-    margin: 0 0 1em;
-    padding: 1em;
-    background-color: #F7F7F7;
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #999;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-    border-top-color: #DADADA;
-    color: #666;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  }
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; background: #f5f7f6; color: #374151; font: 16px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif; }
+    .demo-banner { background: #fef3c7; border-bottom: 1px solid #fde68a; color: #78350f; font-size: 0.8rem; text-align: center; padding: 8px 16px; margin: 0; }
+    main { max-width: 640px; margin: 0 auto; padding: 64px 24px; }
+    .brand { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #1f5e5c; margin: 0 0 12px; }
+    h1 { font-family: Georgia, "Times New Roman", serif; font-weight: 400; font-size: 2.4rem; line-height: 1.15; color: #111827; margin: 0 0 16px; }
+    .code { color: #4b5563; font-size: 0.9rem; margin: 0 0 24px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 28px 0 40px; }
+    .btn { display: inline-block; padding: 11px 20px; border-radius: 8px; font-weight: 600; text-decoration: none; }
+    .btn-primary { background: #1f5e5c; color: #ffffff; }
+    .btn-secondary { border: 1.5px solid #1f5e5c; color: #1f5e5c; }
+    .btn:focus-visible { outline: 3px solid #2e7f7d; outline-offset: 3px; }
+    .urgence { background: #fef2f2; border: 2px solid #dc2626; border-radius: 10px; padding: 16px 20px; color: #7f1d1d; }
+    .urgence p { margin: 6px 0 0; }
+    .urgence a { color: #7f1d1d; font-weight: 700; }
   </style>
 </head>
+<body>
+  <p class="demo-banner">
+    <strong>Site fictif de démonstration</strong> : établissement, unités, contacts et contenus imaginaires.
+    Ce site n’est pas un service public et ne délivre aucun soin ni conseil médical.
+  </p>
 
-<body class="rails-default-error-page">
-  <!-- This file lives in public/500.html -->
-  <div class="dialog">
-    <div>
-      <h1>We're sorry, but something went wrong.</h1>
+  <main>
+    <p class="brand">Centre Hospitalier Polaris</p>
+    <h1>Une erreur est survenue</h1>
+    <p>Le site rencontre un problème technique. Nous vous invitons à réessayer dans quelques instants.</p>
+    <p class="code">Code d’erreur : 500</p>
+
+    <div class="actions">
+      <a class="btn btn-primary" href="/">Retour à l’accueil</a>
+      <a class="btn btn-secondary" href="/annuaire">Consulter l’annuaire</a>
     </div>
-    <p>If you are the application owner check the logs for more information.</p>
-  </div>
+
+    <div class="urgence" role="note" aria-label="Numéros d'urgence">
+      <strong>En cas d’urgence</strong>
+      <p>
+        Appelez le <a href="tel:15">15</a> (SAMU) ou le <a href="tel:3114">3114</a>
+        (prévention du suicide, 24h/24, gratuit).
+      </p>
+    </div>
+  </main>
 </body>
 </html>
