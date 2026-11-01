@@ -155,6 +155,14 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     assert_includes response.body, "Périnatalité"
   end
 
+  test "GET /annuaire explique la recherche par nom ou par besoin, sans exemple dans le champ" do
+    get annuaire_path
+    assert_select ".hub-hero p", /besoin/
+    assert_select "label[for=annuaire-search]", /Rechercher une unité/
+    assert_select "input#annuaire-search[aria-describedby=annuaire-search-help]:not([placeholder])"
+    assert_select "#annuaire-search-help", /bipolaire/
+  end
+
   test "GET /annuaire prépare un seul encadré d'urgence pour toutes les recherches" do
     get annuaire_path
     assert_select "[data-annuaire-target=emergency]", /3114/

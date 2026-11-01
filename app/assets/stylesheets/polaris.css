@@ -1225,7 +1225,13 @@ a.hopital-contact-value:hover { color: var(--teal-dark); }
   color: var(--ink);
 }
 .annuaire-type-select:focus,
-.annuaire-search-input:focus { outline: none; border-color: var(--teal); }
+.annuaire-search-input:focus { outline: 3px solid var(--teal); outline-offset: 2px; border-color: var(--teal); }
+
+/* Recherche par nom ou par besoin : premier élément de la page, pleine largeur */
+.annuaire-search { margin-bottom: 24px; }
+.annuaire-search-label { display: block; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
+.annuaire-search .annuaire-search-input { width: 100%; padding: 12px 16px; font-size: 1rem; }
+.annuaire-search-help { font-size: 0.85rem; color: var(--muted); margin: 8px 0 0; }
 
 /* ── Grille de cartes ── */
 .annuaire-grid {

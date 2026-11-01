@@ -4,7 +4,10 @@
   <div class="container">
     <span class="label">Répertoire</span>
     <h1 id="annuaire-title">Annuaire <span class="hub-hero-accent">des unités</span></h1>
-    <p>Retrouvez les coordonnées, horaires et informations pratiques de toutes les unités du CH Polaris.</p>
+    <p>
+      Trouvez la bonne unité en la cherchant par son nom ou par votre besoin, avec vos propres mots.
+      Vous retrouverez ses coordonnées, ses horaires et ses informations pratiques.
+    </p>
   </div>
 </section>
 
@@ -14,6 +17,22 @@
      data-annuaire-units-value="<%= json_escape(@units_json) %>">
 
   <section class="section section--no-border">
+
+    <%# ── Recherche par nom ou par besoin ── %>
+    <div class="annuaire-search">
+      <label class="annuaire-search-label" for="annuaire-search">Rechercher une unité</label>
+      <input type="search"
+             id="annuaire-search"
+             class="annuaire-search-input"
+             aria-describedby="annuaire-search-help"
+             data-annuaire-target="searchInput"
+             data-action="input->annuaire#filterSearch"
+             autocomplete="off">
+      <p class="annuaire-search-help" id="annuaire-search-help">
+        Tapez le nom d'une unité (Persée, CMP…) ou votre besoin avec vos mots
+        (bipolaire, alcool, adolescent, grossesse…).
+      </p>
+    </div>
 
     <%# ── Filtres ── %>
     <div class="annuaire-filters">
@@ -43,14 +62,6 @@
             <option value="<%= type %>"><%= label %></option>
           <% end %>
         </select>
-
-        <input type="search"
-               class="annuaire-search-input"
-               placeholder="Nom ou besoin : Persée, bipolaire, alcool…"
-               data-annuaire-target="searchInput"
-               data-action="input->annuaire#filterSearch"
-               autocomplete="off"
-               aria-label="Rechercher une unité par son nom ou par un besoin">
       </div>
     </div>
 
