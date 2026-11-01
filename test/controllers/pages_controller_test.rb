@@ -100,6 +100,13 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     assert_select "a.hub-card--live[href=?]", carte_path
   end
 
+  # ── Plan ──────────────────────────────────────────────
+
+  test "GET /carte donne une étiquette visible au champ de recherche" do
+    get carte_path
+    assert_select "label[for=carte-search]", /Rechercher sur le plan/
+  end
+
   # ── Préparer mon séjour ───────────────────────────────
 
   test "GET /patients/preparer-mon-sejour affiche le parking de chaque unité d'hospitalisation" do
