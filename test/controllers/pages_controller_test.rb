@@ -55,6 +55,12 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
 
   # ── Professionnels ────────────────────────────────────
 
+  test "GET /professionnels n'a plus de carte Adresser un patient, intégrée à l'annuaire" do
+    get professionnels_path
+    assert_not_includes response.body, "Adresser un patient"
+    assert_select "a.hub-card--live[href=?]", annuaire_path, text: /besoin/
+  end
+
   test "GET /professionnels relie la carte de l'établissement au plan" do
     get professionnels_path
     assert_select "a.hub-card--live[href=?]", carte_path
