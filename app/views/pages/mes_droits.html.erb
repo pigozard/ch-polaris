@@ -240,11 +240,11 @@
           </p>
           <% if @users_house.phone.present? %>
             <p class="sejour-phone">
-              📞 <a href="tel:<%= @users_house.phone.delete(" ") %>"><%= @users_house.phone %></a>
+              <i class="fa-solid fa-phone" aria-hidden="true"></i> <a href="tel:<%= @users_house.phone.delete(" ") %>"><%= @users_house.phone %></a>
             </p>
           <% end %>
           <% if @users_house.email.present? %>
-            <p class="sejour-phone">✉️ <%= mail_to @users_house.email %></p>
+            <p class="sejour-phone"><i class="fa-solid fa-envelope" aria-hidden="true"></i> <%= mail_to @users_house.email %></p>
           <% end %>
         </div>
       <% end %>
@@ -282,7 +282,7 @@
   <%# ═══════════ URGENCE ═══════════ %>
   <section class="section">
     <div class="hub-urgence" role="complementary" aria-label="Numéros d’urgence">
-      <span aria-hidden="true" style="font-size:1.4rem;">🚨</span>
+      <span aria-hidden="true" style="font-size:1.4rem;"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i></span>
       <div>
         <strong>En cas de crise ou d’urgence psychiatrique</strong>
         <div class="hub-urgence-num">

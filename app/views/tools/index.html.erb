@@ -1,14 +1,14 @@
-<% content_for :title, "Outils bien-être" %>
+<% content_for :title, "Outils" %>
 <% accent = "#2563EB" %> <%# bleu des portes de l'accueil : 5.17:1 sur blanc AA %>
 
 <%# ═══════════ HERO ═══════════ %>
 <section class="hub-hero" style="--accent: <%= accent %>;" aria-labelledby="tools-title">
   <div class="container">
-    <span class="label">Bien-être</span>
-    <h1 id="tools-title">Outils <span class="hub-hero-accent">bien-être</span></h1>
+    <span class="label">Espace patients</span>
+    <h1 id="tools-title">Outils</h1>
     <p>
       Des exercices simples, à faire chez soi, pour souffler et apaiser le stress.
-      Ce sont des outils de bien-être : ils ne remplacent pas un avis médical.
+      Ils ne remplacent pas un avis médical.
     </p>
     <%= link_to "← Retour à l'espace patients", patients_path, class: "hub-switch-link" %>
   </div>
@@ -21,7 +21,7 @@
 
       <%# ── LIVE : Cohérence cardiaque ── %>
       <%= link_to cardiac_coherence_tool_path, class: "hub-card hub-card--live" do %>
-        <span class="hub-card-icon" aria-hidden="true">🫁</span>
+        <span class="hub-card-icon" aria-hidden="true"><i class="fa-solid fa-lungs" aria-hidden="true"></i></span>
         <span class="hub-card-title">Cohérence cardiaque</span>
         <span class="hub-card-desc">Quelques minutes pour souffler : respirez avec Clara, au rythme de 6 respirations par minute.</span>
         <span class="hub-card-cta">Respirer avec Clara →</span>

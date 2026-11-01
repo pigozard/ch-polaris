@@ -295,7 +295,7 @@ button:focus-visible {
   gap: 10px;
   margin-bottom: 12px;
 }
-.hero-door-icon { font-size: 1.5rem; line-height: 1; }
+.hero-door-icon { font-size: 1.5rem; line-height: 1; color: var(--door-accent); }
 .hero-door-kicker {
   font-size: 0.7rem;
   font-weight: 600;
@@ -465,7 +465,7 @@ button:focus-visible {
   justify-content: center;
   gap: 14px;
 }
-.tab-visual-icon { font-size: 3rem; }
+.tab-visual-icon { font-size: 3rem; color: var(--teal); }
 .tab-visual-label {
   font-size: 0.68rem;
   letter-spacing: 0.1em;
@@ -778,7 +778,7 @@ button:focus-visible {
   cursor: default;
   pointer-events: none;
 }
-.hub-card-icon { font-size: 1.6rem; margin-bottom: 14px; }
+.hub-card-icon { font-size: 1.6rem; margin-bottom: 14px; color: var(--accent, var(--teal)); }
 .hub-card-title {
   font-weight: 600;
   font-size: 1.05rem;
@@ -1803,3 +1803,8 @@ a.hopital-contact-value:hover { color: var(--teal-dark); }
 @media (prefers-reduced-motion: reduce) {
   .breath-phase, .breath-dot, .breath-settings, .breath-arc { transition: none; }
 }
+
+/* ── ICÔNES (Font Awesome, décoratives : aria-hidden) ── */
+.hub-urgence .fa-triangle-exclamation { color: #dc2626; }
+.icon-allowed   { color: #15803d; }
+.icon-forbidden { color: #b91c1c; }

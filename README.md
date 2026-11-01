@@ -35,7 +35,7 @@ Site web du Centre Hospitalier Polaris — établissement public de psychiatrie 
 | Actualités | `/actualites` | Liste et détail des actualités publiées |
 | Préparer mon séjour | `/patients/preparer-mon-sejour` | Admission, documents, accès et stationnement par unité |
 | Mes droits | `/patients/mes-droits` | Droits des patients et soins sans consentement, sans jargon |
-| Outils bien-être | `/patients/outils` | Liste des exercices à faire chez soi |
+| Outils | `/patients/outils` | Liste des exercices à faire chez soi |
 | Cohérence cardiaque | `/patients/outils/coherence-cardiaque` | Respiration guidée « Respirez avec Clara » |
 
 ### Annuaire des unités (`/annuaire`)
@@ -95,7 +95,7 @@ Ajouter un mot-clé ou un besoin : modifier ce fichier (mots sans accents), puis
 - Questions dépliables avec `<details>` : fonctionne au clavier et sans JavaScript
 - Droits de tout patient, soins sans consentement, contacts (Maison des Usagers lue en base, recours extérieurs)
 
-### Outils bien-être (`/patients/outils`)
+### Outils (`/patients/outils`)
 
 Chaque outil est une action de `ToolsController`, avec sa propre vue dans `app/views/tools/`.
 
@@ -117,7 +117,7 @@ Ajouter un outil : une route sous `patients/outils/…`, une action dans `ToolsC
 | `PagesController` | Pages éditoriales (accueil, hubs, annuaire, plan, séjour, droits) et widget CMP |
 | `EtpProgramsController` | Catalogue ETP (`index`, `show`) |
 | `NewsController` | Actualités (`index`, `show` par slug) |
-| `ToolsController` | Outils bien-être pour les patients |
+| `ToolsController` | Outils pour les patients |
 
 | Modèle sans table | Rôle |
 |-------------------|------|

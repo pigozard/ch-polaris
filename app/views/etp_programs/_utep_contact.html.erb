@@ -9,7 +9,7 @@
     </p>
     <ul class="etp-contact-list">
       <% if utep.phone.present? %>
-        <li>📞 <a href="tel:<%= utep.phone.delete(" ") %>"><%= utep.phone %></a></li>
+        <li><i class="fa-solid fa-phone" aria-hidden="true"></i> <a href="tel:<%= utep.phone.delete(" ") %>"><%= utep.phone %></a></li>
       <% end %>
     </ul>
     <% if utep.email.present? %>

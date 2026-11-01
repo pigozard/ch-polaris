@@ -193,8 +193,8 @@ export default class extends Controller {
         <h3 class="annuaire-panel__section-title">Informations pratiques</h3>
         ${reg.max_visitors   ? `<p><strong>Visiteurs maximum&nbsp;:</strong> ${this.esc(String(reg.max_visitors))}</p>` : ""}
         ${reg.visiting_notes ? `<p class="annuaire-panel__reg-note">${this.esc(reg.visiting_notes)}</p>`               : ""}
-        ${allowed.length     ? `<p class="annuaire-panel__list-label">✅ Objets autorisés</p>${this.listHTML(allowed)}`   : ""}
-        ${forbidden.length   ? `<p class="annuaire-panel__list-label">🚫 Objets interdits</p>${this.listHTML(forbidden)}` : ""}
+        ${allowed.length     ? `<p class="annuaire-panel__list-label"><i class="fa-solid fa-circle-check icon-allowed" aria-hidden="true"></i> Objets autorisés</p>${this.listHTML(allowed)}`   : ""}
+        ${forbidden.length   ? `<p class="annuaire-panel__list-label"><i class="fa-solid fa-ban icon-forbidden" aria-hidden="true"></i> Objets interdits</p>${this.listHTML(forbidden)}` : ""}
         ${reg.access_info    ? `<p><strong>Accès&nbsp;:</strong> ${this.esc(reg.access_info)}</p>`                     : ""}
       </div>` : ""
 
@@ -211,10 +211,10 @@ export default class extends Controller {
       ${unit.description ? `<div class="annuaire-panel__section"><p class="annuaire-panel__desc">${this.esc(unit.description)}</p></div>` : ""}
 
       <div class="annuaire-panel__section">
-        ${unit.phone   ? `<div class="annuaire-panel__contact">📞 <a href="tel:${this.esc(unit.phone.replace(/\s/g,""))}">${this.esc(unit.phone)}</a></div>` : ""}
-        ${unit.email   ? `<div class="annuaire-panel__contact">✉️ <a href="mailto:${this.esc(unit.email)}">${this.esc(unit.email)}</a></div>`               : ""}
-        ${unit.address ? `<div class="annuaire-panel__contact">📍 ${this.esc(unit.address)}</div>`                                                          : ""}
-        ${unit.pmr     ? `<div class="annuaire-panel__contact annuaire-panel__pmr">♿ Accessible PMR</div>`                                                  : ""}
+        ${unit.phone   ? `<div class="annuaire-panel__contact"><i class="fa-solid fa-phone" aria-hidden="true"></i> <a href="tel:${this.esc(unit.phone.replace(/\s/g,""))}">${this.esc(unit.phone)}</a></div>` : ""}
+        ${unit.email   ? `<div class="annuaire-panel__contact"><i class="fa-solid fa-envelope" aria-hidden="true"></i> <a href="mailto:${this.esc(unit.email)}">${this.esc(unit.email)}</a></div>`               : ""}
+        ${unit.address ? `<div class="annuaire-panel__contact"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> ${this.esc(unit.address)}</div>`                                                          : ""}
+        ${unit.pmr     ? `<div class="annuaire-panel__contact annuaire-panel__pmr"><i class="fa-solid fa-wheelchair" aria-hidden="true"></i> Accessible PMR</div>`                                                  : ""}
         ${unit.parking ? `<div class="annuaire-panel__contact">🅿️ ${this.esc(unit.parking)}</div>`                                                         : ""}
       </div>
 

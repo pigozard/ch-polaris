@@ -6,13 +6,14 @@ class ToolsControllerTest < ActionDispatch::IntegrationTest
   test "GET /patients/outils liste la cohérence cardiaque" do
     get tools_path
     assert_response :success
-    assert_select "h1", /Outils/
+    assert_select "h1", "Outils"
     assert_select "a.hub-card--live[href=?]", cardiac_coherence_tool_path
   end
 
-  test "GET /patients relie la carte Outils bien-être" do
+  test "GET /patients relie la carte Outils" do
     get patients_path
-    assert_select "a.hub-card--live[href=?]", tools_path
+    assert_select "a.hub-card--live[href=?]", tools_path, text: /Outils/
+    assert_not_includes response.body, "Outils bien-être"
   end
 
   # ── Cohérence cardiaque ───────────────────────────────

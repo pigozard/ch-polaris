@@ -19,21 +19,21 @@
         </span>
         <% if cmp.phone.present? %>
           <div class="cmp-detail">
-            📞 <a href="tel:<%= cmp.phone.gsub(/\s/, "") %>"><%= cmp.phone %></a>
+            <i class="fa-solid fa-phone" aria-hidden="true"></i> <a href="tel:<%= cmp.phone.gsub(/\s/, "") %>"><%= cmp.phone %></a>
           </div>
         <% end %>
         <% if cmp.email.present? %>
           <div class="cmp-detail">
-            ✉️ <a href="mailto:<%= cmp.email %>"><%= cmp.email %></a>
+            <i class="fa-solid fa-envelope" aria-hidden="true"></i> <a href="mailto:<%= cmp.email %>"><%= cmp.email %></a>
           </div>
         <% end %>
         <% if cmp.address.present? %>
-          <div class="cmp-detail">📍 <%= cmp.address %></div>
+          <div class="cmp-detail"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> <%= cmp.address %></div>
         <% end %>
         <% consultations = cmp.schedules.select { |s| s.schedule_type == "consultation" } %>
         <% if consultations.any? %>
           <div class="cmp-detail">
-            🕐 <%= consultations.map { |s|
+            <i class="fa-solid fa-clock" aria-hidden="true"></i> <%= consultations.map { |s|
               "#{s.opens_at&.strftime("%H:%M")}–#{s.closes_at&.strftime("%H:%M")}" \
               "#{" (#{s.note})" if s.note.present?}"
             }.join(", ") %>

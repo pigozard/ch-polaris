@@ -21,7 +21,7 @@ class PageTitlesTest < ActionDispatch::IntegrationTest
       carte_path => "Plan de l'établissement — CH Polaris",
       preparer_mon_sejour_path => "Préparer mon séjour — CH Polaris",
       mes_droits_path => "Mes droits en psychiatrie — CH Polaris",
-      tools_path => "Outils bien-être — CH Polaris",
+      tools_path => "Outils — CH Polaris",
       cardiac_coherence_tool_path => "Cohérence cardiaque — CH Polaris",
       etp_programs_path => "Programmes d'éducation thérapeutique — CH Polaris",
       etp_program_path(@program) => "Vivre avec un trouble bipolaire — CH Polaris",

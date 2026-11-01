@@ -19,7 +19,7 @@
 
     <!-- Bandeau urgence -->
     <div class="hub-urgence" role="complementary" aria-label="Numéros d'urgence">
-      <span aria-hidden="true" style="font-size:1.4rem;">🚨</span>
+      <span aria-hidden="true" style="font-size:1.4rem;"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i></span>
       <div>
         <strong>En cas de crise ou d'urgence psychiatrique</strong>
         <div class="hub-urgence-num">
@@ -32,7 +32,7 @@
 
       <%# ── LIVE : Trouver mon CMP ── %>
       <div class="hub-card hub-card--live hub-card--cmp">
-        <span class="hub-card-icon" aria-hidden="true">📍</span>
+        <span class="hub-card-icon" aria-hidden="true"><i class="fa-solid fa-location-dot" aria-hidden="true"></i></span>
         <span class="hub-card-title">Trouver mon CMP</span>
         <span class="hub-card-desc">Choisissez le public concerné et saisissez votre code postal pour trouver votre centre médico-psychologique de secteur.</span>
 
@@ -60,7 +60,7 @@
 
       <%# ── LIVE : Annuaire des unités ── %>
       <%= link_to annuaire_path, class: "hub-card hub-card--live" do %>
-        <span class="hub-card-icon" aria-hidden="true">🗂️</span>
+        <span class="hub-card-icon" aria-hidden="true"><i class="fa-solid fa-address-book" aria-hidden="true"></i></span>
         <span class="hub-card-title">Annuaire des unités</span>
         <span class="hub-card-desc">Cherchez une unité par son nom ou par votre besoin (bipolaire, alcool, adolescent…) : coordonnées, horaires et règlement de visite.</span>
         <span class="hub-card-cta">Consulter l'annuaire →</span>
@@ -68,23 +68,23 @@
 
       <%# ── LIVE : Programmes ETP ── %>
       <%= link_to etp_programs_path, class: "hub-card hub-card--live" do %>
-        <span class="hub-card-icon" aria-hidden="true">📚</span>
+        <span class="hub-card-icon" aria-hidden="true"><i class="fa-solid fa-book-open" aria-hidden="true"></i></span>
         <span class="hub-card-title">Programmes d'éducation thérapeutique</span>
         <span class="hub-card-desc">Mieux comprendre sa maladie et son traitement : découvrez les ateliers proposés et les prochaines sessions.</span>
         <span class="hub-card-cta">Voir les programmes →</span>
       <% end %>
 
-      <%# ── LIVE : Outils bien-être ── %>
+      <%# ── LIVE : Outils ── %>
       <%= link_to tools_path, class: "hub-card hub-card--live" do %>
-        <span class="hub-card-icon" aria-hidden="true">🧰</span>
-        <span class="hub-card-title">Outils bien-être</span>
+        <span class="hub-card-icon" aria-hidden="true"><i class="fa-solid fa-spa" aria-hidden="true"></i></span>
+        <span class="hub-card-title">Outils</span>
         <span class="hub-card-desc">Des exercices simples à faire chez soi pour souffler et apaiser le stress, comme la cohérence cardiaque.</span>
         <span class="hub-card-cta">Découvrir les outils →</span>
       <% end %>
 
       <%# ── LIVE : Préparer mon séjour ── %>
       <%= link_to preparer_mon_sejour_path, class: "hub-card hub-card--live" do %>
-        <span class="hub-card-icon" aria-hidden="true">🧳</span>
+        <span class="hub-card-icon" aria-hidden="true"><i class="fa-solid fa-suitcase" aria-hidden="true"></i></span>
         <span class="hub-card-title">Préparer mon séjour</span>
         <span class="hub-card-desc">Le jour de l'admission, les documents à apporter, l'accès et le stationnement pour chaque unité.</span>
         <span class="hub-card-cta">Préparer mon arrivée →</span>
@@ -93,7 +93,7 @@
       <%# ── LIVE quand la FAQ sera codée (semaine 6) ── %>
       <div class="hub-card hub-card--soon">
         <span class="hub-badge">À venir</span>
-        <span class="hub-card-icon" aria-hidden="true">💬</span>
+        <span class="hub-card-icon" aria-hidden="true"><i class="fa-solid fa-comments" aria-hidden="true"></i></span>
         <span class="hub-card-title">Questions fréquentes</span>
         <span class="hub-card-desc">Première consultation, hospitalisation sous contrainte, droits : les réponses aux questions que tout le monde se pose.</span>
         <span class="hub-card-cta">Bientôt disponible</span>
@@ -101,7 +101,7 @@
 
       <%# ── LIVE : Mes droits en psychiatrie ── %>
       <%= link_to mes_droits_path, class: "hub-card hub-card--live" do %>
-        <span class="hub-card-icon" aria-hidden="true">⚖️</span>
+        <span class="hub-card-icon" aria-hidden="true"><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i></span>
         <span class="hub-card-title">Mes droits en psychiatrie</span>
         <span class="hub-card-desc">Information, consentement, recours, personne de confiance : vos droits expliqués simplement.</span>
         <span class="hub-card-cta">Connaître mes droits →</span>
