@@ -57,6 +57,8 @@ class Unit < ApplicationRecord
 
   # Unités où le patient séjourne (hors urgences, consultations et équipes mobiles)
   HOSPITALIZATION_TYPES = %w[ward_open ward_closed long_stay perinatal].freeze
+  # Unités de soins à temps partiel, avec des places (les CMP sont des consultations, sans places)
+  AMBULATORY_TYPES = %w[hdj cattp sessad camsp csapa].freeze
 
   def self.type_label(type)
     UNIT_TYPE_LABELS.fetch(type, type)
@@ -114,6 +116,7 @@ class Unit < ApplicationRecord
   scope :ordered, -> { order(:position) }
   scope :by_type, ->(type) { where(unit_type: type) }
   scope :hospitalization, -> { where(unit_type: HOSPITALIZATION_TYPES) }
+  scope :ambulatory, -> { where(unit_type: AMBULATORY_TYPES) }
 
   private
 

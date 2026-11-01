@@ -8,6 +8,17 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     @sector = Sector.create!(unit: @unit, postal_code: "76100", city: "Rouen")
   end
 
+  # ── Accueil ───────────────────────────────────────────
+
+  test "GET / calcule les lits et les places ambulatoires depuis la base" do
+    Unit.create!(pole: @pole, name: "Unité Test", unit_type: "ward_open", capacity: 21)
+    Unit.create!(pole: @pole, name: "HDJ Test", unit_type: "hdj", capacity: 40)
+    Unit.create!(pole: @pole, name: "CATTP Test", unit_type: "cattp", capacity: 12)
+    get root_path
+    assert_select ".stat-num", "21"
+    assert_select ".stat-num", "52"
+  end
+
   # ── Hôpital ───────────────────────────────────────────
 
   test "GET /hopital affiche la date des actualités en français et un lien vers le détail" do

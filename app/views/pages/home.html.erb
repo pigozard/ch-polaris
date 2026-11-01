@@ -39,11 +39,11 @@
 <div class="stats-band">
   <dl class="stats-band-inner" aria-label="Chiffres clés de l'établissement">
     <div class="stat-item">
-      <dd class="stat-num"><%= Unit.where(unit_type: %w[ward_open ward_closed long_stay]).sum(:capacity) %></dd>
+      <dd class="stat-num"><%= @beds_count %></dd>
       <dt class="stat-label">Lits d'hospitalisation</dt>
     </div>
     <div class="stat-item">
-      <dd class="stat-num">150</dd>
+      <dd class="stat-num"><%= @ambulatory_places_count %></dd>
       <dt class="stat-label">Places ambulatoires</dt>
     </div>
     <div class="stat-item">

@@ -4,6 +4,8 @@ class PagesController < ApplicationController
   def home
     @poles = Pole.ordered
     @news = News.recent
+    @beds_count = Unit.hospitalization.sum(:capacity)
+    @ambulatory_places_count = Unit.ambulatory.sum(:capacity)
   end
 
   def patients
