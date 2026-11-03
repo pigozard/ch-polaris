@@ -67,6 +67,15 @@ button:focus-visible {
 .demo-banner p { margin: 0; }
 
 /* ── LAYOUT ── */
+/* Pages de lecture (séjour, droits, outils) : sections plus resserrées que sur l'accueil (88px → 48px) */
+.page-reading .section { padding: 48px 0; }
+.page-reading .section:first-child { padding-top: 40px; }
+/* Le bandeau d'urgence final suit directement le contenu, sans trait ni grand vide */
+.page-reading .section:last-child:not(:first-child) { padding-top: 0; border-top: none; }
+.page-reading .section-title + p { margin-top: 12px; }
+/* Liens du texte aux couleurs du site (au lieu du bleu Bootstrap) */
+.page-reading p a:not([class]) { color: var(--teal-dark); font-weight: 600; }
+
 .container {
   max-width: 1100px;
   margin: 0 auto;
@@ -1636,14 +1645,7 @@ a.hopital-contact-value:hover { color: var(--teal-dark); }
 /* ═══════════════════════════════════════
    PRÉPARER MON SÉJOUR  (/patients/preparer-mon-sejour)
    ═══════════════════════════════════════ */
-/* Page de lecture : sections plus resserrées que sur l'accueil (88px → 48px) */
-.sejour .section { padding: 48px 0; }
-.sejour .section:first-child { padding-top: 40px; }
-/* Le bandeau d'urgence suit directement le contenu, sans trait ni grand vide */
-.sejour .section:last-child { padding-top: 0; border-top: none; }
-.sejour .section-title + p { margin-top: 12px; }
-/* Liens du texte aux couleurs du site (au lieu du bleu Bootstrap) */
-.sejour p a:not([class]) { color: var(--teal-dark); font-weight: 600; }
+
 .sejour-paths {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
