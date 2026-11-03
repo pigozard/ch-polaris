@@ -60,6 +60,12 @@ class Unit < ApplicationRecord
   # Unités de soins à temps partiel, avec des places (les CMP sont des consultations, sans places)
   AMBULATORY_TYPES = %w[hdj cattp sessad camsp csapa].freeze
 
+  # « Parking P1 — accès par l'entrée principale » → ["Parking P1", "Accès par l'entrée principale"]
+  def self.split_parking_info(info)
+    name, access = info.to_s.split(" — ", 2)
+    [name, access&.upcase_first]
+  end
+
   def self.type_label(type)
     UNIT_TYPE_LABELS.fetch(type, type)
   end

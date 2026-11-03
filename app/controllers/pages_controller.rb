@@ -37,7 +37,10 @@ class PagesController < ApplicationController
   end
 
   def preparer_mon_sejour
-    @units = Unit.hospitalization.includes(:pole).order(:name)
+    units = Unit.hospitalization.order(:name)
+    # { "Parking P1 — accès par l'entrée principale" => [unités…], … }, unités sans parking en dernier
+    @parkings = units.group_by(&:parking_info).sort_by { |info, _| info.presence || "~" }
+    @all_pmr_accessible = units.all?(&:pmr_accessible?)
     @emergency_unit = Unit.find_by(slug: "urgences-psy-polaris")
   end
 

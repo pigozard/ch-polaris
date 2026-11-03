@@ -85,9 +85,9 @@ Ajouter un mot-clé ou un besoin : modifier ce fichier (mots sans accents), puis
 
 ### Préparer mon séjour (`/patients/preparer-mon-sejour`)
 
-- Deux parcours d'admission : hospitalisation programmée (bureau des entrées) ou arrivée par les urgences psychiatriques (admission faite sur place)
-- Documents et affaires à apporter ; renvoi vers l'annuaire pour le règlement propre à chaque unité
-- Tableau stationnement / entrée / accès PMR généré depuis la base (scope `Unit.hospitalization`)
+- Logigramme de l'admission (HTML/CSS, lisible par les lecteurs d'écran) : deux entrées, hospitalisation programmée (bureau des entrées) ou arrivée par les urgences psychiatriques (admission faite sur place), puis trois étapes communes numérotées
+- Documents et affaires à apporter en check-lists illustrées ; renvoi vers l'annuaire pour le règlement propre à chaque unité
+- Une carte par parking avec ses unités, générée depuis la base (scope `Unit.hospitalization`, regroupement par `parking_info`) ; accès PMR signalé
 
 ### Mes droits en psychiatrie (`/patients/mes-droits`)
 

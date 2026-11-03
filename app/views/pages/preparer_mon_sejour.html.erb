@@ -126,28 +126,35 @@
       <%= link_to "Voir le plan de l'établissement →", carte_path %>
     </p>
 
-    <div class="sejour-table-wrap">
-      <table class="sejour-table">
-        <caption class="visually-hidden">Stationnement, entrée et accessibilité par unité d'hospitalisation</caption>
-        <thead>
-          <tr>
-            <th scope="col">Unité</th>
-            <th scope="col">Pôle</th>
-            <th scope="col">Stationnement et entrée</th>
-            <th scope="col">Accès PMR</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @units.each do |unit| %>
-            <tr>
-              <th scope="row"><%= unit.name %></th>
-              <td><%= unit.pole.name %></td>
-              <td><%= unit.parking_info.presence || "Renseignez-vous auprès de l'unité" %></td>
-              <td><%= unit.pmr_accessible? ? "Oui" : "Non" %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+    <% if @all_pmr_accessible %>
+      <p class="sejour-pmr">
+        <i class="fa-solid fa-wheelchair" aria-hidden="true"></i>
+        Toutes les unités d'hospitalisation sont accessibles aux personnes à mobilité réduite.
+      </p>
+    <% end %>
+
+    <%# Une carte par parking : on cherche son unité, on trouve son parking et son entrée %>
+    <div class="sejour-parkings">
+      <% @parkings.each do |parking_info, units| %>
+        <% name, access = Unit.split_parking_info(parking_info) %>
+        <section class="sejour-parking" aria-label="<%= name.presence || "Stationnement à confirmer" %>">
+          <h3 class="sejour-parking-name">
+            <i class="fa-solid fa-square-parking" aria-hidden="true"></i>
+            <%= name.presence || "Stationnement à confirmer" %>
+          </h3>
+          <p class="sejour-parking-access"><%= access.presence || "Renseignez-vous auprès de l'unité" %></p>
+          <ul class="sejour-parking-units">
+            <% units.each do |unit| %>
+              <li>
+                <%= unit.name %>
+                <% unless unit.pmr_accessible? %>
+                  <span class="sejour-parking-no-pmr">(non accessible PMR)</span>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+        </section>
+      <% end %>
     </div>
   </section>
 

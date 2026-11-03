@@ -117,13 +117,33 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
 
   # ── Préparer mon séjour ───────────────────────────────
 
-  test "GET /patients/preparer-mon-sejour affiche le parking de chaque unité d'hospitalisation" do
-    Unit.create!(pole: @pole, name: "Unité Véga", unit_type: "ward_open",
-                 parking_info: "Parking P1 — accès par l'entrée principale")
+  test "GET /patients/preparer-mon-sejour regroupe les unités d'hospitalisation par parking" do
+    p1 = "Parking P1 — accès par l'entrée principale"
+    Unit.create!(pole: @pole, name: "Unité Véga", unit_type: "ward_open", parking_info: p1, pmr_accessible: true)
+    Unit.create!(pole: @pole, name: "Unité Persée", unit_type: "ward_closed", parking_info: p1, pmr_accessible: true)
+    Unit.create!(pole: @pole, name: "Unité Rigel", unit_type: "ward_closed",
+                 parking_info: "Parking P2 — accès par l'entrée sud", pmr_accessible: true)
     get preparer_mon_sejour_path
     assert_response :success
-    assert_includes response.body, "Unité Véga"
-    assert_includes response.body, "Parking P1 — accès par l&#39;entrée principale"
+    assert_select ".sejour-parking", 2
+    assert_select ".sejour-parking", text: /Parking P1.*Unité Persée.*Unité Véga/m
+    assert_select ".sejour-parking", text: /Parking P2.*Accès par l'entrée sud.*Unité Rigel/m
+    assert_select "table.sejour-table", 0
+  end
+
+  test "GET /patients/preparer-mon-sejour indique une seule fois que tout est accessible PMR" do
+    Unit.create!(pole: @pole, name: "Unité Véga", unit_type: "ward_open", pmr_accessible: true,
+                 parking_info: "Parking P1 — accès par l'entrée principale")
+    get preparer_mon_sejour_path
+    assert_select ".sejour-pmr", /Toutes les unités d'hospitalisation sont accessibles/
+  end
+
+  test "GET /patients/preparer-mon-sejour signale une unité non accessible PMR" do
+    Unit.create!(pole: @pole, name: "Unité Véga", unit_type: "ward_open", pmr_accessible: false,
+                 parking_info: "Parking P1 — accès par l'entrée principale")
+    get preparer_mon_sejour_path
+    assert_select ".sejour-pmr", 0
+    assert_select ".sejour-parking li", /Unité Véga.*non accessible PMR/m
   end
 
   test "GET /patients/preparer-mon-sejour n'affiche pas les unités sans hospitalisation" do
