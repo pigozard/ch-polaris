@@ -1709,6 +1709,17 @@ a.hopital-contact-value:hover { color: var(--teal-dark); }
 }
 .sejour-steps { padding-left: 1.2rem; margin: 0; display: grid; gap: 10px; }
 .sejour-list { padding-left: 1.2rem; margin: 0 0 14px; display: grid; gap: 6px; }
+/* Check-lists illustrées « Ce qu'il faut apporter » */
+.sejour-checklist { list-style: none; padding: 0; margin: 0 0 14px; display: grid; gap: 10px; }
+.sejour-checklist li { display: flex; align-items: flex-start; gap: 12px; }
+.sejour-checklist i {
+  flex-shrink: 0; width: 32px; height: 32px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--teal-light); color: var(--teal-dark); font-size: 0.95rem;
+}
+.sejour-checklist span { padding-top: 5px; }
+/* À éviter : même présentation, en ambre pour le distinguer des affaires à prendre */
+.sejour-checklist-avoid i { background: #fef3c7; color: #92400e; }
 .sejour-phone a { font-weight: 600; color: var(--teal-dark); }
 .sejour-note {
   margin-top: 24px;

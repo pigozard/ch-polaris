@@ -149,6 +149,16 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     assert_select "ol.sejour-flow-steps > li:last-child", /Rencontre avec le psychiatre/
   end
 
+  test "GET /patients/preparer-mon-sejour présente les affaires à apporter en check-lists illustrées" do
+    get preparer_mon_sejour_path
+    assert_select "ul.sejour-checklist", 2
+    assert_select "ul.sejour-checklist > li", 10
+    assert_select "ul.sejour-checklist > li" do |items|
+      items.each { |li| assert_select li, "i.fa-solid[aria-hidden=true]", 1 }
+    end
+    assert_select "ul.sejour-checklist > li.sejour-checklist-avoid", /objets de valeur/
+  end
+
   test "GET /patients/preparer-mon-sejour renvoie vers l'annuaire et le plan" do
     get preparer_mon_sejour_path
     assert_includes response.body, annuaire_path
