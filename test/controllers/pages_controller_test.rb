@@ -139,6 +139,16 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     assert_includes response.body, "05 36 49 05 12"
   end
 
+  test "GET /patients/preparer-mon-sejour présente l'admission en logigramme : deux entrées puis trois étapes communes" do
+    get preparer_mon_sejour_path
+    assert_select ".sejour-flow-entry", 2
+    assert_select ".sejour-flow-entry h3", /hospitalisation est programmée/
+    assert_select ".sejour-flow-entry h3", /urgences psychiatriques/
+    assert_select "ol.sejour-flow-steps > li", 3
+    assert_select "ol.sejour-flow-steps > li:first-child", /Accueil dans l'unité/
+    assert_select "ol.sejour-flow-steps > li:last-child", /Rencontre avec le psychiatre/
+  end
+
   test "GET /patients/preparer-mon-sejour renvoie vers l'annuaire et le plan" do
     get preparer_mon_sejour_path
     assert_includes response.body, annuaire_path

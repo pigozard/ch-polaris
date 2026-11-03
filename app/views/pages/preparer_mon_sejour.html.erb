@@ -21,48 +21,55 @@
     <span class="label">Étape par étape</span>
     <h2 class="section-title" id="sejour-admission-title">Le jour de l'admission</h2>
 
-    <div class="sejour-paths">
-      <div class="sejour-path">
-        <h3 class="sejour-path-title">Votre hospitalisation est programmée</h3>
-        <ol class="sejour-steps">
-          <li>
+    <%# Logigramme : deux entrées possibles, puis un tronc commun dans l'unité %>
+    <div class="sejour-flow">
+      <div class="sejour-flow-entries">
+        <div class="sejour-flow-entry">
+          <h3 class="sejour-flow-entry-title">
+            <i class="fa-solid fa-calendar-check" aria-hidden="true"></i>
+            Votre hospitalisation est programmée
+          </h3>
+          <p class="sejour-flow-box">
             <strong>Bureau des entrées</strong>, dans le hall principal : présentez vos documents
             pour ouvrir votre dossier administratif.
-          </li>
-          <li>
-            <strong>Accueil dans l'unité</strong> par un infirmier, qui vous présente le service,
-            votre chambre et les règles de vie.
-          </li>
-          <li>
-            <strong>Entretien d'accueil et inventaire</strong> de vos effets personnels. Certains objets
-            peuvent être confiés à l'équipe pendant votre séjour.
-          </li>
-          <li>
-            <strong>Rencontre avec le psychiatre</strong> de l'unité, le jour même ou le lendemain.
-          </li>
-        </ol>
+          </p>
+        </div>
+
+        <div class="sejour-flow-entry">
+          <h3 class="sejour-flow-entry-title">
+            <i class="fa-solid fa-truck-medical" aria-hidden="true"></i>
+            Vous arrivez par les urgences psychiatriques
+          </h3>
+          <p class="sejour-flow-box">
+            <strong>Admission faite aux <%= @emergency_unit&.name || "urgences psychiatriques" %></strong> :
+            pas besoin de passer par le bureau des entrées. Si vous n'aviez pas vos documents,
+            un proche pourra les apporter plus tard.
+            <% if @emergency_unit&.phone.present? %>
+              <span class="sejour-phone">
+                Urgences psychiatriques :
+                <a href="tel:<%= @emergency_unit.phone.delete(" ") %>"><%= @emergency_unit.phone %></a>
+              </span>
+            <% end %>
+          </p>
+        </div>
       </div>
 
-      <div class="sejour-path">
-        <h3 class="sejour-path-title">Vous arrivez par les urgences psychiatriques</h3>
-        <p>
-          Votre admission administrative est faite directement aux
-          <strong><%= @emergency_unit&.name || "urgences psychiatriques" %></strong> :
-          vous n'avez pas besoin de passer par le bureau des entrées.
-          Si vous n'aviez pas vos documents sur vous, un proche pourra les apporter plus tard.
-        </p>
-        <p>
-          Une fois votre transfert organisé, l'accueil dans l'unité se déroule comme pour une
-          hospitalisation programmée : présentation du service, entretien d'accueil, puis rencontre
-          avec le psychiatre.
-        </p>
-        <% if @emergency_unit&.phone.present? %>
-          <p class="sejour-phone">
-            Urgences psychiatriques :
-            <a href="tel:<%= @emergency_unit.phone.delete(" ") %>"><%= @emergency_unit.phone %></a>
-          </p>
-        <% end %>
-      </div>
+      <div class="sejour-flow-merge" aria-hidden="true"></div>
+
+      <p class="sejour-flow-then">Puis, dans les deux cas, dans votre unité&nbsp;:</p>
+      <ol class="sejour-flow-steps">
+        <li>
+          <strong>Accueil dans l'unité</strong> par un infirmier, qui vous présente le service,
+          votre chambre et les règles de vie.
+        </li>
+        <li>
+          <strong>Entretien d'accueil et inventaire</strong> de vos effets personnels. Certains objets
+          peuvent être confiés à l'équipe pendant votre séjour.
+        </li>
+        <li>
+          <strong>Rencontre avec le psychiatre</strong> de l'unité, le jour même ou le lendemain.
+        </li>
+      </ol>
     </div>
 
     <p class="sejour-note">
