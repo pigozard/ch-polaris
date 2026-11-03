@@ -902,7 +902,7 @@ prog_anxiete = EtpProgram.create!(
   description: "Programme destiné aux personnes souffrant de troubles anxieux. Psychoéducation sur les mécanismes anxieux, techniques de gestion du stress et outils de régulation émotionnelle.",
   target_audience: "Patients adultes avec troubles anxieux diagnostiqués (TAG, TOC, phobie sociale, trouble panique)",
   pathology: "anxiety",
-  prerequisites: "Diagnostic établi par un psychiatre ou psychologue. Suivi en cours. Entretien individuel préalable avec l'UTEP.",
+  prerequisites: "Diagnostic posé par un psychiatre. Suivi en cours. Entretien individuel préalable avec l'UTEP.",
   duration: "6 séances de 1h30",
   modality: "group",
   recruitment_months: [1, 5, 9]
@@ -914,7 +914,7 @@ prog_schizo = EtpProgram.create!(
   description: "Programme d'éducation thérapeutique pour les personnes vivant avec un trouble schizophrénique ou apparenté. Connaissance de la maladie, gestion du traitement antipsychotique et stratégies de coping.",
   target_audience: "Patients adultes avec diagnostic de schizophrénie ou trouble schizo-affectif stabilisés",
   pathology: "schizophrenia",
-  prerequisites: "Diagnostic posé. Stabilisation clinique depuis au moins 6 mois. Accord du psychiatre référent. Entretien préalable avec l'UTEP.",
+  prerequisites: "Diagnostic posé par un psychiatre. Stabilisation clinique depuis au moins 6 mois. Accord du psychiatre référent. Entretien préalable avec l'UTEP.",
   duration: "8 séances de 2h",
   modality: "group",
   recruitment_months: [1, 4, 9]
