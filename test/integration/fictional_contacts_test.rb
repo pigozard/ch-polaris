@@ -14,6 +14,12 @@ class FictionalContactsTest < ActiveSupport::TestCase
     end
   end
 
+  test "aucun nom de région ou de groupement hospitalier réel" do
+    FILES.each do |file|
+      assert_no_match(/Nouvelle-Aquitaine/i, File.read(file), "nom réel dans #{file}")
+    end
+  end
+
   test "aucune adresse email en ch-polaris.fr" do
     FILES.each do |file|
       assert_no_match(/@ch-polaris\.fr\b/, File.read(file), "email réel possible dans #{file}")

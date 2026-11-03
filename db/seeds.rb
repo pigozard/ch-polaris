@@ -1072,9 +1072,9 @@ News.create!(
 
 News.create!(
   pole: nil,
-  title: "Le CH Polaris rejoint le GHT Nouvelle-Aquitaine Atlantique",
-  slug: "ch-polaris-ght-nouvelle-aquitaine-atlantique",
-  summary: "Le Centre Hospitalier Polaris intègre le Groupement Hospitalier de Territoire Nouvelle-Aquitaine Atlantique, renforçant ainsi les coopérations territoriales et la continuité des parcours de soins.",
+  title: "Le CH Polaris rejoint le GHT Côte des Astres",
+  slug: "ch-polaris-ght-cote-des-astres",
+  summary: "Le Centre Hospitalier Polaris intègre le Groupement Hospitalier de Territoire Côte des Astres, renforçant ainsi les coopérations territoriales et la continuité des parcours de soins.",
   content: "<p>Un groupement hospitalier de territoire réunit plusieurs établissements publics autour d'un projet médical partagé. Le CH Polaris y apporte son expertise en santé mentale.</p><p>Concrètement, cette adhésion facilite l'orientation des patients entre établissements, le partage de compétences et l'organisation de la psychiatrie de liaison dans les hôpitaux généraux du territoire.</p><p>Pour les patients, rien ne change dans leur suivi habituel : leur CMP et leurs équipes de soins restent les mêmes.</p>",
   category: "institutional",
   published_at: Date.today - 75,
