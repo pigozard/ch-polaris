@@ -26,6 +26,11 @@ class EtpProgram < ApplicationRecord
   validates :prerequisites, presence: true
   validate :recruitment_months_are_valid
 
+  # Conditions affichées en check-list : une phrase par ligne
+  def prerequisites_list
+    prerequisites.to_s.split(/(?<=\.)\s+/).map(&:strip).reject(&:empty?)
+  end
+
   # « janvier, avril et septembre »
   def recruitment_months_label
     recruitment_months.sort.map { |month| I18n.t("date.month_names")[month] }.to_sentence

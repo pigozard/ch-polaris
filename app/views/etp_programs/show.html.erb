@@ -1,4 +1,5 @@
 <% content_for :title, @etp_program.name %>
+<% next_recruitment = @etp_program.next_recruitment %>
 <%# ═══════════ HERO ═══════════ %>
 <section class="hub-hero" aria-labelledby="etp-program-title">
   <div class="container">
@@ -9,36 +10,97 @@
   </div>
 </section>
 
-<div class="container">
-  <section class="section section--no-border etp-detail">
+<div class="container page-reading">
+  <section class="section section--no-border">
+    <div class="etp-layout">
 
-    <dl class="etp-facts">
-      <% if @etp_program.duration.present? %>
-        <div><dt>Durée</dt><dd><%= @etp_program.duration %></dd></div>
-      <% end %>
-      <div><dt>Format</dt><dd><%= @etp_program.modality_label %></dd></div>
-      <div><dt>Lieu</dt><dd><%= @etp_program.unit.name %></dd></div>
-    </dl>
+      <%# ═══════════ L'ESSENTIEL (à droite sur ordinateur, avant le contenu sur mobile) ═══════════ %>
+      <aside class="etp-aside" aria-labelledby="etp-aside-title">
+        <h2 class="etp-aside-title" id="etp-aside-title">L'essentiel</h2>
+        <dl class="etp-facts">
+          <% if @etp_program.duration.present? %>
+            <div class="etp-fact">
+              <dt><i class="fa-solid fa-clock" aria-hidden="true"></i> Durée</dt><dd><%= @etp_program.duration %></dd>
+            </div>
+          <% end %>
+          <div class="etp-fact">
+            <dt><i class="fa-solid fa-users" aria-hidden="true"></i> Format</dt><dd><%= @etp_program.modality_label %></dd>
+          </div>
+          <div class="etp-fact">
+            <dt><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Lieu</dt><dd><%= @etp_program.unit.name %></dd>
+          </div>
+        </dl>
 
-    <% if @etp_program.target_audience.present? %>
-      <h2 class="etp-heading">À qui s'adresse ce programme ?</h2>
-      <p><%= @etp_program.target_audience %></p>
-    <% end %>
+        <% if next_recruitment %>
+          <p class="etp-next">
+            <i class="fa-solid fa-calendar-check" aria-hidden="true"></i>
+            <span>Prochain recrutement<strong><%= l(next_recruitment, format: :month_year) %></strong></span>
+          </p>
+        <% end %>
+      </aside>
 
-    <h2 class="etp-heading">Conditions pour participer</h2>
-    <p><%= @etp_program.prerequisites %></p>
+      <%# Contact : sous « L'essentiel » sur ordinateur, après le contenu sur mobile %>
+      <div class="etp-aside-contact">
+        <%= render "utep_contact", utep: @utep, subject: "Demande d'information — #{@etp_program.name}" %>
+      </div>
 
-    <h2 class="etp-heading">Recrutement des groupes</h2>
-    <% if (next_recruitment = @etp_program.next_recruitment) %>
-      <p>Les groupes démarrent en <strong><%= @etp_program.recruitment_months_label %></strong>.</p>
-      <p class="etp-recruitment">
-        Prochain recrutement : <strong><%= l(next_recruitment, format: :month_year) %></strong>
-      </p>
-    <% else %>
-      <p>Contactez l'UTEP pour connaître les prochaines dates de recrutement.</p>
-    <% end %>
+      <%# ═══════════ CONTENU ═══════════ %>
+      <div class="etp-main">
+        <% if @etp_program.target_audience.present? %>
+          <div class="etp-audience">
+            <i class="fa-solid fa-user-check" aria-hidden="true"></i>
+            <div>
+              <h2 class="etp-heading">À qui s'adresse ce programme ?</h2>
+              <p><%= @etp_program.target_audience %></p>
+            </div>
+          </div>
+        <% end %>
 
-    <%= render "utep_contact", utep: @utep, subject: "Demande d'information — #{@etp_program.name}" %>
+        <h2 class="etp-heading">Conditions pour participer</h2>
+        <ul class="etp-conditions">
+          <% @etp_program.prerequisites_list.each do |condition| %>
+            <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span><%= condition %></span></li>
+          <% end %>
+        </ul>
 
+        <h2 class="etp-heading">Comment participer ?</h2>
+        <ol class="etp-steps">
+          <li>
+            <strong>Demandez un courrier médical</strong> à votre psychiatre : il atteste le diagnostic,
+            indispensable pour participer.
+          </li>
+          <li>
+            <strong>Contactez l'UTEP</strong>, qui organise avec vous un entretien individuel préalable
+            pour vérifier que le programme vous correspond.
+          </li>
+          <li>
+            <strong>Vous rejoignez le prochain groupe</strong><%= next_recruitment ? ", qui démarre en #{l(next_recruitment, format: :month_year)}" : "" %>.
+          </li>
+        </ol>
+
+        <h2 class="etp-heading">Recrutement des groupes</h2>
+        <% if next_recruitment %>
+          <p>Les groupes démarrent en <strong><%= @etp_program.recruitment_months_label %></strong>.</p>
+          <%# Frise décorative : la phrase ci-dessus porte l'information pour les lecteurs d'écran %>
+          <div class="etp-months" aria-hidden="true">
+            <% (1..12).each do |month| %>
+              <% classes = ["etp-month"]
+                 classes << "etp-month--on" if @etp_program.recruitment_months.include?(month)
+                 classes << "etp-month--next" if month == next_recruitment.month %>
+              <span class="<%= classes.join(" ") %>">
+                <%= I18n.t("date.abbr_month_names")[month].delete(".").capitalize %>
+              </span>
+            <% end %>
+          </div>
+          <p class="etp-months-legend" aria-hidden="true">
+            <span class="etp-legend-on"></span> mois de recrutement
+            <span class="etp-legend-next"></span> prochain recrutement
+          </p>
+        <% else %>
+          <p>Contactez l'UTEP pour connaître les prochaines dates de recrutement.</p>
+        <% end %>
+      </div>
+
+    </div>
   </section>
 </div>

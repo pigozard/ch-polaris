@@ -31,6 +31,13 @@ class EtpProgramTest < ActiveSupport::TestCase
     assert_nil program([]).next_recruitment(Date.new(2026, 11, 1))
   end
 
+  test "prerequisites_list découpe les conditions en phrases" do
+    program = program([1])
+    program.prerequisites = "Diagnostic posé par un psychiatre. Suivi en cours.  Entretien préalable avec l'UTEP."
+    assert_equal ["Diagnostic posé par un psychiatre.", "Suivi en cours.", "Entretien préalable avec l'UTEP."],
+                 program.prerequisites_list
+  end
+
   test "un mois de recrutement doit être compris entre 1 et 12" do
     assert_not program([0, 13]).valid?
     assert program([1, 12]).valid?

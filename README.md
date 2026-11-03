@@ -74,7 +74,8 @@ Ajouter un mot-clé ou un besoin : modifier ce fichier (mots sans accents), puis
 ### Catalogue ETP (`/etp`)
 
 - Filtre par pathologie (liens simples, fonctionne sans JavaScript)
-- Fiche programme : public, prérequis, durée, mois de recrutement des groupes (« janvier, avril et septembre ») et prochain recrutement calculé à partir de la date du jour, pour que la page ne vieillisse jamais
+- Fiche programme en deux colonnes : « L'essentiel » (durée, format, lieu, prochain recrutement) et le contact de l'UTEP à droite ; à gauche, le public concerné, les conditions en check-list (dont le diagnostic posé par un psychiatre et attesté par un courrier médical), « Comment participer ? » en 3 étapes et une frise des 12 mois de recrutement
+- Prochain recrutement calculé à partir de la date du jour, pour que la page ne vieillisse jamais
 - Contact de l'UTEP (lu en base) et bouton `mailto:` pré-rempli — aucune donnée stockée sur le site
 
 ### Actualités (`/actualites`)

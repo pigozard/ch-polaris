@@ -64,6 +64,40 @@ class EtpProgramsControllerTest < ActionDispatch::IntegrationTest
     assert_not_includes response.body, "Tous les mardis de 14h à 16h"
   end
 
+  test "GET /etp/:id résume l'essentiel dans un encadré latéral" do
+    @bipolar.update!(duration: "8 séances de 2h", recruitment_months: [2, 10])
+    get etp_program_path(@bipolar)
+    assert_select "aside.etp-aside" do
+      assert_select "h2", "L'essentiel"
+      assert_select ".etp-fact", /8 séances de 2h/
+      assert_select ".etp-fact", /En groupe/
+      assert_select ".etp-fact", /UTEP Test/
+      assert_select ".etp-next", /Prochain recrutement/
+    end
+    assert_select ".etp-aside-contact a[href^='mailto:utep@test.fr']"
+  end
+
+  test "GET /etp/:id présente les conditions en check-list" do
+    @bipolar.update!(prerequisites: "Diagnostic posé par un psychiatre et attesté par un courrier médical. Suivi en cours.")
+    get etp_program_path(@bipolar)
+    assert_select "ul.etp-conditions > li", 2
+    assert_select "ul.etp-conditions > li:first-child", /courrier médical/
+  end
+
+  test "GET /etp/:id explique comment participer en trois étapes" do
+    get etp_program_path(@bipolar)
+    assert_select "ol.etp-steps > li", 3
+    assert_select "ol.etp-steps > li:first-child", /courrier médical/
+  end
+
+  test "GET /etp/:id affiche une frise des 12 mois avec le prochain recrutement" do
+    @bipolar.update!(recruitment_months: [2, 10])
+    get etp_program_path(@bipolar)
+    assert_select ".etp-months .etp-month", 12
+    assert_select ".etp-month--on", 2
+    assert_select ".etp-month--next", 1
+  end
+
   test "GET /etp/:id sans mois de recrutement renvoie vers l'UTEP" do
     get etp_program_path(@bipolar)
     assert_includes response.body, "Contactez l'UTEP"

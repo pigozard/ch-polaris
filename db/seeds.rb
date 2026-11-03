@@ -866,7 +866,7 @@ prog_bipolaire = EtpProgram.create!(
   description: "Programme d'éducation thérapeutique destiné aux personnes diagnostiquées avec un trouble bipolaire. Il vise à améliorer la connaissance de la maladie, la reconnaissance des prodromes et la gestion du traitement thymorégulateur.",
   target_audience: "Patients adultes diagnostiqués trouble bipolaire type I ou II, en phase de stabilisation",
   pathology: "bipolar",
-  prerequisites: "Diagnostic posé par un psychiatre. Être en phase de stabilisation depuis au moins 3 mois. Entretien individuel préalable avec une infirmière coordinatrice de l'UTEP.",
+  prerequisites: "Diagnostic posé par un psychiatre et attesté par un courrier médical. Être en phase de stabilisation depuis au moins 3 mois. Entretien individuel préalable avec une infirmière coordinatrice de l'UTEP.",
   duration: "8 séances de 2h",
   modality: "group",
   recruitment_months: [2, 10]
@@ -878,7 +878,7 @@ prog_depression = EtpProgram.create!(
   description: "Programme destiné aux personnes souffrant de dépression récurrente ou résistante. Il aborde la compréhension des mécanismes dépressifs, la gestion du traitement antidépresseur et les stratégies de prévention des rechutes.",
   target_audience: "Patients adultes avec dépression récurrente (au moins 2 épisodes) ou résistante",
   pathology: "depression",
-  prerequisites: "Suivi psychiatrique en cours. Au moins un épisode dépressif traité. Entretien préalable avec l'UTEP. Accord du psychiatre référent.",
+  prerequisites: "Diagnostic posé par un psychiatre et attesté par un courrier médical. Suivi psychiatrique en cours. Au moins un épisode dépressif traité. Entretien préalable avec l'UTEP. Accord du psychiatre référent.",
   duration: "6 séances de 2h",
   modality: "group",
   recruitment_months: [3, 11]
@@ -890,7 +890,7 @@ prog_addiction = EtpProgram.create!(
   description: "Programme transversal pour les patients engagés dans un parcours de soins en addictologie. Aborde la compréhension des mécanismes de dépendance, la prévention de la rechute et la construction du projet de vie.",
   target_audience: "Patients adultes en suivi addictologique au CSAPA Lyra ou en HDJ Deneb",
   pathology: "addiction",
-  prerequisites: "Être suivi au CSAPA Lyra ou en HDJ Deneb. Sevrage stabilisé. Motivation exprimée lors d'un entretien infirmier préalable.",
+  prerequisites: "Diagnostic posé par un psychiatre et attesté par un courrier médical. Être suivi au CSAPA Lyra ou en HDJ Deneb. Sevrage stabilisé. Motivation exprimée lors d'un entretien infirmier préalable.",
   duration: "5 séances de 2h30",
   modality: "mixed",
   recruitment_months: [1, 3, 5, 7, 9, 11]
@@ -902,7 +902,7 @@ prog_anxiete = EtpProgram.create!(
   description: "Programme destiné aux personnes souffrant de troubles anxieux. Psychoéducation sur les mécanismes anxieux, techniques de gestion du stress et outils de régulation émotionnelle.",
   target_audience: "Patients adultes avec troubles anxieux diagnostiqués (TAG, TOC, phobie sociale, trouble panique)",
   pathology: "anxiety",
-  prerequisites: "Diagnostic posé par un psychiatre. Suivi en cours. Entretien individuel préalable avec l'UTEP.",
+  prerequisites: "Diagnostic posé par un psychiatre et attesté par un courrier médical. Suivi en cours. Entretien individuel préalable avec l'UTEP.",
   duration: "6 séances de 1h30",
   modality: "group",
   recruitment_months: [1, 5, 9]
@@ -914,7 +914,7 @@ prog_schizo = EtpProgram.create!(
   description: "Programme d'éducation thérapeutique pour les personnes vivant avec un trouble schizophrénique ou apparenté. Connaissance de la maladie, gestion du traitement antipsychotique et stratégies de coping.",
   target_audience: "Patients adultes avec diagnostic de schizophrénie ou trouble schizo-affectif stabilisés",
   pathology: "schizophrenia",
-  prerequisites: "Diagnostic posé par un psychiatre. Stabilisation clinique depuis au moins 6 mois. Accord du psychiatre référent. Entretien préalable avec l'UTEP.",
+  prerequisites: "Diagnostic posé par un psychiatre et attesté par un courrier médical. Stabilisation clinique depuis au moins 6 mois. Accord du psychiatre référent. Entretien préalable avec l'UTEP.",
   duration: "8 séances de 2h",
   modality: "group",
   recruitment_months: [1, 4, 9]

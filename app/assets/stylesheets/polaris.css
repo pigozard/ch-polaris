@@ -1566,45 +1566,95 @@ a.hopital-contact-value:hover { color: var(--teal-dark); }
 }
 .etp-meta { font-size: 0.82rem; color: var(--muted); margin-bottom: 12px; }
 
-.etp-detail { max-width: 760px; }
+/* ── Fiche programme : contenu à gauche, « L'essentiel » à droite (en premier sur mobile) ── */
+.etp-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  grid-template-areas: "main aside" "main contact";
+  grid-template-rows: auto 1fr;
+  gap: 12px 48px;
+  align-items: start;
+}
+.etp-main { grid-area: main; }
+.etp-aside { grid-area: aside; }
+.etp-aside-contact { grid-area: contact; }
+@media (max-width: 900px) {
+  .etp-layout { grid-template-columns: 1fr; grid-template-areas: "aside" "main" "contact"; gap: 32px; }
+}
 .etp-heading {
   font-family: var(--font-display);
   font-size: 1.6rem;
   font-weight: 500;
   color: var(--ink);
-  margin: 32px 0 10px;
+  margin: 36px 0 14px;
 }
-.etp-facts { display: flex; flex-wrap: wrap; gap: 12px 32px; margin: 0; }
-.etp-facts dt { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
-.etp-facts dd { margin: 0; color: var(--ink); }
+.etp-main > .etp-heading:first-child { margin-top: 0; }
 
-.etp-sessions { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
-.etp-session {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding: 16px 20px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
+/* L'essentiel */
+.etp-aside-title { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin: 0 0 12px; }
+.etp-facts { display: grid; gap: 10px; margin: 0; }
+.etp-fact { padding: 12px 14px; border: 1px solid var(--border); border-radius: 10px; }
+.etp-fact dt { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.etp-fact dt i { color: var(--teal-dark); width: 1.2em; }
+.etp-fact dd { margin: 2px 0 0; color: var(--ink); font-weight: 600; }
+.etp-next {
+  display: flex; align-items: center; gap: 12px;
+  margin: 12px 0 0; padding: 14px 16px; border-radius: 10px;
+  background: var(--teal-dark); color: white;
 }
-.etp-session-info { font-size: 0.85rem; color: var(--muted); }
-.etp-recruitment {
-  display: inline-block;
-  padding: 10px 16px;
-  border-radius: 8px;
+.etp-next i { font-size: 1.4rem; }
+.etp-next span { display: flex; flex-direction: column; font-size: 0.8rem; }
+.etp-next strong { font-size: 1.15rem; text-transform: capitalize; }
+.etp-aside-contact .etp-contact { margin-top: 0; }
+
+/* À qui s'adresse ce programme ? */
+.etp-audience {
+  display: flex; gap: 16px; align-items: flex-start;
+  padding: 18px 20px; border-left: 3px solid var(--teal); border-radius: 0 10px 10px 0;
   background: var(--teal-light);
-  color: var(--ink);
 }
-.etp-status {
-  align-self: flex-start;
-  font-size: 0.72rem;
-  font-weight: 600;
-  padding: 2px 10px;
-  border-radius: 20px;
+.etp-audience > i { color: var(--teal-dark); font-size: 1.4rem; margin-top: 4px; }
+.etp-audience .etp-heading { font-size: 1.3rem; margin: 0 0 4px; }
+.etp-audience p { margin: 0; }
+
+/* Conditions pour participer */
+.etp-conditions { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+.etp-conditions li { display: flex; gap: 12px; align-items: flex-start; }
+.etp-conditions i { color: var(--teal-dark); margin-top: 4px; }
+
+/* Comment participer ? (même style que le logigramme de l'admission) */
+.etp-steps { list-style: none; counter-reset: step; padding: 0; margin: 0; }
+.etp-steps li {
+  counter-increment: step; position: relative;
+  padding: 14px 18px 14px 64px; margin-bottom: 22px;
+  border: 1px solid var(--border); border-radius: 10px; background: var(--bg);
 }
-.etp-status--open      { background: #ecfdf5; color: #065f46; }
-.etp-status--full      { background: #fef3c7; color: #78350f; }
-.etp-status--cancelled { background: #f3f4f6; color: #374151; }
+.etp-steps li::before {
+  content: counter(step); position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+  width: 32px; height: 32px; border-radius: 50%; background: var(--teal-dark); color: white;
+  display: flex; align-items: center; justify-content: center; font-weight: 600;
+}
+.etp-steps li:not(:last-child)::after {
+  content: ""; position: absolute; left: 32px; top: 100%;
+  width: 2px; height: 22px; background: var(--teal);
+}
+.etp-steps li:last-child { margin-bottom: 0; }
+
+/* Recrutement : frise des 12 mois */
+.etp-months { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 6px; margin-top: 14px; }
+.etp-month {
+  padding: 10px 0; border-radius: 8px; text-align: center;
+  font-size: 0.8rem; font-weight: 600; color: var(--muted); background: var(--bg-alt);
+}
+.etp-month--on { background: var(--teal-light); color: var(--teal-dark); box-shadow: inset 0 0 0 1.5px var(--teal); }
+.etp-month--next { background: var(--teal-dark); color: white; box-shadow: none; }
+.etp-months-legend { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 0.8rem; color: var(--muted); margin: 10px 0 0; }
+.etp-legend-on, .etp-legend-next { display: inline-block; width: 14px; height: 14px; border-radius: 4px; }
+.etp-legend-on { background: var(--teal-light); box-shadow: inset 0 0 0 1.5px var(--teal); }
+.etp-legend-next { background: var(--teal-dark); margin-left: 10px; }
+@media (max-width: 560px) {
+  .etp-months { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+}
 
 .etp-contact {
   margin-top: 40px;
