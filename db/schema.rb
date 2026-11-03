@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2026_11_03_211449) do
+ActiveRecord::Schema[7.1].define(version: 2026_11_03_215259) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -67,6 +67,8 @@ ActiveRecord::Schema[7.1].define(version: 2026_11_03_211449) do
     t.text "objectives", default: [], null: false, array: true
     t.text "workshops", default: [], null: false, array: true
     t.boolean "open_to_relatives", default: false, null: false
+    t.string "slug", null: false
+    t.index ["slug"], name: "index_etp_programs_on_slug", unique: true
     t.index ["unit_id"], name: "index_etp_programs_on_unit_id"
   end
 

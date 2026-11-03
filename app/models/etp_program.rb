@@ -29,9 +29,17 @@ class EtpProgram < ApplicationRecord
   MODALITIES = MODALITY_LABELS.keys.freeze
 
   validates :name, presence: true
+  validates :slug, presence: true, uniqueness: true
   validates :pathology, presence: true, inclusion: { in: PATHOLOGIES }
   validates :modality, presence: true, inclusion: { in: MODALITIES }
   validate :recruitment_months_are_valid
+
+  before_validation :generate_slug
+
+  # Adresse lisible et stable : /etp/vivre-avec-un-trouble-bipolaire
+  def to_param
+    slug
+  end
 
   # Précisions propres au programme, affichées en check-list : une phrase par ligne
   def prerequisites_list
@@ -60,6 +68,10 @@ class EtpProgram < ApplicationRecord
   end
 
   private
+
+  def generate_slug
+    self.slug ||= name&.parameterize
+  end
 
   def recruitment_months_are_valid
     return if recruitment_months.all? { |m| (1..12).cover?(m) }

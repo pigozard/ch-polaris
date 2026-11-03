@@ -54,6 +54,14 @@ class EtpProgramTest < ActiveSupport::TestCase
     assert_empty program.prerequisites_list
   end
 
+  test "le slug est généré à partir du nom et sert dans l'URL" do
+    program = program([1])
+    program.name = "Vivre avec un trouble bipolaire"
+    program.valid?
+    assert_equal "vivre-avec-un-trouble-bipolaire", program.slug
+    assert_equal "vivre-avec-un-trouble-bipolaire", program.to_param
+  end
+
   test "un mois de recrutement doit être compris entre 1 et 12" do
     assert_not program([0, 13]).valid?
     assert program([1, 12]).valid?

@@ -73,6 +73,7 @@ Ajouter un mot-clé ou un besoin : modifier ce fichier (mots sans accents), puis
 
 ### Catalogue ETP (`/etp`)
 
+- Adresse lisible et stable par slug (`/etp/vivre-avec-un-trouble-bipolaire`), qui ne change pas quand on relance les seeds
 - Introduction avant le catalogue : ce qu'est l'éducation thérapeutique (définition de l'OMS), l'UTEP (équipe, missions, adresse et horaires lus en base) et les conditions d'accès communes à tous les programmes (`EtpProgram::ACCESS_CONDITIONS`)
 - Chaque programme a ses objectifs, ses ateliers numérotés (`objectives`, `workshops`) et peut être ouvert aux proches ; `prerequisites` ne garde que les précisions propres au programme
 

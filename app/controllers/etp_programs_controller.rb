@@ -10,7 +10,7 @@ class EtpProgramsController < ApplicationController
   end
 
   def show
-    @etp_program = EtpProgram.find(params[:id])
+    @etp_program = EtpProgram.find_by!(slug: params[:id])
   end
 
   private

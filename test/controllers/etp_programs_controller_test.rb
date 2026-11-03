@@ -136,6 +136,18 @@ class EtpProgramsControllerTest < ActionDispatch::IntegrationTest
     assert_includes response.body, "Vivre%20avec%20un%20trouble%20bipolaire"
   end
 
+  test "GET /etp/:slug ouvre la fiche avec une adresse lisible" do
+    assert_equal "/etp/vivre-avec-un-trouble-bipolaire", etp_program_path(@bipolar)
+    get "/etp/vivre-avec-un-trouble-bipolaire"
+    assert_response :success
+    assert_select "h1", "Vivre avec un trouble bipolaire"
+  end
+
+  test "GET /etp/:id avec un ancien identifiant numérique répond 404" do
+    get "/etp/#{@bipolar.id}"
+    assert_response :not_found
+  end
+
   test "GET /etp/:id inconnu répond 404" do
     get etp_program_path(id: 0)
     assert_response :not_found
