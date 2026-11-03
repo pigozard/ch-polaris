@@ -18,15 +18,22 @@ class EtpProgram < ApplicationRecord
   }.freeze
 
   PATHOLOGIES = PATHOLOGY_LABELS.keys.freeze
+
+  # Conditions d'accès communes à tous les programmes ; prerequisites ne garde que les précisions propres
+  ACCESS_CONDITIONS = [
+    "Diagnostic posé par un psychiatre.",
+    "Suivi psychiatrique en cours.",
+    "Capacité d'attention et de concentration suffisante pour suivre les séances.",
+    "Courrier médical de diagnostic et de non contre-indication à suivre un programme d'ETP."
+  ].freeze
   MODALITIES = MODALITY_LABELS.keys.freeze
 
   validates :name, presence: true
   validates :pathology, presence: true, inclusion: { in: PATHOLOGIES }
   validates :modality, presence: true, inclusion: { in: MODALITIES }
-  validates :prerequisites, presence: true
   validate :recruitment_months_are_valid
 
-  # Conditions affichées en check-list : une phrase par ligne
+  # Précisions propres au programme, affichées en check-list : une phrase par ligne
   def prerequisites_list
     prerequisites.to_s.split(/(?<=\.)\s+/).map(&:strip).reject(&:empty?)
   end

@@ -860,14 +860,31 @@ end
 
 puts "🎓 Creating ETP programs..."
 
+# Conditions d'accès communes à tous les programmes : EtpProgram::ACCESS_CONDITIONS.
+# prerequisites ne contient que les précisions propres à un programme.
+
 prog_bipolaire = EtpProgram.create!(
   unit: utep,
   name: "Vivre avec un trouble bipolaire",
-  description: "Programme d'éducation thérapeutique destiné aux personnes diagnostiquées avec un trouble bipolaire. Il vise à améliorer la connaissance de la maladie, la reconnaissance des prodromes et la gestion du traitement thymorégulateur.",
-  target_audience: "Patients adultes diagnostiqués trouble bipolaire type I ou II, en phase de stabilisation",
+  description: "Mieux comprendre le trouble bipolaire et son traitement, apprendre à repérer les signes qui annoncent une rechute et construire, avec ses proches, sa propre façon de prévenir les crises.",
+  target_audience: "Adultes vivant avec un trouble bipolaire, et leurs proches",
   pathology: "bipolar",
-  prerequisites: "Diagnostic posé par un psychiatre et attesté par un courrier médical. Être en phase de stabilisation depuis au moins 3 mois. Entretien individuel préalable avec une infirmière coordinatrice de l'UTEP.",
-  duration: "8 séances de 2h",
+  objectives: [
+    "Comprendre le trouble bipolaire et le rôle des traitements",
+    "Repérer ses signes précoces de rechute, maniaque ou dépressive",
+    "Préserver un rythme de vie régulier : sommeil, activités, repères",
+    "Construire son plan de prévention des rechutes, avec ses proches"
+  ],
+  workshops: [
+    "Le trouble bipolaire, c'est quoi ?",
+    "Mon traitement au quotidien",
+    "Mes signaux d'alerte",
+    "Sommeil et rythme de vie",
+    "Mon plan de prévention des rechutes",
+    "En parler avec mes proches"
+  ],
+  open_to_relatives: true,
+  duration: "6 séances de 2h",
   modality: "group",
   recruitment_months: [2, 10]
 )
@@ -875,11 +892,23 @@ prog_bipolaire = EtpProgram.create!(
 prog_depression = EtpProgram.create!(
   unit: utep,
   name: "Comprendre et agir sur ma dépression",
-  description: "Programme destiné aux personnes souffrant de dépression récurrente ou résistante. Il aborde la compréhension des mécanismes dépressifs, la gestion du traitement antidépresseur et les stratégies de prévention des rechutes.",
-  target_audience: "Patients adultes avec dépression récurrente (au moins 2 épisodes) ou résistante",
+  description: "Comprendre ce qu'est la dépression et ce qui l'entretient, connaître ses traitements et retrouver, pas à pas, des activités qui font du bien.",
+  target_audience: "Adultes vivant avec une dépression, en particulier lorsqu'elle revient",
   pathology: "depression",
-  prerequisites: "Diagnostic posé par un psychiatre et attesté par un courrier médical. Suivi psychiatrique en cours. Au moins un épisode dépressif traité. Entretien préalable avec l'UTEP. Accord du psychiatre référent.",
-  duration: "6 séances de 2h",
+  objectives: [
+    "Comprendre la dépression et ce qui peut l'entretenir",
+    "Connaître les traitements et leur rôle",
+    "Repérer les signes d'une rechute",
+    "Retrouver des activités et des liens qui font du bien"
+  ],
+  workshops: [
+    "Comprendre la dépression",
+    "Les traitements et moi",
+    "Mes pensées, mes émotions",
+    "Retrouver de l'élan au quotidien",
+    "Prévenir la rechute"
+  ],
+  duration: "5 séances de 2h",
   modality: "group",
   recruitment_months: [3, 11]
 )
@@ -887,10 +916,23 @@ prog_depression = EtpProgram.create!(
 prog_addiction = EtpProgram.create!(
   unit: utep,
   name: "Mon parcours de soins en addictologie",
-  description: "Programme transversal pour les patients engagés dans un parcours de soins en addictologie. Aborde la compréhension des mécanismes de dépendance, la prévention de la rechute et la construction du projet de vie.",
-  target_audience: "Patients adultes en suivi addictologique au CSAPA Lyra ou en HDJ Deneb",
+  description: "Comprendre les mécanismes de la dépendance, repérer ses situations à risque et trouver ses propres ressources pour avancer dans son projet de soins.",
+  target_audience: "Adultes accompagnés pour une addiction (alcool, cannabis, autres produits ou comportements)",
   pathology: "addiction",
-  prerequisites: "Diagnostic posé par un psychiatre et attesté par un courrier médical. Être suivi au CSAPA Lyra ou en HDJ Deneb. Sevrage stabilisé. Motivation exprimée lors d'un entretien infirmier préalable.",
+  prerequisites: "Suivi en addictologie en cours.",
+  objectives: [
+    "Comprendre les mécanismes de la dépendance",
+    "Repérer ses situations à risque",
+    "Développer des stratégies face à l'envie de consommer",
+    "Construire son projet et s'appuyer sur ses ressources"
+  ],
+  workshops: [
+    "Comprendre la dépendance",
+    "Mes situations à risque",
+    "Faire face à l'envie de consommer",
+    "Les traitements et les aides possibles",
+    "Mon projet, mes ressources"
+  ],
   duration: "5 séances de 2h30",
   modality: "mixed",
   recruitment_months: [1, 3, 5, 7, 9, 11]
@@ -899,11 +941,23 @@ prog_addiction = EtpProgram.create!(
 prog_anxiete = EtpProgram.create!(
   unit: utep,
   name: "Apprivoiser mon anxiété",
-  description: "Programme destiné aux personnes souffrant de troubles anxieux. Psychoéducation sur les mécanismes anxieux, techniques de gestion du stress et outils de régulation émotionnelle.",
-  target_audience: "Patients adultes avec troubles anxieux diagnostiqués (TAG, TOC, phobie sociale, trouble panique)",
+  description: "Comprendre comment fonctionne l'anxiété, apprendre des techniques pour l'apaiser et faire face, progressivement, aux situations que l'on évite.",
+  target_audience: "Adultes vivant avec un trouble anxieux : anxiété généralisée, trouble panique, phobie sociale, TOC…",
   pathology: "anxiety",
-  prerequisites: "Diagnostic posé par un psychiatre et attesté par un courrier médical. Suivi en cours. Entretien individuel préalable avec l'UTEP.",
-  duration: "6 séances de 1h30",
+  objectives: [
+    "Comprendre l'anxiété et ses manifestations",
+    "Connaître les traitements possibles",
+    "Apprendre des techniques pour l'apaiser : respiration, relaxation",
+    "Faire face progressivement aux situations évitées"
+  ],
+  workshops: [
+    "L'anxiété, à quoi ça sert ?",
+    "Corps, pensées, comportements",
+    "Respirer et se détendre",
+    "Affronter pas à pas",
+    "Ma boîte à outils"
+  ],
+  duration: "5 séances de 1h30",
   modality: "group",
   recruitment_months: [1, 5, 9]
 )
@@ -911,11 +965,24 @@ prog_anxiete = EtpProgram.create!(
 prog_schizo = EtpProgram.create!(
   unit: utep,
   name: "Vivre avec la schizophrénie",
-  description: "Programme d'éducation thérapeutique pour les personnes vivant avec un trouble schizophrénique ou apparenté. Connaissance de la maladie, gestion du traitement antipsychotique et stratégies de coping.",
-  target_audience: "Patients adultes avec diagnostic de schizophrénie ou trouble schizo-affectif stabilisés",
+  description: "Mieux connaître la maladie et ses traitements, repérer les signes qui annoncent une rechute et développer ses propres stratégies pour mieux vivre au quotidien.",
+  target_audience: "Adultes vivant avec une schizophrénie ou un trouble apparenté",
   pathology: "schizophrenia",
-  prerequisites: "Diagnostic posé par un psychiatre et attesté par un courrier médical. Stabilisation clinique depuis au moins 6 mois. Accord du psychiatre référent. Entretien préalable avec l'UTEP.",
-  duration: "8 séances de 2h",
+  objectives: [
+    "Mieux connaître la maladie et ses traitements",
+    "Repérer les signes qui annoncent une rechute",
+    "Trouver ses stratégies face aux symptômes et au stress",
+    "Prendre soin de sa santé et de ses liens"
+  ],
+  workshops: [
+    "Comprendre ce qui m'arrive",
+    "Mon traitement et moi",
+    "Repérer mes signaux d'alerte",
+    "Faire face au stress et aux symptômes",
+    "Prendre soin de ma santé",
+    "Mes ressources et mon entourage"
+  ],
+  duration: "6 séances de 2h",
   modality: "group",
   recruitment_months: [1, 4, 9]
 )

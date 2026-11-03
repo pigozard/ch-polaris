@@ -29,6 +29,16 @@ class EtpProgramsControllerTest < ActionDispatch::IntegrationTest
     assert_includes response.body, "Prochain recrutement"
   end
 
+  test "GET /etp présente l'ETP et l'UTEP avant les programmes" do
+    get etp_programs_path
+    assert_select "h2", /Qu'est-ce que l'éducation thérapeutique/
+    assert_select "blockquote", /compétences dont ils ont besoin/
+    assert_select "h2", /UTEP/
+    assert_select "h2", /Comment accéder à un programme/
+    assert_select "ul.etp-conditions:not(.etp-highlights) > li", EtpProgram::ACCESS_CONDITIONS.size
+    assert_select "h2", /Nos programmes/
+  end
+
   test "GET /etp filtre par pathologie" do
     get etp_programs_path, params: { pathology: "anxiety" }
     assert_response :success
@@ -77,17 +87,34 @@ class EtpProgramsControllerTest < ActionDispatch::IntegrationTest
     assert_select ".etp-aside-contact a[href^='mailto:utep@test.fr']"
   end
 
-  test "GET /etp/:id présente les conditions en check-list" do
-    @bipolar.update!(prerequisites: "Diagnostic posé par un psychiatre et attesté par un courrier médical. Suivi en cours.")
+  test "GET /etp/:id affiche les conditions d'accès communes puis les précisions du programme" do
+    @bipolar.update!(prerequisites: "Suivi en addictologie en cours.")
     get etp_program_path(@bipolar)
-    assert_select "ul.etp-conditions > li", 2
-    assert_select "ul.etp-conditions > li:first-child", /courrier médical/
+    assert_select "ul.etp-conditions > li", EtpProgram::ACCESS_CONDITIONS.size + 1
+    assert_select "ul.etp-conditions > li", /courrier médical de diagnostic et de non contre-indication/i
+    assert_select "ul.etp-conditions > li:last-child", /Suivi en addictologie en cours/
+  end
+
+  test "GET /etp/:id affiche les objectifs et les ateliers numérotés" do
+    @bipolar.update!(objectives: ["Comprendre le trouble", "Repérer les signes d'alerte"],
+                     workshops: ["Le trouble bipolaire, c'est quoi ?", "Mon traitement au quotidien"])
+    get etp_program_path(@bipolar)
+    assert_select "ul.etp-objectives > li", 2
+    assert_select "ol.etp-workshops > li", 2
+    assert_select "ol.etp-workshops > li:first-child", /Atelier 1.*Le trouble bipolaire, c'est quoi/m
+  end
+
+  test "GET /etp/:id signale un programme ouvert aux proches" do
+    @bipolar.update!(open_to_relatives: true)
+    get etp_program_path(@bipolar)
+    assert_select ".etp-fact", /Ouvert aux proches/
   end
 
   test "GET /etp/:id explique comment participer en trois étapes" do
     get etp_program_path(@bipolar)
     assert_select "ol.etp-steps > li", 3
     assert_select "ol.etp-steps > li:first-child", /courrier médical/
+    assert_select "ol.etp-steps > li:nth-child(2)", /rendez-vous individuel/
   end
 
   test "GET /etp/:id affiche une frise des 12 mois avec le prochain recrutement" do

@@ -13,16 +13,100 @@
   </div>
 </section>
 
-<div class="container">
-  <section class="section section--no-border">
+<div class="container page-reading">
+
+  <%# ═══════════ QU'EST-CE QUE L'ETP ? ═══════════ %>
+  <section class="section section--no-border" aria-labelledby="etp-what-title">
+    <span class="label">Comprendre</span>
+    <h2 class="section-title" id="etp-what-title">Qu'est-ce que l'éducation thérapeutique ?</h2>
+    <div class="etp-intro">
+      <div>
+        <blockquote class="etp-quote">
+          <p>
+            L'éducation thérapeutique du patient « vise à aider les patients à acquérir ou maintenir
+            les compétences dont ils ont besoin pour gérer au mieux leur vie avec une maladie chronique ».
+          </p>
+          <footer>Organisation mondiale de la santé, 1998</footer>
+        </blockquote>
+        <p>
+          Concrètement, un programme d'éducation thérapeutique vous aide à mieux comprendre votre trouble
+          et vos traitements, et à trouver vos propres solutions pour mieux vivre au quotidien. Il ne remplace
+          pas votre suivi : il le complète.
+        </p>
+      </div>
+      <ul class="etp-conditions etp-highlights">
+        <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>Pour les personnes concernées, et parfois pour leurs proches</span></li>
+        <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>En séances individuelles ou en petits groupes</span></li>
+        <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>Animé par des soignants formés à l'éducation thérapeutique</span></li>
+        <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>Pendant une hospitalisation, en hôpital de jour ou en ambulatoire</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <%# ═══════════ L'UTEP ═══════════ %>
+  <% if @utep %>
+    <section class="section" aria-labelledby="etp-utep-title">
+      <span class="label">L'équipe</span>
+      <h2 class="section-title" id="etp-utep-title"><%= @utep.name %></h2>
+      <div class="etp-intro">
+        <div>
+          <p>
+            L'Unité Transversale d'Éducation du Patient coordonne l'éducation thérapeutique de tout
+            l'établissement. Elle réunit une psychiatre, un cadre de santé, des infirmiers et un
+            médiateur de santé pair, c'est-à-dire une personne qui a elle-même vécu un trouble psychique.
+          </p>
+          <p>Ses missions :</p>
+          <ul class="etp-missions">
+            <li>coordonner les programmes et accompagner les équipes qui les animent ;</li>
+            <li>vous informer et vous orienter vers le programme qui vous correspond ;</li>
+            <li>former les professionnels et les étudiants à l'éducation thérapeutique ;</li>
+            <li>faire connaître la démarche et évaluer les programmes.</li>
+          </ul>
+        </div>
+        <dl class="etp-utep-infos">
+          <% if @utep.address.present? %>
+            <div><dt><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Adresse</dt><dd><%= @utep.address %></dd></div>
+          <% end %>
+          <% if (opening = @utep.schedules.find { |s| s.schedule_type == "consultation" }) %>
+            <div>
+              <dt><i class="fa-solid fa-clock" aria-hidden="true"></i> Horaires</dt>
+              <dd><%= opening.note %>, de <%= opening.opens_at&.strftime("%Hh%M") %> à <%= opening.closes_at&.strftime("%Hh%M") %></dd>
+            </div>
+          <% end %>
+        </dl>
+      </div>
+      <%= render "utep_contact", utep: @utep, subject: "Demande d'information — programmes d'éducation thérapeutique" %>
+    </section>
+  <% end %>
+
+  <%# ═══════════ ACCÈS ═══════════ %>
+  <section class="section" aria-labelledby="etp-access-title">
+    <span class="label">Participer</span>
+    <h2 class="section-title" id="etp-access-title">Comment accéder à un programme ?</h2>
+    <p>Pour tous les programmes, il faut :</p>
+    <ul class="etp-conditions">
+      <% EtpProgram::ACCESS_CONDITIONS.each do |condition| %>
+        <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span><%= condition %></span></li>
+      <% end %>
+    </ul>
+    <p class="etp-access-note">
+      L'entrée dans un programme commence toujours par un <strong>rendez-vous individuel avec un soignant
+      formé</strong>, pour faire le point sur vos besoins et vos attentes.
+    </p>
+  </section>
+
+  <%# ═══════════ PROGRAMMES ═══════════ %>
+  <section class="section" id="programmes" aria-labelledby="etp-programs-title">
+    <span class="label">Catalogue</span>
+    <h2 class="section-title" id="etp-programs-title">Nos programmes</h2>
 
     <%# ── Filtre par pathologie (liens simples, fonctionne sans JavaScript) ── %>
     <nav class="etp-filters" aria-label="Filtrer par pathologie">
-      <%= link_to "Tous les programmes", etp_programs_path,
+      <%= link_to "Tous les programmes", etp_programs_path(anchor: "programmes"),
                   class: ["annuaire-chip", ("annuaire-chip--active" if @pathology.nil?)],
                   aria: { current: ("page" if @pathology.nil?) } %>
       <% EtpProgram::PATHOLOGY_LABELS.slice(*@pathologies).each do |value, label| %>
-        <%= link_to label, etp_programs_path(pathology: value),
+        <%= link_to label, etp_programs_path(pathology: value, anchor: "programmes"),
                     class: ["annuaire-chip", ("annuaire-chip--active" if @pathology == value)],
                     aria: { current: ("page" if @pathology == value) } %>
       <% end %>
@@ -35,7 +119,7 @@
           <span class="hub-card-title"><%= program.name %></span>
           <span class="hub-card-desc"><%= truncate(program.description, length: 160) %></span>
           <span class="etp-meta">
-            <%= [program.duration, program.modality_label].compact.join(" · ") %>
+            <%= [program.duration, program.modality_label, ("ouvert aux proches" if program.open_to_relatives?)].compact.join(" · ") %>
           </span>
           <% if (next_recruitment = program.next_recruitment) %>
             <span class="etp-meta">Prochain recrutement : <%= l(next_recruitment, format: :month_year) %></span>
@@ -48,8 +132,6 @@
     <% if @etp_programs.empty? %>
       <p>Aucun programme pour le moment.</p>
     <% end %>
-
-    <%= render "utep_contact", utep: @utep, subject: "Demande d'information — programmes d'éducation thérapeutique" %>
-
   </section>
+
 </div>

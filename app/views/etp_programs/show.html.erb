@@ -29,6 +29,11 @@
           <div class="etp-fact">
             <dt><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Lieu</dt><dd><%= @etp_program.unit.name %></dd>
           </div>
+          <% if @etp_program.open_to_relatives? %>
+            <div class="etp-fact">
+              <dt><i class="fa-solid fa-people-group" aria-hidden="true"></i> Public</dt><dd>Ouvert aux proches</dd>
+            </div>
+          <% end %>
         </dl>
 
         <% if next_recruitment %>
@@ -56,9 +61,27 @@
           </div>
         <% end %>
 
-        <h2 class="etp-heading">Conditions pour participer</h2>
+        <% if @etp_program.objectives.any? %>
+          <h2 class="etp-heading">Objectifs du programme</h2>
+          <ul class="etp-objectives">
+            <% @etp_program.objectives.each do |objective| %>
+              <li><i class="fa-solid fa-bullseye" aria-hidden="true"></i><span><%= objective %></span></li>
+            <% end %>
+          </ul>
+        <% end %>
+
+        <% if @etp_program.workshops.any? %>
+          <h2 class="etp-heading">Les ateliers</h2>
+          <ol class="etp-workshops">
+            <% @etp_program.workshops.each_with_index do |workshop, index| %>
+              <li><span class="etp-workshop-number">Atelier <%= index + 1 %></span> «&nbsp;<%= workshop %>&nbsp;»</li>
+            <% end %>
+          </ol>
+        <% end %>
+
+        <h2 class="etp-heading">Conditions d'accès</h2>
         <ul class="etp-conditions">
-          <% @etp_program.prerequisites_list.each do |condition| %>
+          <% (EtpProgram::ACCESS_CONDITIONS + @etp_program.prerequisites_list).each do |condition| %>
             <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span><%= condition %></span></li>
           <% end %>
         </ul>
@@ -66,15 +89,15 @@
         <h2 class="etp-heading">Comment participer ?</h2>
         <ol class="etp-steps">
           <li>
-            <strong>Demandez un courrier médical</strong> à votre psychiatre : il atteste le diagnostic,
-            indispensable pour participer.
+            <strong>Demandez à votre psychiatre un courrier médical</strong> de diagnostic et de non
+            contre-indication à suivre un programme d'éducation thérapeutique.
           </li>
           <li>
-            <strong>Contactez l'UTEP</strong>, qui organise avec vous un entretien individuel préalable
-            pour vérifier que le programme vous correspond.
+            <strong>Contactez l'UTEP</strong> : un soignant formé vous propose un rendez-vous individuel
+            pour faire le point sur vos besoins et vos attentes.
           </li>
           <li>
-            <strong>Vous rejoignez le prochain groupe</strong><%= next_recruitment ? ", qui démarre en #{l(next_recruitment, format: :month_year)}" : "" %>.
+            <strong>Vous rejoignez les ateliers</strong><%= next_recruitment ? ", avec le prochain groupe qui démarre en #{l(next_recruitment, format: :month_year)}" : "" %>.
           </li>
         </ol>
 

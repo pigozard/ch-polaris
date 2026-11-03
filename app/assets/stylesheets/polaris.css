@@ -70,8 +70,8 @@ button:focus-visible {
 /* Pages de lecture (séjour, droits, outils) : sections plus resserrées que sur l'accueil (88px → 48px) */
 .page-reading .section { padding: 48px 0; }
 .page-reading .section:first-child { padding-top: 40px; }
-/* Le bandeau d'urgence final suit directement le contenu, sans trait ni grand vide */
-.page-reading .section:last-child:not(:first-child) { padding-top: 0; border-top: none; }
+/* Le bandeau d'urgence final (.section--tail) suit directement le contenu, sans trait ni grand vide */
+.page-reading .section--tail { padding-top: 0; border-top: none; }
 .page-reading .section-title + p { margin-top: 12px; }
 /* Liens du texte aux couleurs du site (au lieu du bleu Bootstrap) */
 .page-reading p a:not([class]) { color: var(--teal-dark); font-weight: 600; }
@@ -1550,7 +1550,21 @@ a.hopital-contact-value:hover { color: var(--teal-dark); }
 /* ═══════════════════════════════════════
    CATALOGUE ETP  (/etp)
    ═══════════════════════════════════════ */
-.etp-filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+.etp-filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0 28px; }
+
+/* ── Page /etp : introduction (ETP, UTEP, accès) avant les programmes ── */
+.etp-intro { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 32px 48px; align-items: start; margin-top: 20px; }
+@media (max-width: 860px) { .etp-intro { grid-template-columns: 1fr; } }
+.etp-quote { margin: 0 0 16px; padding: 16px 20px; border-left: 3px solid var(--teal); background: var(--teal-light); border-radius: 0 10px 10px 0; }
+.etp-quote p { font-family: var(--font-display); font-size: 1.25rem; line-height: 1.5; color: var(--ink); margin: 0 0 8px; }
+.etp-quote footer { font-size: 0.85rem; color: var(--muted); }
+.etp-missions { padding-left: 1.2rem; display: grid; gap: 4px; }
+.etp-utep-infos { display: grid; gap: 10px; margin: 0; }
+.etp-utep-infos > div { padding: 12px 14px; border: 1px solid var(--border); border-radius: 10px; }
+.etp-utep-infos dt { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.etp-utep-infos dt i { color: var(--teal-dark); width: 1.2em; }
+.etp-utep-infos dd { margin: 2px 0 0; color: var(--ink); }
+.etp-access-note { margin: 16px 0 0; }
 .etp-filters .annuaire-chip { text-decoration: none; }
 
 .etp-pathology {
@@ -1617,7 +1631,15 @@ a.hopital-contact-value:hover { color: var(--teal-dark); }
 .etp-audience .etp-heading { font-size: 1.3rem; margin: 0 0 4px; }
 .etp-audience p { margin: 0; }
 
-/* Conditions pour participer */
+/* Objectifs et ateliers */
+.etp-objectives { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+.etp-objectives li { display: flex; gap: 12px; align-items: flex-start; }
+.etp-objectives i { color: var(--teal-dark); margin-top: 4px; }
+.etp-workshops { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
+.etp-workshops li { padding: 12px 14px; border: 1px solid var(--border); border-radius: 10px; color: var(--ink); }
+.etp-workshop-number { display: block; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--teal-dark); margin-bottom: 2px; }
+
+/* Conditions d'accès */
 .etp-conditions { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
 .etp-conditions li { display: flex; gap: 12px; align-items: flex-start; }
 .etp-conditions i { color: var(--teal-dark); margin-top: 4px; }

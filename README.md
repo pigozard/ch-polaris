@@ -73,6 +73,9 @@ Ajouter un mot-clé ou un besoin : modifier ce fichier (mots sans accents), puis
 
 ### Catalogue ETP (`/etp`)
 
+- Introduction avant le catalogue : ce qu'est l'éducation thérapeutique (définition de l'OMS), l'UTEP (équipe, missions, adresse et horaires lus en base) et les conditions d'accès communes à tous les programmes (`EtpProgram::ACCESS_CONDITIONS`)
+- Chaque programme a ses objectifs, ses ateliers numérotés (`objectives`, `workshops`) et peut être ouvert aux proches ; `prerequisites` ne garde que les précisions propres au programme
+
 - Filtre par pathologie (liens simples, fonctionne sans JavaScript)
 - Fiche programme en deux colonnes : « L'essentiel » (durée, format, lieu, prochain recrutement) et le contact de l'UTEP à droite ; à gauche, le public concerné, les conditions en check-list (dont le diagnostic posé par un psychiatre et attesté par un courrier médical), « Comment participer ? » en 3 étapes et une frise des 12 mois de recrutement
 - Prochain recrutement calculé à partir de la date du jour, pour que la page ne vieillisse jamais

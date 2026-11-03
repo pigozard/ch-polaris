@@ -38,6 +38,22 @@ class EtpProgramTest < ActiveSupport::TestCase
                  program.prerequisites_list
   end
 
+  test "les conditions d'accès communes exigent un courrier médical" do
+    assert(EtpProgram::ACCESS_CONDITIONS.any? { |c| c.downcase.include?("courrier médical") })
+  end
+
+  test "les conditions d'accès demandent un suivi psychiatrique, pas psychologique" do
+    assert_includes EtpProgram::ACCESS_CONDITIONS, "Suivi psychiatrique en cours."
+    assert(EtpProgram::ACCESS_CONDITIONS.none? { |c| c.match?(/psychologique/i) })
+  end
+
+  test "un programme sans précision propre reste valide" do
+    program = program([1])
+    program.prerequisites = nil
+    assert program.valid?
+    assert_empty program.prerequisites_list
+  end
+
   test "un mois de recrutement doit être compris entre 1 et 12" do
     assert_not program([0, 13]).valid?
     assert program([1, 12]).valid?
