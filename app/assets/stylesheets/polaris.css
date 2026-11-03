@@ -1636,6 +1636,14 @@ a.hopital-contact-value:hover { color: var(--teal-dark); }
 /* ═══════════════════════════════════════
    PRÉPARER MON SÉJOUR  (/patients/preparer-mon-sejour)
    ═══════════════════════════════════════ */
+/* Page de lecture : sections plus resserrées que sur l'accueil (88px → 48px) */
+.sejour .section { padding: 48px 0; }
+.sejour .section:first-child { padding-top: 40px; }
+/* Le bandeau d'urgence suit directement le contenu, sans trait ni grand vide */
+.sejour .section:last-child { padding-top: 0; border-top: none; }
+.sejour .section-title + p { margin-top: 12px; }
+/* Liens du texte aux couleurs du site (au lieu du bleu Bootstrap) */
+.sejour p a:not([class]) { color: var(--teal-dark); font-weight: 600; }
 .sejour-paths {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
